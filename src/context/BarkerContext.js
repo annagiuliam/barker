@@ -9,6 +9,7 @@ export const BarkerContext = createContext();
 export const ContextProvider = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const [authError, setAuthError] = useState(null);
 
@@ -35,6 +36,7 @@ export const ContextProvider = ({ children }) => {
         // var token = credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+        const imageUrl = user.photoURL || "/images/profile_placeholder.png";
         setUserName(user.displayName);
         setUserLoggedIn(true);
         console.log(userName);
@@ -64,7 +66,7 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <BarkerContext.Provider
-      value={{ userName, userLoggedIn, authError, signIn, logOut }}
+      value={{ userName, userLoggedIn, authError, avatarUrl, signIn, logOut }}
     >
       {children}
     </BarkerContext.Provider>
