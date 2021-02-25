@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/barker/static/css/main.518ce94c.chunk.css",
+    "main.js": "/barker/static/js/main.255b6d55.chunk.js",
+    "main.js.map": "/barker/static/js/main.255b6d55.chunk.js.map",
+    "runtime-main.js": "/barker/static/js/runtime-main.7ce64c40.js",
+    "runtime-main.js.map": "/barker/static/js/runtime-main.7ce64c40.js.map",
+    "static/js/2.dcddb08e.chunk.js": "/barker/static/js/2.dcddb08e.chunk.js",
+    "static/js/2.dcddb08e.chunk.js.map": "/barker/static/js/2.dcddb08e.chunk.js.map",
+    "index.html": "/barker/index.html",
+    "static/css/main.518ce94c.chunk.css.map": "/barker/static/css/main.518ce94c.chunk.css.map",
+    "static/js/2.dcddb08e.chunk.js.LICENSE.txt": "/barker/static/js/2.dcddb08e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ce64c40.js",
+    "static/js/2.dcddb08e.chunk.js",
+    "static/css/main.518ce94c.chunk.css",
+    "static/js/main.255b6d55.chunk.js"
+  ]
+}
