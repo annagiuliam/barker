@@ -2,10 +2,10 @@ import "./App.css";
 import db from "./firebase/firebase";
 //import { signIn } from "./firebase/firebaseHelpers";
 
-import LoginPage from "./components/LoginPage";
+import Header from "./components/Header";
 
 function App() {
-  return <LoginPage />;
+  return <Header />;
 }
 
 export default App;
