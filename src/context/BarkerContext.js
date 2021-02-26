@@ -28,11 +28,13 @@ export const ContextProvider = ({ children }) => {
     });
   });
   useEffect(() => {
-    db.collection("posts").onSnapshot((snapshot) => {
+    const dbCall = db.collection("posts").onSnapshot((snapshot) => {
       setPosts(snapshot.docs.map((doc) => doc.data()));
     });
-    console.log(posts); //KEEPS LOGGING
-  }, [posts]);
+    //console.log(posts);
+  }, []);
+
+  useEffect(() => console.log(posts));
 
   function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
