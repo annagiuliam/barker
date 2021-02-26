@@ -10,16 +10,13 @@ const Header = () => {
   );
   return (
     <header id="header">
-      {!userLoggedIn && <button onClick={signIn}>Log in with Google</button>}
-      {userLoggedIn && (
+      <div>
         <div>
-          <div>
-            <img src={avatarUrl} alt="user avatar"></img>
-          </div>
-          <div>{userName}</div>
-          <button onClick={logOut}>Log Out</button>
+          <img id="avatar-img" src={avatarUrl} alt="user avatar"></img>
         </div>
-      )}
+        <div>{userName}</div>
+        <button onClick={logOut}>Log Out</button>
+      </div>
     </header>
   );
 };

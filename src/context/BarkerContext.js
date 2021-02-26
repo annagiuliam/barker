@@ -1,6 +1,8 @@
 import React, { useState, createContext, useEffect } from "react";
 import firebase from "firebase/app";
 import firebaseApp from "../firebase/firebase";
+import placeholder from "../images/profile_placeholder.png";
+
 const db = firebaseApp.firestore();
 const auth = firebaseApp.auth();
 
@@ -14,12 +16,15 @@ export const ContextProvider = ({ children }) => {
   const [authError, setAuthError] = useState(null);
 
   useEffect(() => {
-    // auth.onAuthStateChanged((user) => {
-    //   if (user) {
-    //     setUserLoggedIn(true);
-    //     //console.log(user.displayName);
-    //   } else setUserLoggedIn(false);
-    // });
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        const imageUrl = user.photoURL || placeholder;
+        setUserName(user.displayName);
+        setUserLoggedIn(true);
+        setAvatarUrl(imageUrl);
+        //console.log(user.displayName);
+      } else setUserLoggedIn(false);
+    });
   });
 
   function signIn() {
@@ -36,9 +41,11 @@ export const ContextProvider = ({ children }) => {
         // var token = credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-        const imageUrl = user.photoURL || "/images/profile_placeholder.png";
+
+        const imageUrl = user.photoURL || placeholder;
         setUserName(user.displayName);
         setUserLoggedIn(true);
+        setAvatarUrl(imageUrl);
         console.log(userName);
         // ...
       })

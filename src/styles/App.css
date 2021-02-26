@@ -1,0 +1,53 @@
+.App {
+  text-align: center;
+}
+body, html , #root {
+  height: 100%;
+  margin: 0 
+} 
+
+/* Header */
+#avatar-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+
+/* Login Page */
+#login-page {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: url("../images/dog-pattern.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat; 
+  /* position: relative; */
+  /* text-align: center; */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  
+}
+
+#login-btns {
+  margin-right: 10vh;
+  padding: 10vh;
+}
+/* #login-page::after {
+  content: "";
+  
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right: 0;
+  position: absolute;
+  z-index: -1;  
+} */
+
+/* .footer {
+  padding: 20px;
+} */
+
