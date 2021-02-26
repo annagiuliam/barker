@@ -12,7 +12,7 @@ export const ContextProvider = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
-
+  const [posts, setPosts] = useState([]);
   const [authError, setAuthError] = useState(null);
 
   useEffect(() => {
@@ -22,10 +22,17 @@ export const ContextProvider = ({ children }) => {
         setUserName(user.displayName);
         setUserLoggedIn(true);
         setAvatarUrl(imageUrl);
-        //console.log(user.displayName);
+
+        //console.log(posts);
       } else setUserLoggedIn(false);
     });
   });
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) => {
+      setPosts(snapshot.docs.map((doc) => doc.data()));
+    });
+    console.log(posts); //KEEPS LOGGING
+  }, [posts]);
 
   function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
