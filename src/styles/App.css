@@ -2,17 +2,73 @@
   text-align: center;
 }
 body, html , #root {
-  height: 100%;
+  height: 100vh;
+  width: 100%;
   margin: 0 
+}
+button {
+  margin: 15px;
 } 
 
+
+
+/* Home */
+/* .home-container {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: auto;
+  width: 100%;
+} */
+
+
+
 /* Header */
+#header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color:azure;
+  padding: 15px;
+  text-align: right;
+  display: flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  align-items: center;
+}
 .avatar-img {
   height: 30px;
   width: 30px;
   border-radius: 20px;
+  margin: 15px
 }
 
+/* App Container */
+
+.app-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100vh;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Sidebar */
+.sidebar {
+  
+  position: fixed;
+  
+  margin-right: 15px;
+  width: 20%
+}
+
+/* Main */
+.main {
+  width: 50%
+}
 /* Login Page */
 #login-page {
   height: 100vh;

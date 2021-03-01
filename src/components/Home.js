@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 import Header from "./Header";
-import PostInput from "./PostInput";
-import Feed from "./Feed";
+import Sidebar from "./Sidebar";
+import Main from "./Main";
 const Home = () => {
   return (
-    <div>
+    <div className="home-container">
       <Header />
-      <PostInput />
-      <div className="sidebar">Sidebar</div>
-      <Feed />
+      <div className="app-container">
+        <Sidebar />
+        <Main />
+      </div>
     </div>
   );
 };

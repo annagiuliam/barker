@@ -9,7 +9,6 @@ const auth = firebaseApp.auth();
 export const BarkerContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-<<<<<<< HEAD
   const [database] = useState(db);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   //const [currentUser, setCurrentUser] = useState(null);
@@ -18,19 +17,11 @@ export const ContextProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [postText, setPostText] = useState("");
   const [error, setError] = useState(null);
-=======
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
-  const [posts, setPosts] = useState([]);
-  const [authError, setAuthError] = useState(null);
->>>>>>> ef36421aafba61a934bc6909604c0fd2dcd09323
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
         const imageUrl = user.photoURL || placeholder;
-<<<<<<< HEAD
         // setCurrentUser(user);
         setUserName(user.displayName);
         setUserLoggedIn(true);
@@ -60,24 +51,6 @@ export const ContextProvider = ({ children }) => {
       }
     );
   }
-=======
-        setUserName(user.displayName);
-        setUserLoggedIn(true);
-        setAvatarUrl(imageUrl);
-
-        //console.log(posts);
-      } else setUserLoggedIn(false);
-    });
-  });
-  useEffect(() => {
-    const dbCall = db.collection("posts").onSnapshot((snapshot) => {
-      setPosts(snapshot.docs.map((doc) => doc.data()));
-    });
-    //console.log(posts);
-  }, []);
-
-  useEffect(() => console.log(posts));
->>>>>>> ef36421aafba61a934bc6909604c0fd2dcd09323
 
   function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
@@ -95,10 +68,7 @@ export const ContextProvider = ({ children }) => {
         var user = result.user;
 
         const imageUrl = user.photoURL || placeholder;
-<<<<<<< HEAD
         //setCurrentUser(user);
-=======
->>>>>>> ef36421aafba61a934bc6909604c0fd2dcd09323
         setUserName(user.displayName);
         setUserLoggedIn(true);
         setAvatarUrl(imageUrl);
@@ -116,11 +86,7 @@ export const ContextProvider = ({ children }) => {
         // ...
         console.log(errorMessage);
         const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-<<<<<<< HEAD
         setError(displayedError);
-=======
-        setAuthError(displayedError);
->>>>>>> ef36421aafba61a934bc6909604c0fd2dcd09323
       });
   }
 
