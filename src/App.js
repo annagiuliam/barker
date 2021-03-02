@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { ReactRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { BarkerContext } from "./context/BarkerContext";
 import "./styles/App.css";
 import db from "./firebase/firebase";
@@ -10,7 +10,17 @@ import LoginPage from "./components/LoginPage";
 
 function App() {
   const { userLoggedIn } = useContext(BarkerContext);
-  return userLoggedIn ? <Home /> : <LoginPage />;
+  return (
+    <BrowserRouter>
+      <Route exact path="/login">
+        {userLoggedIn ? <Redirect to="/" /> : <LoginPage />}
+      </Route>
+      <Route path="/">
+        {!userLoggedIn ? <Redirect to="/login" /> : <Home />}{" "}
+      </Route>
+    </BrowserRouter>
+  );
+  // userLoggedIn ? <Home /> : <LoginPage />);
 }
 
 export default App;
