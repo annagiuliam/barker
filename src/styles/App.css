@@ -58,15 +58,23 @@ button {
 
 /* Sidebar */
 .sidebar {
-  
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
   position: fixed;
-  
-  margin-right: 15px;
-  width: 20%
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+ul {
+  list-style-type: none;
 }
 
 /* Main */
-.main {
+.main-container {
+  margin-left: 220px;
   width: 50%
 }
 /* Login Page */
@@ -107,3 +115,23 @@ button {
   padding: 20px;
 } */
 
+/* Post */
+.post-container {
+  border: 1px solid black;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.post-content {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}

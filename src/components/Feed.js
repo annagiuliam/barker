@@ -12,7 +12,7 @@ const Feed = () => {
             <img alt="pic" src={avatarUrl} className="avatar-img"></img>
             <span className="username">{userName}</span>
           </div>
-          <div>{post.text}</div>
+          <div className="post-content">{post.text}</div>
         </div>
       ))}
     </div>
