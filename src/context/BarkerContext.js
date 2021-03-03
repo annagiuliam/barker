@@ -23,11 +23,11 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        //const imageUrl = user.photoURL || placeholder;
-        // setCurrentUser(user);
-        // setUserName(user.displayName);
+        const imageUrl = user.photoURL || placeholder;
+        //setCurrentUser(user);
+        setUserName(user.displayName);
         setUserLoggedIn(true);
-        // setAvatarUrl(imageUrl);
+        setAvatarUrl(imageUrl);
         downloadPosts();
       } else setUserLoggedIn(false);
     });
@@ -129,13 +129,16 @@ export const ContextProvider = ({ children }) => {
 
   function submitPost(e) {
     e.preventDefault();
+
     db.collection("posts")
       .add({
         userUid: auth.currentUser.uid,
         text: postText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
+      //.then(() => setPostText(""))
       .catch((error) => console.log("error", error.message));
+    setPostText("");
   }
 
   function updateUserName(e) {
@@ -152,6 +155,7 @@ export const ContextProvider = ({ children }) => {
         database,
         error,
         posts,
+        postText,
         signInModal,
         userName,
         userLoggedIn,
