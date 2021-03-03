@@ -18,14 +18,16 @@ export const ContextProvider = ({ children }) => {
   const [postText, setPostText] = useState("");
   const [error, setError] = useState(null);
 
+  const [signInModal, setSignInModal] = useState(false);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        const imageUrl = user.photoURL || placeholder;
+        //const imageUrl = user.photoURL || placeholder;
         // setCurrentUser(user);
-        setUserName(user.displayName);
+        // setUserName(user.displayName);
         setUserLoggedIn(true);
-        setAvatarUrl(imageUrl);
+        // setAvatarUrl(imageUrl);
         downloadPosts();
       } else setUserLoggedIn(false);
     });
@@ -90,6 +92,30 @@ export const ContextProvider = ({ children }) => {
       });
   }
 
+  function signInAnonimous(e) {
+    e.preventDefault();
+    auth
+      .signInAnonymously()
+      .then((result) => {
+        const user = result.user;
+        user
+          .updateProfile({
+            displayName: userName || "Anonimous",
+          })
+          .then(() => {
+            setUserName(user.displayName);
+            setUserLoggedIn(true);
+            setAvatarUrl(placeholder);
+            setSignInModal(false);
+          });
+      })
+      .catch((error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log(errorMessage);
+      });
+  }
+
   function logOut() {
     auth.signOut().then(() => {
       console.log("logged out");
@@ -112,19 +138,30 @@ export const ContextProvider = ({ children }) => {
       .catch((error) => console.log("error", error.message));
   }
 
+  function updateUserName(e) {
+    setUserName(e.target.value);
+  }
+
+  function showSignInModal() {
+    setSignInModal(true);
+  }
   return (
     <BarkerContext.Provider
       value={{
+        avatarUrl,
         database,
+        error,
+        posts,
+        signInModal,
         userName,
         userLoggedIn,
-        error,
-        avatarUrl,
-        posts,
-        signIn,
         logOut,
+        signIn,
+        signInAnonimous,
+        showSignInModal,
         submitPost,
         updatePost,
+        updateUserName,
       }}
     >
       {children}
