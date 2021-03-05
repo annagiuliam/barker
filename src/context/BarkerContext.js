@@ -36,20 +36,22 @@ export const ContextProvider = ({ children }) => {
   });
 
   function downloadPosts() {
-    db.collection("posts").onSnapshot(
-      (snapshot) => {
-        const posts = snapshot.docs.map((doc) => doc.data());
-        setPosts(posts);
-      },
-      (error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot(
+        (snapshot) => {
+          const posts = snapshot.docs.map((doc) => doc.data());
+          setPosts(posts);
+        },
+        (error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
 
-        console.log(errorMessage);
-        const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-        setError(displayedError);
-      }
-    );
+          console.log(errorMessage);
+          const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+          setError(displayedError);
+        }
+      );
   }
 
   function signIn() {
