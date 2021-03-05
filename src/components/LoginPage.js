@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-import AnonimousModal from "./AnonimousModal";
+import AnonymousModal from "./AnonymousModal";
 
 const LoginPage = () => {
   const { userLoggedIn, signIn, showSignInModal, signInModal } = useContext(
@@ -15,7 +15,7 @@ const LoginPage = () => {
           <div>
             <button onClick={signIn}>Log in with Google</button>
             <button onClick={showSignInModal}>Log In Anonimously</button>
-            {signInModal && <AnonimousModal />}
+            {signInModal && <AnonymousModal />}
           </div>
         )}
       </div>

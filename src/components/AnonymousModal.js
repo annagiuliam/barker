@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-const AnonimousModal = () => {
-  const { signInAnonimous, updateUserName, signInModal } = useContext(
+const AnonymousModal = () => {
+  const { signInAnonymous, updateAnonName, signInModal } = useContext(
     BarkerContext
   );
   const modalDisplay = signInModal
@@ -11,17 +11,17 @@ const AnonimousModal = () => {
   return (
     <div className={modalDisplay}>
       <section className="modal-main">
-        <form onSubmit={signInAnonimous}>
+        <form onSubmit={signInAnonymous}>
           <input
             type="text"
             placeholder="choose a username"
-            onChange={updateUserName}
+            onChange={updateAnonName}
           ></input>
-          <button type="submit">Sign In Anonimously</button>
+          <button type="submit">Sign In Anonymously</button>
         </form>
       </section>
     </div>
   );
 };
 
-export default AnonimousModal;
+export default AnonymousModal;
