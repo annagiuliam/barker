@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
 const Feed = () => {
-  const { posts, userName, avatarUrl } = useContext(BarkerContext);
+  const { posts, userInfo } = useContext(BarkerContext);
 
   return (
     <div className="posts-container">
       {posts.map((post) => (
         <div className="post-container">
           <div className="user-info">
-            <img alt="pic" src={avatarUrl} className="avatar-img"></img>
-            <span className="username">{userName}</span>
+            <img alt="pic" src={userInfo.url} className="avatar-img"></img>
+            <span className="username">{userInfo.username}</span>
           </div>
           <div className="post-content">{post.text}</div>
         </div>

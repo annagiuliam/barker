@@ -12,8 +12,9 @@ export const ContextProvider = ({ children }) => {
   const [database] = useState(db);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   //const [currentUser, setCurrentUser] = useState(null);
-  const [userName, setUserName] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
+  const [anonName, setAnonName] = useState("");
+  // const [avatarUrl, setAvatarUrl] = useState("");
+  const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState([]);
   const [postText, setPostText] = useState("");
   const [error, setError] = useState(null);
@@ -23,11 +24,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        const imageUrl = user.photoURL || placeholder;
-        //setCurrentUser(user);
-        setUserName(user.displayName);
-        setUserLoggedIn(true);
-        setAvatarUrl(imageUrl);
+        afterLoginActions(user);
         downloadPosts();
       } else setUserLoggedIn(false);
     });
@@ -35,6 +32,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(posts);
+    console.log(userInfo);
   });
 
   function downloadPosts() {
@@ -68,14 +66,7 @@ export const ContextProvider = ({ children }) => {
         // var token = credential.accessToken;
         // The signed-in user info.
         var user = result.user;
-
-        const imageUrl = user.photoURL || placeholder;
-        //setCurrentUser(user);
-        setUserName(user.displayName);
-        setUserLoggedIn(true);
-        setAvatarUrl(imageUrl);
-        console.log(userName);
-        // ...
+        afterLoginActions(user);
       })
       .catch((error) => {
         // Handle Errors here.
@@ -92,20 +83,19 @@ export const ContextProvider = ({ children }) => {
       });
   }
 
-  function signInAnonimous(e) {
+  function signInAnonymous(e) {
     e.preventDefault();
     auth
       .signInAnonymously()
       .then((result) => {
         const user = result.user;
+
         user
           .updateProfile({
-            displayName: userName || "Anonimous",
+            displayName: anonName,
           })
           .then(() => {
-            setUserName(user.displayName);
-            setUserLoggedIn(true);
-            setAvatarUrl(placeholder);
+            afterLoginActions(user);
             setSignInModal(false);
           });
       })
@@ -114,6 +104,18 @@ export const ContextProvider = ({ children }) => {
         var errorMessage = error.message;
         console.log(errorMessage);
       });
+  }
+
+  function afterLoginActions(user) {
+    const imageUrl = user.photoURL || placeholder;
+
+    const info = {
+      uid: user.uid,
+      username: user.displayName,
+      url: imageUrl,
+    };
+    setUserInfo(info);
+    setUserLoggedIn(true);
   }
 
   function logOut() {
@@ -141,8 +143,8 @@ export const ContextProvider = ({ children }) => {
     setPostText("");
   }
 
-  function updateUserName(e) {
-    setUserName(e.target.value);
+  function updateAnonName(e) {
+    setAnonName(e.target.value);
   }
 
   function showSignInModal() {
@@ -151,21 +153,21 @@ export const ContextProvider = ({ children }) => {
   return (
     <BarkerContext.Provider
       value={{
-        avatarUrl,
         database,
         error,
         posts,
         postText,
         signInModal,
-        userName,
+        userInfo,
+        anonName,
         userLoggedIn,
         logOut,
         signIn,
-        signInAnonimous,
+        signInAnonymous,
         showSignInModal,
         submitPost,
         updatePost,
-        updateUserName,
+        updateAnonName,
       }}
     >
       {children}
