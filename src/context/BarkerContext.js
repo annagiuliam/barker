@@ -40,7 +40,9 @@ export const ContextProvider = ({ children }) => {
       .orderBy("timestamp", "desc")
       .onSnapshot(
         (snapshot) => {
-          const posts = snapshot.docs.map((doc) => doc.data());
+          const posts = snapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          });
           setPosts(posts);
         },
         (error) => {
@@ -136,7 +138,7 @@ export const ContextProvider = ({ children }) => {
 
     db.collection("posts")
       .add({
-        userUid: userInfo.uid,
+        uid: userInfo.uid,
         username: userInfo.username,
         url: userInfo.url,
         text: postText,
@@ -154,22 +156,26 @@ export const ContextProvider = ({ children }) => {
   function showSignInModal() {
     setSignInModal(true);
   }
+
   return (
     <BarkerContext.Provider
       value={{
+        anonName,
         database,
         error,
         posts,
         postText,
+
         signInModal,
         userInfo,
-        anonName,
         userLoggedIn,
+
         logOut,
         signIn,
         signInAnonymous,
         showSignInModal,
         submitPost,
+
         updatePost,
         updateAnonName,
       }}
