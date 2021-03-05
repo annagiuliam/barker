@@ -9,8 +9,8 @@ const Feed = () => {
       {posts.map((post) => (
         <div className="post-container">
           <div className="user-info">
-            <img alt="pic" src={userInfo.url} className="avatar-img"></img>
-            <span className="username">{userInfo.username}</span>
+            <img alt="pic" src={post.url} className="avatar-img"></img>
+            <span className="username">{post.username}</span>
           </div>
           <div className="post-content">{post.text}</div>
         </div>

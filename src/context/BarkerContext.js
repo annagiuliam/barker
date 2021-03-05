@@ -134,7 +134,9 @@ export const ContextProvider = ({ children }) => {
 
     db.collection("posts")
       .add({
-        userUid: auth.currentUser.uid,
+        userUid: userInfo.uid,
+        username: userInfo.username,
+        url: userInfo.url,
         text: postText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
