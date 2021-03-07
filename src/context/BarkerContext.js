@@ -143,10 +143,12 @@ export const ContextProvider = ({ children }) => {
         url: userInfo.url,
         text: postText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        comments: 0,
+        likes: 0,
       })
       //.then(() => setPostText(""))
       .catch((error) => console.log("error", error.message));
-    setPostText("");
+    setPostText(""); //???
   }
 
   function updateAnonName(e) {
@@ -155,6 +157,17 @@ export const ContextProvider = ({ children }) => {
 
   function showSignInModal() {
     setSignInModal(true);
+  }
+
+  function addComment(postId) {
+    const newPosts = posts.map((post) => {
+      if (post.id === postId) {
+        post.comments += 1;
+      }
+      return post;
+    });
+
+    setPosts(newPosts);
   }
 
   return (
@@ -169,7 +182,7 @@ export const ContextProvider = ({ children }) => {
         signInModal,
         userInfo,
         userLoggedIn,
-
+        addComment,
         logOut,
         signIn,
         signInAnonymous,

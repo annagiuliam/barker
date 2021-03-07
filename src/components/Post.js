@@ -9,8 +9,11 @@ const db = firebaseApp.firestore();
 const Post = (props) => {
   const { post } = props;
   const [commentText, setCommentText] = useState("");
-  const { userInfo } = useContext(BarkerContext);
+  const { userInfo, addComment } = useContext(BarkerContext);
   const [showComment, setShowComment] = useState(false);
+
+  const commentNumber = post.comments > 0 ? post.comments : "";
+  const likesNumber = post.likes > 0 ? post.likes : "";
 
   useEffect(() => {
     console.log(commentText);
@@ -24,20 +27,28 @@ const Post = (props) => {
     setCommentText(e.target.value);
   }
   function submitComment(e) {
-    e.preventDefault(); //  RIPRENDI DA QUI, AGGIUNGI SUBCOLLECTION
+    e.preventDefault();
+    // RIPRENDI DA QUI UPDATE POST
+    const postRef = db.collection("posts").doc(post.id);
 
-    // db.collection("posts")
-    //   .document(post.id)
-    //   .set({
-    //     uid: userInfo.uid,
-    //     username: userInfo.username,
-    //     url: userInfo.url,
-    //     text: commentText,
-    //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    //   })
-    //   //.then(() => setPostText(""))
-    //   .catch((error) => console.log("error", error.message));
-    //setPostText("");
+    postRef
+      .collection("comments")
+      .add({
+        uid: userInfo.uid,
+        username: userInfo.username,
+        url: userInfo.url,
+        text: commentText,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+      .then(() => {
+        setCommentText("");
+        setShowComment(false);
+        addComment(post.id);
+      })
+      .catch((error) => console.log("error", error.message));
+    // setCommentText("");
+    // setShowComment(false);
+    // addComment(post.id);
   }
   return (
     <div className="post-container" id={post.id}>
@@ -50,8 +61,14 @@ const Post = (props) => {
       </div>
 
       <div className="post-footer">
-        <FaRegComment className="post-icon" onClick={displayComment} />
-        <FaPaw className="post-icon" />
+        <div className="post-icon-div">
+          <FaRegComment className="post-icon" onClick={displayComment} />
+          <div>{commentNumber}</div>
+        </div>
+        <div className="post-icon-div">
+          <FaPaw className="post-icon" />
+          <div>{likesNumber}</div>
+        </div>
       </div>
       <div
         className="comment-input"
