@@ -1,6 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { FaRegComment, FaPaw } from "react-icons/fa";
+
 import { BarkerContext } from "../../context/BarkerContext";
+
+import PostMain from "./PostMain";
+import PostFooter from "./PostFooter";
+import CommentInput from "./CommentInput";
 
 import firebase from "firebase/app";
 import firebaseApp from "../../firebase/firebase";
@@ -9,7 +13,7 @@ const db = firebaseApp.firestore();
 const Post = (props) => {
   const { post } = props;
   const [commentText, setCommentText] = useState("");
-  const { userInfo, addComment } = useContext(BarkerContext);
+  const { userInfo } = useContext(BarkerContext);
   const [showComment, setShowComment] = useState(false);
 
   const commentNumber = post.comments > 0 ? post.comments : "";
@@ -47,37 +51,19 @@ const Post = (props) => {
   }
   return (
     <div className="post-container" id={post.id}>
-      <div className="post-main">
-        <div className="user-info">
-          <img alt="pic" src={post.url} className="avatar-img"></img>
-          <span className="username">{post.username}</span>
-        </div>
-        <div className="post-content">{post.text}</div>
-      </div>
-
-      <div className="post-footer">
-        <div className="post-icon-div">
-          <FaRegComment className="post-icon" onClick={displayComment} />
-          <div>{commentNumber}</div>
-        </div>
-        <div className="post-icon-div">
-          <FaPaw className="post-icon" />
-          <div>{likesNumber}</div>
-        </div>
-      </div>
-      <div
-        className="comment-input"
-        style={{ display: showComment ? "block" : "none" }}
-      >
-        <form onSubmit={submitComment}>
-          <input
-            type="text"
-            onChange={updateComment}
-            value={commentText}
-          ></input>
-          <button type="submit">Send comment</button>
-        </form>
-      </div>
+      <PostMain post={post} />
+      <PostFooter
+        displayComment={displayComment}
+        commentNumber={commentNumber}
+        likesNumber={likesNumber}
+      />
+      {showComment && (
+        <CommentInput
+          submitComment={submitComment}
+          updateComment={updateComment}
+          commentText={commentText}
+        />
+      )}
     </div>
   );
 };
