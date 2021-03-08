@@ -89,19 +89,18 @@ export const ContextProvider = ({ children }) => {
 
   function signInAnonymous(e) {
     e.preventDefault();
+    let user;
     auth
       .signInAnonymously()
       .then((result) => {
-        const user = result.user;
-
-        user
-          .updateProfile({
-            displayName: anonName,
-          })
-          .then(() => {
-            afterLoginActions(user);
-            setSignInModal(false);
-          });
+        user = result.user;
+        user.updateProfile({
+          displayName: anonName,
+        });
+      })
+      .then(() => {
+        afterLoginActions(user);
+        setSignInModal(false);
       })
       .catch((error) => {
         var errorCode = error.code;
@@ -146,9 +145,8 @@ export const ContextProvider = ({ children }) => {
         comments: 0,
         likes: 0,
       })
-      //.then(() => setPostText(""))
+      .then(() => setPostText(""))
       .catch((error) => console.log("error", error.message));
-    setPostText(""); //???
   }
 
   function updateAnonName(e) {
@@ -157,17 +155,6 @@ export const ContextProvider = ({ children }) => {
 
   function showSignInModal() {
     setSignInModal(true);
-  }
-
-  function addComment(postId) {
-    const newPosts = posts.map((post) => {
-      if (post.id === postId) {
-        post.comments += 1;
-      }
-      return post;
-    });
-
-    setPosts(newPosts);
   }
 
   return (
@@ -182,7 +169,7 @@ export const ContextProvider = ({ children }) => {
         signInModal,
         userInfo,
         userLoggedIn,
-        addComment,
+
         logOut,
         signIn,
         signInAnonymous,
