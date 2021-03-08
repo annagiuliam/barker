@@ -1,9 +1,9 @@
 import React, { useState, useContext, useEffect } from "react";
 import { FaRegComment, FaPaw } from "react-icons/fa";
-import { BarkerContext } from "../context/BarkerContext";
+import { BarkerContext } from "../../context/BarkerContext";
 
 import firebase from "firebase/app";
-import firebaseApp from "../firebase/firebase";
+import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
@@ -15,10 +15,6 @@ const Post = (props) => {
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likes > 0 ? post.likes : "";
 
-  useEffect(() => {
-    console.log(commentText);
-  });
-
   function displayComment() {
     setShowComment(true);
   }
@@ -28,27 +24,26 @@ const Post = (props) => {
   }
   function submitComment(e) {
     e.preventDefault();
-    // RIPRENDI DA QUI UPDATE POST
-    const postRef = db.collection("posts").doc(post.id);
 
+    const postRef = db.collection("posts").doc(post.id);
     postRef
-      .collection("comments")
-      .add({
-        uid: userInfo.uid,
-        username: userInfo.username,
-        url: userInfo.url,
-        text: commentText,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      .update({
+        comments: firebase.firestore.FieldValue.increment(1),
+      })
+      .then(() => {
+        postRef.collection("comments").add({
+          uid: userInfo.uid,
+          username: userInfo.username,
+          url: userInfo.url,
+          text: commentText,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        });
       })
       .then(() => {
         setCommentText("");
         setShowComment(false);
-        addComment(post.id);
       })
       .catch((error) => console.log("error", error.message));
-    // setCommentText("");
-    // setShowComment(false);
-    // addComment(post.id);
   }
   return (
     <div className="post-container" id={post.id}>

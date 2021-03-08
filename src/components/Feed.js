@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-import Post from "./Post";
+import Post from "./post/Post";
 
 const Feed = () => {
   const { posts, userInfo } = useContext(BarkerContext);
