@@ -88,7 +88,7 @@ export const ContextProvider = ({ children }) => {
   }
 
   function signInAnonymous(e) {
-    e.preventDefault();
+    e.preventDefault(); //SOMETHING NOT WORKING IN USERNAME SETTING
     let user;
     auth
       .signInAnonymously()
@@ -144,6 +144,7 @@ export const ContextProvider = ({ children }) => {
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,
         likes: 0,
+        likedBy: [],
       })
       .then(() => setPostText(""))
       .catch((error) => console.log("error", error.message));

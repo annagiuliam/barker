@@ -17,7 +17,7 @@ const Post = (props) => {
   const [showComment, setShowComment] = useState(false);
 
   const commentNumber = post.comments > 0 ? post.comments : "";
-  const likesNumber = post.likes > 0 ? post.likes : "";
+  const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
 
   function displayComment() {
     setShowComment(true);
@@ -49,11 +49,21 @@ const Post = (props) => {
       })
       .catch((error) => console.log("error", error.message));
   }
+
+  function addLike() {
+    const postRef = db.collection("posts").doc(post.id);
+    postRef
+      .update({
+        likedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
+      })
+      .catch((error) => console.log("error", error.message));
+  }
   return (
     <div className="post-container" id={post.id}>
       <PostMain post={post} />
       <PostFooter
         displayComment={displayComment}
+        addLike={addLike}
         commentNumber={commentNumber}
         likesNumber={likesNumber}
       />
