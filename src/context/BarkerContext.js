@@ -32,6 +32,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(posts);
+    console.log(anonName);
     console.log(userInfo);
   });
 
@@ -89,19 +90,25 @@ export const ContextProvider = ({ children }) => {
 
   function signInAnonymous(e) {
     e.preventDefault(); //SOMETHING NOT WORKING IN USERNAME SETTING
-    let user;
+
     auth
       .signInAnonymously()
       .then((result) => {
-        user = result.user;
+        const user = result.user;
+
         user.updateProfile({
           displayName: anonName,
         });
       })
       .then(() => {
-        afterLoginActions(user);
-        setSignInModal(false);
+        const user = auth.currentUser;
+        user.reload().then(() => {
+          const refreshUser = auth.currentUser;
+          afterLoginActions(refreshUser);
+          setSignInModal(false);
+        });
       })
+
       .catch((error) => {
         var errorCode = error.code;
         var errorMessage = error.message;
