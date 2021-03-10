@@ -5,6 +5,7 @@ import { BarkerContext } from "../../context/BarkerContext";
 import PostMain from "./PostMain";
 import PostFooter from "./PostFooter";
 import CommentInput from "./CommentInput";
+import RebarkModal from "./RebarkModal";
 
 import firebase from "firebase/app";
 import firebaseApp from "../../firebase/firebase";
@@ -13,8 +14,9 @@ const db = firebaseApp.firestore();
 const Post = (props) => {
   const { post } = props;
   const [commentText, setCommentText] = useState("");
-  const { userInfo } = useContext(BarkerContext);
+  const { userInfo, updateRebark } = useContext(BarkerContext);
   const [showComment, setShowComment] = useState(false);
+  const [showRebark, setShowRebark] = useState(false);
 
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
@@ -58,6 +60,10 @@ const Post = (props) => {
       })
       .catch((error) => console.log("error", error.message));
   }
+
+  function displayRebark() {
+    setShowRebark(true);
+  }
   return (
     <div className="post-container" id={post.id}>
       <PostMain post={post} />
@@ -66,6 +72,7 @@ const Post = (props) => {
         addLike={addLike}
         commentNumber={commentNumber}
         likesNumber={likesNumber}
+        displayRebark={displayRebark}
       />
       {showComment && (
         <CommentInput
@@ -74,6 +81,7 @@ const Post = (props) => {
           commentText={commentText}
         />
       )}
+      {showRebark && <RebarkModal post={post} updateRebark={updateRebark} />}
     </div>
   );
 };

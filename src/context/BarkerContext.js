@@ -17,6 +17,7 @@ export const ContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState([]);
   const [postText, setPostText] = useState("");
+  const [rebarkText, setRebarkText] = useState("");
   const [error, setError] = useState(null);
 
   const [signInModal, setSignInModal] = useState(false);
@@ -32,8 +33,8 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     console.log(posts);
-    console.log(anonName);
     console.log(userInfo);
+    console.log(rebarkText);
   });
 
   function downloadPosts() {
@@ -152,9 +153,15 @@ export const ContextProvider = ({ children }) => {
         comments: 0,
         likes: 0,
         likedBy: [],
+        isRebark: false,
+        rebarkedBy: [],
+        originalPostId: "",
       })
       .then(() => setPostText(""))
       .catch((error) => console.log("error", error.message));
+  }
+  function updateRebark(e) {
+    setRebarkText(e.target.value);
   }
 
   function updateAnonName(e) {
@@ -182,10 +189,11 @@ export const ContextProvider = ({ children }) => {
         signIn,
         signInAnonymous,
         showSignInModal,
-        submitPost,
 
-        updatePost,
+        submitPost,
         updateAnonName,
+        updatePost,
+        updateRebark,
       }}
     >
       {children}
