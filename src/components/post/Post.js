@@ -14,12 +14,14 @@ const db = firebaseApp.firestore();
 const Post = (props) => {
   const { post } = props;
   const [commentText, setCommentText] = useState("");
-  const { userInfo, updateRebark } = useContext(BarkerContext);
+  const [rebarkText, setRebarkText] = useState("");
+  const { userInfo, submitPost } = useContext(BarkerContext);
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
 
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
+  const rebarkNum = post.rebarkedBy.length > 0 ? post.rebarkedBy.length : "";
 
   function displayComment() {
     setShowComment(true);
@@ -62,7 +64,31 @@ const Post = (props) => {
   }
 
   function displayRebark() {
-    setShowRebark(true);
+    // don't open rebarked modal if user has already rebarked this post
+    if (!post.rebarkedBy.includes(userInfo.uid)) {
+      setShowRebark(true);
+    }
+  }
+
+  function updateRebark(e) {
+    setRebarkText(e.target.value);
+  }
+
+  function submitRebark(e) {
+    e.preventDefault();
+    updateOriginal();
+    submitPost(e, rebarkText, post.id, true);
+    setRebarkText("");
+    setShowRebark(false);
+  }
+
+  function updateOriginal() {
+    const postRef = db.collection("posts").doc(post.id);
+    postRef
+      .update({
+        rebarkedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
+      })
+      .catch((error) => console.log("error", error.message));
   }
   return (
     <div className="post-container" id={post.id}>
@@ -72,6 +98,7 @@ const Post = (props) => {
         addLike={addLike}
         commentNumber={commentNumber}
         likesNumber={likesNumber}
+        rebarkNum={rebarkNum}
         displayRebark={displayRebark}
       />
       {showComment && (
@@ -81,7 +108,14 @@ const Post = (props) => {
           commentText={commentText}
         />
       )}
-      {showRebark && <RebarkModal post={post} updateRebark={updateRebark} />}
+      {showRebark && (
+        <RebarkModal
+          post={post}
+          updateRebark={updateRebark}
+          submitRebark={submitRebark}
+          rebarkText={rebarkText}
+        />
+      )}
     </div>
   );
 };

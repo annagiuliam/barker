@@ -7,8 +7,10 @@ const PostFooter = (props) => {
     displayRebark,
     commentNumber,
     likesNumber,
+    rebarkNum,
     addLike,
   } = props;
+
   return (
     <div className="post-footer">
       <div className="post-icon-div">
@@ -29,7 +31,7 @@ const PostFooter = (props) => {
           title="Rebark"
           onClick={displayRebark}
         />
-        <div></div>
+        <div>{rebarkNum}</div>
       </div>
     </div>
   );

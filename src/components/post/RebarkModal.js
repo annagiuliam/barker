@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 import PostMain from "./PostMain";
+
+import firebase from "firebase/app";
+import firebaseApp from "../../firebase/firebase";
+const db = firebaseApp.firestore();
+
 const RebarkModal = (props) => {
-  const { post } = props;
-  const { submitPost, updateRebark, rebarkText, userInfo } = useContext(
-    BarkerContext
-  );
+  const { post, updateRebark, submitRebark, rebarkText } = props;
+  const { submitPost, userInfo } = useContext(BarkerContext);
+
   return (
     <div className="modal">
       <section className="rebark-container modal-main">
@@ -14,7 +18,7 @@ const RebarkModal = (props) => {
           <span className="username">{userInfo.username}</span>
         </div>
         <div className="post-input">
-          <form onSubmit={submitPost}>
+          <form onSubmit={submitRebark}>
             <input
               type="text"
               onChange={updateRebark}

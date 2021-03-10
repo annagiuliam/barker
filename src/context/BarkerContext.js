@@ -17,7 +17,7 @@ export const ContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
   const [posts, setPosts] = useState([]);
   const [postText, setPostText] = useState("");
-  const [rebarkText, setRebarkText] = useState("");
+  // const [rebarkText, setRebarkText] = useState("");
   const [error, setError] = useState(null);
 
   const [signInModal, setSignInModal] = useState(false);
@@ -34,7 +34,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     console.log(posts);
     console.log(userInfo);
-    console.log(rebarkText);
+    // console.log(rebarkText);
   });
 
   function downloadPosts() {
@@ -140,7 +140,7 @@ export const ContextProvider = ({ children }) => {
     setPostText(e.target.value);
   }
 
-  function submitPost(e) {
+  function submitPost(e, rebarkText = null, originalId = null, rebark = false) {
     e.preventDefault();
 
     db.collection("posts")
@@ -148,21 +148,21 @@ export const ContextProvider = ({ children }) => {
         uid: userInfo.uid,
         username: userInfo.username,
         url: userInfo.url,
-        text: postText,
+        text: rebarkText || postText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,
         likes: 0,
         likedBy: [],
-        isRebark: false,
+        isRebark: rebark,
         rebarkedBy: [],
-        originalPostId: "",
+        originalPostId: originalId || "",
       })
       .then(() => setPostText(""))
       .catch((error) => console.log("error", error.message));
   }
-  function updateRebark(e) {
-    setRebarkText(e.target.value);
-  }
+  // function updateRebark(e) {
+  //   setRebarkText(e.target.value);
+  // }
 
   function updateAnonName(e) {
     setAnonName(e.target.value);
@@ -180,7 +180,7 @@ export const ContextProvider = ({ children }) => {
         error,
         posts,
         postText,
-
+        // rebarkText
         signInModal,
         userInfo,
         userLoggedIn,
@@ -193,7 +193,7 @@ export const ContextProvider = ({ children }) => {
         submitPost,
         updateAnonName,
         updatePost,
-        updateRebark,
+        // updateRebark,
       }}
     >
       {children}
