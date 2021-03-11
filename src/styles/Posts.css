@@ -43,3 +43,8 @@
     justify-content: left;
     align-items: center;
   }
+
+  .post-rebark {
+    margin: 10px;
+    border: 0.5px solid darkgray;
+  }

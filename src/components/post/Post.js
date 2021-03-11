@@ -15,13 +15,26 @@ const Post = (props) => {
   const { post } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
-  const { userInfo, submitPost } = useContext(BarkerContext);
+  const { posts, userInfo, submitPost } = useContext(BarkerContext);
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
+  const [originalPost, setOriginalPost] = useState(null);
 
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
   const rebarkNum = post.rebarkedBy.length > 0 ? post.rebarkedBy.length : "";
+
+  useEffect(() => {
+    function findOriginalPost() {
+      let original;
+      if (post.isRebark) {
+        original = posts.find((ele) => ele.id === post.originalPostId);
+      }
+      setOriginalPost(original);
+    }
+
+    findOriginalPost();
+  });
 
   function displayComment() {
     setShowComment(true);
@@ -92,7 +105,8 @@ const Post = (props) => {
   }
   return (
     <div className="post-container" id={post.id}>
-      <PostMain post={post} />
+      <PostMain post={post} rebark={false} />
+      {originalPost && <PostMain post={originalPost} rebark={true} />}
       <PostFooter
         displayComment={displayComment}
         addLike={addLike}
@@ -108,6 +122,7 @@ const Post = (props) => {
           commentText={commentText}
         />
       )}
+
       {showRebark && (
         <RebarkModal
           post={post}
