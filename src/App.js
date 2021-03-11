@@ -5,6 +5,7 @@ import "./styles/App.css";
 import "./styles/Posts.css";
 import "./styles/SignIn.css";
 import "./styles/Sidebar.css";
+import "./styles/Home.css";
 import db from "./firebase/firebase";
 //import { signIn } from "./firebase/firebaseHelpers";
 

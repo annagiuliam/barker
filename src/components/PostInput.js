@@ -2,13 +2,26 @@ import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
 const PostInput = () => {
-  const { postText, submitPost, updatePost } = useContext(BarkerContext);
+  const { userInfo, postText, submitPost, updatePost } = useContext(
+    BarkerContext
+  );
   return (
     <div className="post-input">
-      <form onSubmit={submitPost}>
-        <input type="text" onChange={updatePost} value={postText}></input>
-        <button type="submit">Submit post</button>
-      </form>
+      <div className="user-info">
+        <img alt="pic" src={userInfo.url} className="avatar-img"></img>
+      </div>
+      <div className="form-container">
+        <form className="post-input-form" onSubmit={submitPost}>
+          <textarea
+            onChange={updatePost}
+            value={postText}
+            placeholder="Bark what's on your mind!"
+          ></textarea>
+          <div className="input-btn-div">
+            <button type="submit">Bark</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

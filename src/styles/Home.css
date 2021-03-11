@@ -1,0 +1,18 @@
+.post-input {
+    max-width: 390px;
+    border: 0.5px solid darkgray; 
+    padding: 15px;   
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: start;
+}
+.form-container {
+    width: 90%;
+    height: 70%
+}
+
+.input-btn-div {
+    text-align: end;
+}

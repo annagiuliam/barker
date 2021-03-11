@@ -1,4 +1,5 @@
 .post-container {
+  max-width: 420px;
   border: 0.5px solid darkgray;
     margin-bottom: 15px;
     display: flex;
