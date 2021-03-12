@@ -17,11 +17,12 @@ function App() {
   return (
     <BrowserRouter>
       <Route exact path="/login">
-        {userLoggedIn ? <Redirect to="/" /> : <LoginPage />}
+        {userLoggedIn ? <Redirect to="/home" /> : <LoginPage />}
       </Route>
       <Route path="/">
         {!userLoggedIn ? <Redirect to="/login" /> : <Home />}{" "}
       </Route>
+      {/* <Route path="/home" component={Home} /> */}
     </BrowserRouter>
   );
   // userLoggedIn ? <Home /> : <LoginPage />);
