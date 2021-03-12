@@ -1,4 +1,29 @@
-.post-input {
+
+
+/* Sidebar */
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  /* Sidebar links */
+  ul {
+    list-style-type: none;
+  }
+  
+
+/* Main */
+.center-container {
+    margin-left: 220px;
+    width: 50%
+  }
+
+  .post-input {
     max-width: 390px;
     border: 0.5px solid darkgray; 
     padding: 15px;   
@@ -6,7 +31,7 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: start;
+    align-items: flex-start;
 }
 .form-container {
     width: 90%;
@@ -15,4 +40,22 @@
 
 .input-btn-div {
     text-align: end;
+}
+
+/* Profile */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.profile-pic {
+    height: 20vh;
+    width: 20vh;
+    border-radius: 50%;
+}
+
+.profile-tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

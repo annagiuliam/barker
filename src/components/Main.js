@@ -5,7 +5,7 @@ import Feed from "./Feed";
 
 const Main = () => {
   return (
-    <div className="main-container">
+    <div className="center-container">
       <PostInput />
       <Feed />
     </div>
