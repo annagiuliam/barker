@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 const ProfileLikes = () => {
-  console.log(useParams());
+  //console.log(useParams());
   return <div>LIKES</div>;
 };
 

@@ -13,13 +13,13 @@ import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
-  const { userInfo, posts } = useContext(BarkerContext);
+  const { userInfo, posts, users } = useContext(BarkerContext);
   const [bioText, setBioText] = useState("");
   const { uid } = useParams();
   const { url, path } = useRouteMatch();
-  console.log(useRouteMatch());
+  console.log(uid);
 
-  const user = userInfo.uid === uid ? userInfo : null;
+  const user = users.find((ele) => ele.uid === uid);
 
   return (
     <div className="center-container">

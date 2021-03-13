@@ -9,7 +9,7 @@ import {
 
 const ProfileComments = () => {
   const { uid } = useParams();
-  console.log(uid);
+  // console.log(uid);
   return <div> COMMENTS</div>;
 };
 

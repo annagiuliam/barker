@@ -11,7 +11,7 @@ import {
 const ProfileBarks = (props) => {
   //const { posts, userInfo } = props;
   // const userBarks = posts.filter((post) => post.uid === userInfo.uid);
-  console.log(useRouteMatch());
+  //console.log(useRouteMatch());
 
   return (
     <div className="posts-container">
