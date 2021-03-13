@@ -15,6 +15,7 @@ export const ContextProvider = ({ children }) => {
   const [anonName, setAnonName] = useState("");
   // const [avatarUrl, setAvatarUrl] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const [users, setUsers] = useState({});
   const [posts, setPosts] = useState([]);
   const [postText, setPostText] = useState("");
   // const [rebarkText, setRebarkText] = useState("");
@@ -27,14 +28,15 @@ export const ContextProvider = ({ children }) => {
       if (user) {
         afterLoginActions(user);
         downloadPosts();
+        downloadUsers();
       } else setUserLoggedIn(false);
     });
   }, []);
 
   useEffect(() => {
-    console.log(posts);
-    console.log(userInfo);
-    // console.log(rebarkText);
+    //console.log(posts);
+    //console.log(userInfo);
+    //console.log(users);
   });
 
   function downloadPosts() {
@@ -57,6 +59,24 @@ export const ContextProvider = ({ children }) => {
         }
       );
   }
+  function downloadUsers() {
+    db.collection("users").onSnapshot(
+      (snapshot) => {
+        const users = snapshot.docs.map((doc) => {
+          return { uid: doc.id, ...doc.data() };
+        });
+        setUsers(users);
+      },
+      (error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorMessage);
+        const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+        setError(displayedError);
+      }
+    );
+  }
 
   function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
@@ -72,6 +92,7 @@ export const ContextProvider = ({ children }) => {
         // var token = credential.accessToken;
         // The signed-in user info.
         var user = result.user;
+        addToUsersCollection(user);
         afterLoginActions(user);
       })
       .catch((error) => {
@@ -90,7 +111,7 @@ export const ContextProvider = ({ children }) => {
   }
 
   function signInAnonymous(e) {
-    e.preventDefault(); //SOMETHING NOT WORKING IN USERNAME SETTING
+    e.preventDefault();
 
     auth
       .signInAnonymously()
@@ -103,11 +124,17 @@ export const ContextProvider = ({ children }) => {
       })
       .then(() => {
         const user = auth.currentUser;
-        user.reload().then(() => {
-          const refreshUser = auth.currentUser;
-          afterLoginActions(refreshUser);
-          setSignInModal(false);
-        });
+        user
+          .reload()
+          .then(() => {
+            const refreshUser = auth.currentUser;
+            addToUsersCollection(refreshUser);
+          })
+          .then(() => {
+            const currUser = auth.currentUser;
+            afterLoginActions(currUser);
+            setSignInModal(false);
+          });
       })
 
       .catch((error) => {
@@ -116,7 +143,21 @@ export const ContextProvider = ({ children }) => {
         console.log(errorMessage);
       });
   }
-
+  function addToUsersCollection(user) {
+    const imageUrl = user.photoURL || placeholder;
+    // create user collection with UID = to curr user uid at authentication
+    db.collection("users")
+      .doc(user.uid)
+      .set({
+        // uid: user.uid,
+        username: user.displayName,
+        url: imageUrl,
+        followers: [],
+        following: [],
+      })
+      .then(() => console.log("succesfully added to user collection"))
+      .catch((error) => console.log(error.message));
+  }
   function afterLoginActions(user) {
     const imageUrl = user.photoURL || placeholder;
 
@@ -184,6 +225,7 @@ export const ContextProvider = ({ children }) => {
         signInModal,
         userInfo,
         userLoggedIn,
+        users,
 
         logOut,
         signIn,
