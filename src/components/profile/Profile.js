@@ -13,11 +13,10 @@ import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
-  const { userInfo, posts, users } = useContext(BarkerContext);
+  const { posts, users } = useContext(BarkerContext);
   const [bioText, setBioText] = useState("");
   const { uid } = useParams();
   const { url, path } = useRouteMatch();
-  console.log(uid);
 
   const user = users.find((ele) => ele.uid === uid);
 
@@ -48,10 +47,17 @@ const Profile = (props) => {
 
         {/* user content */}
         <Switch>
-          <Route exact path={`${path}`} component={ProfileBarks} />
+          <Route
+            exact
+            path={`${path}`}
+            render={(props) => <ProfileBarks {...props} posts={posts} />}
+          />
 
           <Route path={`${path}/comments`} component={ProfileComments} />
-          <Route path={`${path}/likes`} component={ProfileLikes} />
+          <Route
+            path={`${path}/likes`}
+            render={(props) => <ProfileLikes {...props} posts={posts} />}
+          />
         </Switch>
       </div>
     </div>

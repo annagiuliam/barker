@@ -1,15 +1,20 @@
 import React from "react";
-import {
-  Link,
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Post from "../post/Post";
 
-const ProfileLikes = () => {
-  //console.log(useParams());
-  return <div>LIKES</div>;
+const ProfileLikes = (props) => {
+  const { uid } = useParams();
+  const { posts } = props;
+  console.log(uid);
+  console.log(posts);
+  const userLikedPosts = posts.filter((post) => post.likedBy.includes(uid));
+  return (
+    <div className="posts-container">
+      {userLikedPosts.map((post) => (
+        <Post post={post} key={post.id} />
+      ))}
+    </div>
+  );
 };
 
 export default ProfileLikes;
