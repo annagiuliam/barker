@@ -8,7 +8,8 @@ import {
 } from "react-router-dom";
 
 const ProfileComments = () => {
-  console.log(useRouteMatch());
+  const { uid } = useParams();
+  console.log(uid);
   return <div> COMMENTS</div>;
 };
 

@@ -40,7 +40,7 @@ const Profile = (props) => {
             <Link to={`${url}/comments`}>
               <li>Comments</li>
             </Link>
-            <Link to="/profile/likes">
+            <Link to={`${url}/likes`}>
               <li>Likes</li>
             </Link>
           </ul>
@@ -51,7 +51,7 @@ const Profile = (props) => {
           <Route exact path={`${path}`} component={ProfileBarks} />
 
           <Route path={`${path}/comments`} component={ProfileComments} />
-          <Route path="/profile/likes" component={ProfileLikes} />
+          <Route path={`${path}/likes`} component={ProfileLikes} />
         </Switch>
       </div>
     </div>
