@@ -22,6 +22,7 @@ function App() {
       <Route path="/">
         {!userLoggedIn ? <Redirect to="/login" /> : <Home />}{" "}
       </Route>
+
       {/* <Route path="/home" component={Home} /> */}
     </BrowserRouter>
   );

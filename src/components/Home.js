@@ -1,6 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import { BarkerContext } from "../context/BarkerContext";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -8,6 +14,8 @@ import Main from "./Main";
 import Profile from "./profile/Profile";
 
 const Home = () => {
+  const { url, path } = useRouteMatch();
+
   return (
     <div className="home-container">
       <Header />
@@ -15,7 +23,7 @@ const Home = () => {
         <Sidebar />
         <Switch>
           <Route path={`/home`} exact component={Main} />
-          <Route path={`/home/profile`} component={Profile} />
+          <Route path={`${path}profile/:uid`} component={Profile} />
         </Switch>
       </div>
     </div>

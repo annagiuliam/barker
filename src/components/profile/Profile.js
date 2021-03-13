@@ -1,6 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
-import { Link, Switch, Route } from "react-router-dom";
+import {
+  Link,
+  Switch,
+  Route,
+  useParams,
+  useRouteMatch,
+} from "react-router-dom";
 
 import ProfileBarks from "./ProfileBarks";
 import ProfileLikes from "./ProfileLikes";
@@ -9,29 +15,32 @@ import ProfileComments from "./ProfileComments";
 const Profile = (props) => {
   const { userInfo, posts } = useContext(BarkerContext);
   const [bioText, setBioText] = useState("");
-  const { uid } = props.location.state;
+  const { uid } = useParams();
+  const { url, path } = useRouteMatch();
+  console.log(useRouteMatch());
 
-  //useEffect(() => console.log(uid));
+  const user = userInfo.uid === uid ? userInfo : null;
+
   return (
     <div className="center-container">
       {/* user profile data */}
       <div className="info-container">
         <div className="profile-pic-div">
-          <img alt="pic" src={userInfo.url} className="profile-pic"></img>
+          <img alt="pic" src={user.url} className="profile-pic"></img>
         </div>
-        <h2 className="bio-username">{userInfo.username}</h2>
+        <h2 className="bio-username">{user.username}</h2>
         {/* bio, insert form later */}
         <div className="bio-container">THIS IS THE BIO</div>
         {/* tabs */}
         <div className="profile-tabs-container">
           <ul className="profile-tabs">
-            <Link to="/home/profile">
+            <Link to={`${url}`}>
               <li>Barks</li>
             </Link>
-            <Link to="/home/profile/comments">
+            <Link to={`${url}/comments`}>
               <li>Comments</li>
             </Link>
-            <Link to="/home/profile/likes">
+            <Link to="/profile/likes">
               <li>Likes</li>
             </Link>
           </ul>
@@ -39,15 +48,10 @@ const Profile = (props) => {
 
         {/* user content */}
         <Switch>
-          <Route
-            exact
-            path="/home/profile"
-            render={(props) => (
-              <ProfileBarks {...props} userInfo={userInfo} posts={posts} />
-            )}
-          />
-          <Route path="/home/profile/comments" component={ProfileComments} />
-          <Route path="/home/profile/likes" component={ProfileLikes} />
+          <Route exact path={`${path}`} component={ProfileBarks} />
+
+          <Route path={`${path}/comments`} component={ProfileComments} />
+          <Route path="/profile/likes" component={ProfileLikes} />
         </Switch>
       </div>
     </div>
