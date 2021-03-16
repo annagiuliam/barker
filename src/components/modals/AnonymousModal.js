@@ -1,15 +1,11 @@
 import React, { useContext } from "react";
-import { BarkerContext } from "../context/BarkerContext";
+import { BarkerContext } from "../../context/BarkerContext";
 
 const AnonymousModal = () => {
-  const { signInAnonymous, updateAnonName, signInModal } = useContext(
-    BarkerContext
-  );
-  const modalDisplay = signInModal
-    ? "modal display-block"
-    : "modal display-none";
+  const { signInAnonymous, updateAnonName } = useContext(BarkerContext);
+
   return (
-    <div className={modalDisplay}>
+    <div className="modal">
       <section className="modal-main">
         <form onSubmit={signInAnonymous}>
           <input
