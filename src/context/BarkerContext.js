@@ -13,7 +13,7 @@ export const ContextProvider = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   //const [currentUser, setCurrentUser] = useState(null);
   const [anonName, setAnonName] = useState("");
-  const [currUsername, setCurrUsername] = useState("");
+  // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [users, setUsers] = useState({});
   const [posts, setPosts] = useState([]);
@@ -26,6 +26,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
+        afterLoginActions(user);
         downloadPosts();
         downloadUsers();
       } else setUserLoggedIn(false);
@@ -79,81 +80,64 @@ export const ContextProvider = ({ children }) => {
     );
   }
 
-  function signIn() {
+  async function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
-    auth
-      .signInWithPopup(provider)
-      .then((result) => {
-        // /** @type {firebase.auth.OAuthCredential} */
-        // var credential = result.credential;
+    try {
+      const result = await auth.signInWithPopup(provider);
+      let user = result.user;
 
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        // var token = credential.accessToken;
-        // The signed-in user info.
-        let user = result.user;
-
-        addToUsersCollection(user);
-        afterLoginActions(user);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        // ...
-        console.log(errorMessage);
-        const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-        setError(displayedError);
-      });
+      addToUsersCollection(user);
+      afterLoginActions(user);
+    } catch (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+      const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+      setError(displayedError);
+    }
   }
 
-  function signInAnonymous(e) {
+  async function signInAnonymous(e) {
     e.preventDefault();
-
-    auth
-      .signInAnonymously()
-      .then((result) => {
-        const user = result.user;
-
-        user.updateProfile({
-          displayName: anonName,
-        });
-      })
-      .then(() => {
-        const user = auth.currentUser;
-
-        addToUsersCollection(user, anonName);
-        afterLoginActions(user, anonName);
-      })
-      .then(() => {
-        setSignInModal(false);
-      })
-      .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log(errorMessage);
+    try {
+      const result = await auth.signInAnonymously();
+      const user = result.user;
+      // add the typed username to the userProfile in firebase
+      await user.updateProfile({
+        displayName: anonName,
       });
+
+      const currUser = await auth.currentUser;
+      //add curr user to user collection in firebase
+      await addToUsersCollection(currUser, anonName);
+      // set user information in state
+      await afterLoginActions(currUser, anonName);
+      setSignInModal(false);
+    } catch (error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+    }
   }
-  function addToUsersCollection(user, username = null) {
-    const imageUrl = user.photoURL || placeholder;
-    // create user collection with UID = to curr user uid at authentication
-    const displayName = username || user.displayName;
-    db.collection("users")
-      .doc(user.uid)
-      .set({
-        // uid: user.uid,
+  async function addToUsersCollection(user, username = null) {
+    try {
+      const imageUrl = user.photoURL || placeholder;
+      // create user collection with UID = to curr user uid at authentication
+      const displayName = username || user.displayName;
+      await db.collection("users").doc(user.uid).set({
+        // no need to add uid because it is the doc id
         username: displayName,
         url: imageUrl,
         followers: [],
         following: [],
-      })
-      .then(() => console.log("succesfully added to user collection"))
-      .catch((error) => console.log(error.message));
+      });
+      console.log("succesfully added to user collection");
+    } catch (error) {
+      console.log(error.message);
+    }
   }
+
   function afterLoginActions(user, username = null) {
     const imageUrl = user.photoURL || placeholder;
     const displayName = username || user.displayName;
@@ -167,23 +151,30 @@ export const ContextProvider = ({ children }) => {
     setUserLoggedIn(true);
   }
 
-  function logOut() {
-    auth.signOut().then(() => {
-      console.log("logged out");
+  async function logOut() {
+    try {
+      await auth.signOut();
       setUserLoggedIn(false);
       setAnonName("");
-    });
+      console.log("logged out");
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   function updatePost(e) {
     setPostText(e.target.value);
   }
 
-  function submitPost(e, rebarkText = null, originalId = null, rebark = false) {
+  async function submitPost(
+    e,
+    rebarkText = null,
+    originalId = null,
+    rebark = false
+  ) {
     e.preventDefault();
-
-    db.collection("posts")
-      .add({
+    try {
+      await db.collection("posts").add({
         uid: userInfo.uid,
         username: userInfo.username,
         url: userInfo.url,
@@ -195,13 +186,12 @@ export const ContextProvider = ({ children }) => {
         isRebark: rebark,
         rebarkedBy: [],
         originalPostId: originalId || "",
-      })
-      .then(() => setPostText(""))
-      .catch((error) => console.log("error", error.message));
+      });
+      setPostText("");
+    } catch (error) {
+      console.log("error", error.message);
+    }
   }
-  // function updateRebark(e) {
-  //   setRebarkText(e.target.value);
-  // }
 
   function updateAnonName(e) {
     setAnonName(e.target.value);
