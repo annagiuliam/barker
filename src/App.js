@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import { BarkerContext } from "./context/BarkerContext";
+
 import "./styles/App.css";
 import "./styles/Posts.css";
 import "./styles/SignIn.css";
@@ -11,9 +12,10 @@ import db from "./firebase/firebase";
 
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";
+import ErrorModal from "../src/components/modals/ErrorModal";
 
 function App() {
-  const { userLoggedIn } = useContext(BarkerContext);
+  const { userLoggedIn, showError } = useContext(BarkerContext);
   return (
     <BrowserRouter>
       <Route exact path="/login">
@@ -24,6 +26,7 @@ function App() {
       </Route>
 
       {/* <Route path="/home" component={Home} /> */}
+      {showError && <ErrorModal />}
     </BrowserRouter>
   );
   // userLoggedIn ? <Home /> : <LoginPage />);

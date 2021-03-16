@@ -20,6 +20,7 @@ export const ContextProvider = ({ children }) => {
   const [postText, setPostText] = useState("");
 
   const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
 
   const [signInModal, setSignInModal] = useState(false);
 
@@ -90,11 +91,7 @@ export const ContextProvider = ({ children }) => {
       addToUsersCollection(user);
       afterLoginActions(user);
     } catch (error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorMessage);
-      const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-      setError(displayedError);
+      handleError(error);
     }
   }
 
@@ -115,9 +112,7 @@ export const ContextProvider = ({ children }) => {
       await afterLoginActions(currUser, anonName);
       setSignInModal(false);
     } catch (error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(errorMessage);
+      handleError(error);
     }
   }
   async function addToUsersCollection(user, username = null) {
@@ -134,7 +129,7 @@ export const ContextProvider = ({ children }) => {
       });
       console.log("succesfully added to user collection");
     } catch (error) {
-      console.log(error.message);
+      handleError(error);
     }
   }
 
@@ -158,7 +153,7 @@ export const ContextProvider = ({ children }) => {
       setAnonName("");
       console.log("logged out");
     } catch (error) {
-      console.log(error.message);
+      handleError(error);
     }
   }
 
@@ -189,7 +184,7 @@ export const ContextProvider = ({ children }) => {
       });
       setPostText("");
     } catch (error) {
-      console.log("error", error.message);
+      handleError(error);
     }
   }
 
@@ -201,6 +196,20 @@ export const ContextProvider = ({ children }) => {
     setSignInModal(true);
   }
 
+  function closeError() {
+    setShowError(false);
+  }
+
+  function handleError(error) {
+    setShowError(true);
+    var errorCode = error.code;
+    var errorMessage = error.message;
+
+    console.log(errorMessage);
+    const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+    setError(displayedError);
+  }
+
   return (
     <BarkerContext.Provider
       value={{
@@ -210,11 +219,12 @@ export const ContextProvider = ({ children }) => {
         posts,
         postText,
         // rebarkText
+        showError,
         signInModal,
         userInfo,
         userLoggedIn,
         users,
-
+        closeError,
         logOut,
         signIn,
         signInAnonymous,

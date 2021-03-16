@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-import AnonymousModal from "./AnonymousModal";
+import AnonymousModal from "./modals/AnonymousModal";
 
 const LoginPage = () => {
   const { userLoggedIn, signIn, showSignInModal, signInModal } = useContext(
