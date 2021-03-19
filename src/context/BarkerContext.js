@@ -15,8 +15,10 @@ export const ContextProvider = ({ children }) => {
   const [anonName, setAnonName] = useState("");
   // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
+  //const [comments, setComments] = useState([]);
+
   const [postText, setPostText] = useState("");
 
   const [error, setError] = useState(null);
@@ -30,6 +32,7 @@ export const ContextProvider = ({ children }) => {
         afterLoginActions(user);
         downloadPosts();
         downloadUsers();
+        //downloadComments();
       } else setUserLoggedIn(false);
     });
   }, []);
@@ -81,6 +84,24 @@ export const ContextProvider = ({ children }) => {
     );
   }
 
+  // function downloadComments() {
+  //   db.collection("comments").onSnapshot(
+  //     (snapshot) => {
+  //       const comments = snapshot.docs.map((doc) => {
+  //         return { id: doc.id, ...doc.data() };
+  //       });
+  //       setComments(comments);
+  //     },
+  //     (error) => {
+  //       var errorCode = error.code;
+  //       var errorMessage = error.message;
+
+  //       console.log(errorMessage);
+  //       const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+  //       setError(displayedError);
+  //     }
+  //   );
+  // }
   async function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -168,6 +189,9 @@ export const ContextProvider = ({ children }) => {
     rebark = false
   ) {
     e.preventDefault();
+
+    // FAI FUNZIONE ASYNC A PARTE
+    //AGGIUNGI ISCOMMENT?
     try {
       await db.collection("posts").add({
         uid: userInfo.uid,
@@ -214,6 +238,7 @@ export const ContextProvider = ({ children }) => {
     <BarkerContext.Provider
       value={{
         anonName,
+        //comments,
         database,
         error,
         posts,
@@ -225,6 +250,7 @@ export const ContextProvider = ({ children }) => {
         userLoggedIn,
         users,
         closeError,
+        handleError,
         logOut,
         signIn,
         signInAnonymous,

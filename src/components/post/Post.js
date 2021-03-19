@@ -15,7 +15,9 @@ const Post = (props) => {
   const { post } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
-  const { posts, userInfo, submitPost } = useContext(BarkerContext);
+  const { posts, userInfo, handleError, submitPost } = useContext(
+    BarkerContext
+  );
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
   const [originalPost, setOriginalPost] = useState(null);
@@ -45,26 +47,29 @@ const Post = (props) => {
   }
   function submitComment(e) {
     e.preventDefault();
+    addComment();
+  }
 
-    const postRef = db.collection("posts").doc(post.id);
-    postRef
-      .update({
+  // cCAMBIA, GESTISCI COME REBARK
+  async function addComment() {
+    try {
+      const postRef = await db.collection("posts").doc(post.id);
+      await postRef.update({
         comments: firebase.firestore.FieldValue.increment(1),
-      })
-      .then(() => {
-        postRef.collection("comments").add({
-          uid: userInfo.uid,
-          username: userInfo.username,
-          url: userInfo.url,
-          text: commentText,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-      })
-      .then(() => {
-        setCommentText("");
-        setShowComment(false);
-      })
-      .catch((error) => console.log("error", error.message));
+      });
+      await db.collection("comments").add({
+        sourceId: post.id,
+        uid: userInfo.uid,
+        username: userInfo.username,
+        url: userInfo.url,
+        text: commentText,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      });
+      setCommentText("");
+      setShowComment(false);
+    } catch (error) {
+      handleError(error);
+    }
   }
 
   function addLike() {

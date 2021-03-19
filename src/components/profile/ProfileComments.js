@@ -1,16 +1,12 @@
 import React from "react";
-import {
-  Link,
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
+import PostMain from "../post/PostMain";
 
-const ProfileComments = () => {
+const ProfileComments = (props) => {
   const { uid } = useParams();
-  // console.log(uid);
-  return <div> COMMENTS</div>;
+  const { posts } = props;
+
+  return <div className="posts-container">COMMENTI</div>;
 };
 
 export default ProfileComments;

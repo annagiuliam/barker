@@ -13,7 +13,7 @@ import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
-  const { posts, users } = useContext(BarkerContext);
+  const { comments, posts, users } = useContext(BarkerContext);
   const [bioText, setBioText] = useState("");
   const { uid } = useParams();
   const { url, path } = useRouteMatch();
@@ -53,7 +53,12 @@ const Profile = (props) => {
             render={(props) => <ProfileBarks {...props} posts={posts} />}
           />
 
-          <Route path={`${path}/comments`} component={ProfileComments} />
+          <Route
+            path={`${path}/comments`}
+            render={(props) => (
+              <ProfileComments {...props} comments={comments} posts={posts} />
+            )}
+          />
           <Route
             path={`${path}/likes`}
             render={(props) => <ProfileLikes {...props} posts={posts} />}
