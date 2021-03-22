@@ -17,9 +17,9 @@ export const ContextProvider = ({ children }) => {
   const [userInfo, setUserInfo] = useState({});
   const [users, setUsers] = useState([]);
   const [posts, setPosts] = useState([]);
-  //const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
 
-  const [postText, setPostText] = useState("");
+  //const [postText, setPostText] = useState("");
 
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
@@ -32,7 +32,7 @@ export const ContextProvider = ({ children }) => {
         afterLoginActions(user);
         downloadPosts();
         downloadUsers();
-        //downloadComments();
+        // downloadComments();
       } else setUserLoggedIn(false);
     });
   }, []);
@@ -80,6 +80,26 @@ export const ContextProvider = ({ children }) => {
         console.log(errorMessage);
         const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
         setError(displayedError);
+      }
+    );
+  }
+
+  function downloadComments() {
+    database.collection("comments").onSnapshot(
+      (snapshot) => {
+        const comments = snapshot.docs.map((doc) => {
+          return { id: doc.id, ...doc.data() };
+        });
+        setComments(comments);
+      },
+      (error) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        console.log(errorMessage);
+        const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+        // setError(displayedError);
+        console.log(displayedError);
       }
     );
   }
@@ -178,35 +198,40 @@ export const ContextProvider = ({ children }) => {
     }
   }
 
-  function updatePost(e) {
-    setPostText(e.target.value);
-  }
+  // function updatePost(e) {
+  //   setPostText(e.target.value);
+  // }
 
   async function submitPost(
     e,
-    rebarkText = null,
-    originalId = null,
-    rebark = false
+    submittedText,
+    type,
+    collection,
+    //rebarkText = null,
+    originalId = null
+    //rebark = false
   ) {
     e.preventDefault();
 
     // FAI FUNZIONE ASYNC A PARTE
     //AGGIUNGI ISCOMMENT?
     try {
-      await db.collection("posts").add({
+      await db.collection(collection).add({
         uid: userInfo.uid,
         username: userInfo.username,
         url: userInfo.url,
-        text: rebarkText || postText,
+        //text: rebarkText || postText,
+        type: type,
+        text: submittedText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,
         likes: 0,
         likedBy: [],
-        isRebark: rebark,
+        //isRebark: rebark,
         rebarkedBy: [],
         originalPostId: originalId || "",
       });
-      setPostText("");
+      //setPostText("");
     } catch (error) {
       handleError(error);
     }
@@ -238,11 +263,11 @@ export const ContextProvider = ({ children }) => {
     <BarkerContext.Provider
       value={{
         anonName,
-        //comments,
+        comments,
         database,
         error,
         posts,
-        postText,
+        //postText,
         // rebarkText
         showError,
         signInModal,
@@ -258,7 +283,7 @@ export const ContextProvider = ({ children }) => {
 
         submitPost,
         updateAnonName,
-        updatePost,
+        // updatePost,
         // updateRebark,
       }}
     >

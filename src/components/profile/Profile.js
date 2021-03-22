@@ -13,8 +13,9 @@ import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
-  const { comments, posts, users } = useContext(BarkerContext);
+  const { database, posts, users, comments } = useContext(BarkerContext);
   const [bioText, setBioText] = useState("");
+  //const [comments, setComments] = useState("");
   const { uid } = useParams();
   const { url, path } = useRouteMatch();
 
@@ -56,7 +57,13 @@ const Profile = (props) => {
           <Route
             path={`${path}/comments`}
             render={(props) => (
-              <ProfileComments {...props} comments={comments} posts={posts} />
+              <ProfileComments
+                {...props}
+                comments={comments}
+                posts={posts}
+                uid={uid}
+                database={database}
+              />
             )}
           />
           <Route

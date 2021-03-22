@@ -29,7 +29,7 @@ const Post = (props) => {
   useEffect(() => {
     function findOriginalPost() {
       let original;
-      if (post.isRebark) {
+      if (post.type === "rebark") {
         original = posts.find((ele) => ele.id === post.originalPostId);
       }
       setOriginalPost(original);
@@ -47,26 +47,19 @@ const Post = (props) => {
   }
   function submitComment(e) {
     e.preventDefault();
-    addComment();
+    addComment(e);
   }
 
   // cCAMBIA, GESTISCI COME REBARK
-  async function addComment() {
+  async function addComment(e) {
     try {
       const postRef = await db.collection("posts").doc(post.id);
       await postRef.update({
         comments: firebase.firestore.FieldValue.increment(1),
       });
-      await db.collection("comments").add({
-        sourceId: post.id,
-        uid: userInfo.uid,
-        username: userInfo.username,
-        url: userInfo.url,
-        text: commentText,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      });
-      setCommentText("");
       setShowComment(false);
+      await submitPost(e, commentText, "comment", "comments", post.id);
+      setCommentText("");
     } catch (error) {
       handleError(error);
     }
@@ -95,7 +88,7 @@ const Post = (props) => {
   function submitRebark(e) {
     e.preventDefault();
     updateOriginal();
-    submitPost(e, rebarkText, post.id, true);
+    submitPost(e, rebarkText, "rebark", "posts", post.id);
     setRebarkText("");
     setShowRebark(false);
   }
