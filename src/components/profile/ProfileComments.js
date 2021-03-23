@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { BarkerContext } from "../../context/BarkerContext";
 import { useParams } from "react-router-dom";
 import PostMain from "../post/PostMain";
 import Post from "../post/Post";
@@ -10,6 +11,7 @@ const db = firebaseApp.firestore();
 const ProfileComments = (props) => {
   // const { uid } = useParams();
   const { posts, uid, database } = props;
+  const { handleError } = useContext(BarkerContext);
 
   const [commentedPosts, setCommentedPosts] = useState();
   //const [comments, setComments] = useState();
@@ -18,16 +20,42 @@ const ProfileComments = (props) => {
 
   useEffect(() => {
     //get the comments made by the profile
-    async function getComments() {
-      const snapshot = await db
+    // async function getComments() {
+    //   const snapshot = await db
+    //     .collection("comments")
+    //     .where("uid", "==", uid)
+    //     .get();
+    //   const comments = snapshot.docs.map((doc) => {
+    //     return { id: doc.id, ...doc.data() };
+    //   });
+    //   console.log(comments);
+    //   addCommentsToPosts(comments);
+    // }
+    function getComments() {
+      const unsubscribe = db
         .collection("comments")
         .where("uid", "==", uid)
-        .get();
-      const comments = snapshot.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() };
-      });
-      console.log(comments);
-      addCommentsToPosts(comments);
+        //ORDER IN ASCENDING
+        .orderBy("timestamp", "asc")
+        .onSnapshot(
+          (snapshot) => {
+            const comments = snapshot.docs.map((doc) => {
+              return { id: doc.id, ...doc.data() };
+            });
+            addCommentsToPosts(comments);
+          },
+          (error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            console.log(errorMessage);
+            const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+            handleError(error);
+            //console.log(displayedError);
+          }
+        );
+
+      return unsubscribe;
     }
 
     // add the comment data to the original post
@@ -47,25 +75,28 @@ const ProfileComments = (props) => {
       setCommentedPosts(commPosts);
     }
 
-    getComments();
-  }, [posts, uid]);
+    const unsubscribe = getComments();
+
+    return () => {
+      unsubscribe();
+    };
+  }, [handleError, posts, uid]);
 
   useEffect(() => {
-    console.log(commentedPosts);
+    //console.log(commentedPosts);
   });
 
   return (
     <div className="posts-container">
       {commentedPosts &&
-        commentedPosts.map((post) => (
-          <div className="post-w-comments-container">
-            <Post post={post} key={post.id} type="comm-post" />
+        commentedPosts.map((post, i) => (
+          <div className="post-w-comments-container" key={post.id}>
+            <Post post={post} type="comm-post" />
             {/* WARNING UNIQUE KEY */}
-            <div>
-              {post.commentData.map((data, i) => (
-                <PostMain post={data} key={data.id} type={"comment"} />
-              ))}
-            </div>
+
+            {post.commentData.map((data, i) => (
+              <PostMain post={data} key={data.id} type={"comment"} />
+            ))}
           </div>
         ))}
     </div>
