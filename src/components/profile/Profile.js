@@ -45,33 +45,32 @@ const Profile = (props) => {
             </Link>
           </ul>
         </div>
-
-        {/* user content */}
-        <Switch>
-          <Route
-            exact
-            path={`${path}`}
-            render={(props) => <ProfileBarks {...props} posts={posts} />}
-          />
-
-          <Route
-            path={`${path}/comments`}
-            render={(props) => (
-              <ProfileComments
-                {...props}
-                comments={comments}
-                posts={posts}
-                uid={uid}
-                database={database}
-              />
-            )}
-          />
-          <Route
-            path={`${path}/likes`}
-            render={(props) => <ProfileLikes {...props} posts={posts} />}
-          />
-        </Switch>
       </div>
+      {/* user content */}
+      <Switch>
+        <Route
+          exact
+          path={`${path}`}
+          render={(props) => <ProfileBarks {...props} posts={posts} />}
+        />
+
+        <Route
+          path={`${path}/comments`}
+          render={(props) => (
+            <ProfileComments
+              {...props}
+              comments={comments}
+              posts={posts}
+              uid={uid}
+              database={database}
+            />
+          )}
+        />
+        <Route
+          path={`${path}/likes`}
+          render={(props) => <ProfileLikes {...props} posts={posts} />}
+        />
+      </Switch>
     </div>
   );
 };

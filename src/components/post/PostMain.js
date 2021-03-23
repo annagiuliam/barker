@@ -1,11 +1,12 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 const PostMain = (props) => {
-  const { post, rebark } = props;
-  const postClass = rebark ? "post-rebark" : "post-main";
-
+  const { post, type } = props;
+  //const postClass = rebark ? "post-rebark" : "post-main";
+  const postClass = `${type}-main`;
+  console.log(post.id);
   return (
-    <div className={postClass}>
+    <div className={postClass} id={post.id}>
       <div className="user-info">
         <img alt="pic" src={post.url} className="avatar-img"></img>
         <Link to={`/profile/${post.uid}`}>

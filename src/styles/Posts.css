@@ -45,7 +45,23 @@
     align-items: center;
   }
 
-  .post-rebark {
+  .rebark-main {
     margin: 10px;
     border: 0.5px solid darkgray;
   }
+
+  .post-w-comments-container {
+    border: 0.5px solid darkgray;
+    max-width: 420px;
+    margin-bottom: 10px;
+  }
+
+  /* .comment-container {
+    margin-left: 15px;
+    border-bottom: 0.5px solid darkgray;
+  } */
+
+  .comment-main {
+    margin-left: 20px;
+  }
+  

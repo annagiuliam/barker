@@ -38,11 +38,10 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log(posts);
-    //console.log(userInfo);
-    console.log(users);
-
-    console.log(userInfo.username);
+    // console.log(posts);
+    // //console.log(userInfo);
+    // console.log(users);
+    // console.log(userInfo.username);
   });
 
   function downloadPosts() {

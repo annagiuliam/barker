@@ -12,7 +12,7 @@ import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
-  const { post } = props;
+  const { post, type } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
   const { posts, userInfo, handleError, submitPost } = useContext(
@@ -25,6 +25,7 @@ const Post = (props) => {
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
   const rebarkNum = post.rebarkedBy.length > 0 ? post.rebarkedBy.length : "";
+  const containerClass = type ? `${type}-container` : "post-container";
 
   useEffect(() => {
     function findOriginalPost() {
@@ -98,13 +99,14 @@ const Post = (props) => {
     postRef
       .update({
         rebarkedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
+        //type: "rebark",
       })
       .catch((error) => console.log("error", error.message));
   }
   return (
-    <div className="post-container" id={post.id}>
-      <PostMain post={post} rebark={false} />
-      {originalPost && <PostMain post={originalPost} rebark={true} />}
+    <div className={containerClass} id={post.id}>
+      <PostMain post={post} type={"post"} />
+      {originalPost && <PostMain post={originalPost} type={"rebark"} />}
       <PostFooter
         displayComment={displayComment}
         addLike={addLike}
