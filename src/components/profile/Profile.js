@@ -13,7 +13,7 @@ import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
-  const { database, posts, users, comments } = useContext(BarkerContext);
+  const { posts, users, comments } = useContext(BarkerContext);
   const [bioText, setBioText] = useState("");
   //const [comments, setComments] = useState("");
   const { uid } = useParams();
@@ -62,7 +62,7 @@ const Profile = (props) => {
               comments={comments}
               posts={posts}
               uid={uid}
-              database={database}
+              // database={database}
             />
           )}
         />

@@ -71,11 +71,11 @@ const ProfileComments = (props) => {
   return (
     <div className="posts-container">
       {commentedPosts &&
-        commentedPosts.map((post, i) => (
+        commentedPosts.map((post) => (
           <div className="post-w-comments-container" key={post.id}>
             <Post post={post} view={"comm-post"} />
 
-            {post.commentData.map((data, i) => (
+            {post.commentData.map((data) => (
               <PostMain post={data} key={data.id} view={"comment"} />
             ))}
           </div>
