@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
 const PostMain = (props) => {
-  const { post, type } = props;
+  const { post, view } = props;
   //const postClass = rebark ? "post-rebark" : "post-main";
-  const postClass = `${type}-main`;
+  const postClass = view ? `${view}-main` : "post-main";
 
   return (
     <div className={postClass} id={post.id}>

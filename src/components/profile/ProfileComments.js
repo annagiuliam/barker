@@ -3,39 +3,24 @@ import { BarkerContext } from "../../context/BarkerContext";
 import { useParams } from "react-router-dom";
 import PostMain from "../post/PostMain";
 import Post from "../post/Post";
-import firebase from "firebase/app";
+//import firebase from "firebase/app";
 import firebaseApp from "../../firebase/firebase";
 
 const db = firebaseApp.firestore();
 
 const ProfileComments = (props) => {
   // const { uid } = useParams();
-  const { posts, uid, database } = props;
+  const { posts, uid } = props;
   const { handleError } = useContext(BarkerContext);
 
   const [commentedPosts, setCommentedPosts] = useState();
-  //const [comments, setComments] = useState();
-  // const commentedPosts = filter();
-  // console.log(commentedPosts);
 
   useEffect(() => {
     //get the comments made by the profile
-    // async function getComments() {
-    //   const snapshot = await db
-    //     .collection("comments")
-    //     .where("uid", "==", uid)
-    //     .get();
-    //   const comments = snapshot.docs.map((doc) => {
-    //     return { id: doc.id, ...doc.data() };
-    //   });
-    //   console.log(comments);
-    //   addCommentsToPosts(comments);
-    // }
     function getComments() {
       const unsubscribe = db
         .collection("comments")
         .where("uid", "==", uid)
-        //ORDER IN ASCENDING
         .orderBy("timestamp", "asc")
         .onSnapshot(
           (snapshot) => {
@@ -45,29 +30,26 @@ const ProfileComments = (props) => {
             addCommentsToPosts(comments);
           },
           (error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-
-            console.log(errorMessage);
-            const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
             handleError(error);
-            //console.log(displayedError);
           }
         );
 
       return unsubscribe;
     }
 
-    // add the comment data to the original post
+    // create array with all commented posts and the comments made by the profile
     function addCommentsToPosts(comments) {
       let filtered = [];
       let commPosts = [];
       let commPost = {};
+      //look for the original posts among all posts
       for (let i = 0; i < posts.length; i++) {
         filtered = comments.filter(
+          //look fot the comments that refer to the original post
           (comment) => comment.originalPostId === posts[i].id
         );
         if (filtered.length > 0) {
+          //add the comments to the original posts
           commPost = { ...posts[i], commentData: [...filtered] };
           commPosts.push(commPost);
         }
@@ -91,11 +73,10 @@ const ProfileComments = (props) => {
       {commentedPosts &&
         commentedPosts.map((post, i) => (
           <div className="post-w-comments-container" key={post.id}>
-            <Post post={post} type="comm-post" />
-            {/* WARNING UNIQUE KEY */}
+            <Post post={post} view={"comm-post"} />
 
             {post.commentData.map((data, i) => (
-              <PostMain post={data} key={data.id} type={"comment"} />
+              <PostMain post={data} key={data.id} view={"comment"} />
             ))}
           </div>
         ))}

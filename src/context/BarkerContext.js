@@ -55,12 +55,13 @@ export const ContextProvider = ({ children }) => {
           setPosts(posts);
         },
         (error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
+          // var errorCode = error.code;
+          // var errorMessage = error.message;
 
-          console.log(errorMessage);
-          const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-          setError(displayedError);
+          // console.log(errorMessage);
+          // const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+          // setError(displayedError);
+          handleError(error);
         }
       );
   }
@@ -73,35 +74,36 @@ export const ContextProvider = ({ children }) => {
         setUsers(users);
       },
       (error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
 
-        console.log(errorMessage);
-        const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-        setError(displayedError);
-      }
-    );
-  }
-
-  function downloadComments() {
-    database.collection("comments").onSnapshot(
-      (snapshot) => {
-        const comments = snapshot.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        });
-        setComments(comments);
-      },
-      (error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-
-        console.log(errorMessage);
-        const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+        // console.log(errorMessage);
+        // const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
         // setError(displayedError);
-        console.log(displayedError);
+        handleError(error);
       }
     );
   }
+
+  // function downloadComments() {
+  //   database.collection("comments").onSnapshot(
+  //     (snapshot) => {
+  //       const comments = snapshot.docs.map((doc) => {
+  //         return { id: doc.id, ...doc.data() };
+  //       });
+  //       setComments(comments);
+  //     },
+  //     (error) => {
+  //       var errorCode = error.code;
+  //       var errorMessage = error.message;
+
+  //       console.log(errorMessage);
+  //       const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
+  //       // setError(displayedError);
+  //       console.log(displayedError);
+  //     }
+  //   );
+  // }
 
   // function downloadComments() {
   //   db.collection("comments").onSnapshot(
@@ -197,23 +199,15 @@ export const ContextProvider = ({ children }) => {
     }
   }
 
-  // function updatePost(e) {
-  //   setPostText(e.target.value);
-  // }
-
   async function submitPost(
     e,
     submittedText,
     type,
     collection,
-    //rebarkText = null,
     originalId = null
-    //rebark = false
   ) {
     e.preventDefault();
 
-    // FAI FUNZIONE ASYNC A PARTE
-    //AGGIUNGI ISCOMMENT?
     try {
       await db.collection(collection).add({
         uid: userInfo.uid,
@@ -221,6 +215,7 @@ export const ContextProvider = ({ children }) => {
         url: userInfo.url,
         //text: rebarkText || postText,
         type: type,
+        collection: collection,
         text: submittedText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,

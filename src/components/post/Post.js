@@ -12,7 +12,7 @@ import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
-  const { post, type } = props;
+  const { post, view } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
   const { posts, userInfo, handleError, submitPost } = useContext(
@@ -25,7 +25,7 @@ const Post = (props) => {
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
   const rebarkNum = post.rebarkedBy.length > 0 ? post.rebarkedBy.length : "";
-  const containerClass = type ? `${type}-container` : "post-container";
+  const containerClass = view ? `${view}-container` : "post-container";
 
   useEffect(() => {
     function findOriginalPost() {
@@ -48,19 +48,18 @@ const Post = (props) => {
   }
   function submitComment(e) {
     e.preventDefault();
-    addComment(e);
+    incrementCommentNumber();
+    submitPost(e, commentText, "comment", "comments", post.id);
+    setCommentText("");
+    setShowComment(false);
   }
 
-  // cCAMBIA, GESTISCI COME REBARK
-  async function addComment(e) {
+  async function incrementCommentNumber() {
     try {
-      const postRef = await db.collection("posts").doc(post.id);
+      const postRef = await db.collection(post.collection).doc(post.id);
       await postRef.update({
         comments: firebase.firestore.FieldValue.increment(1),
       });
-      setShowComment(false);
-      await submitPost(e, commentText, "comment", "comments", post.id);
-      setCommentText("");
     } catch (error) {
       handleError(error);
     }
@@ -94,19 +93,20 @@ const Post = (props) => {
     setShowRebark(false);
   }
 
-  function updateOriginal() {
-    const postRef = db.collection("posts").doc(post.id);
-    postRef
-      .update({
+  async function updateOriginal() {
+    try {
+      const postRef = await db.collection(post.collection).doc(post.id);
+      postRef.update({
         rebarkedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
-        //type: "rebark",
-      })
-      .catch((error) => console.log("error", error.message));
+      });
+    } catch (error) {
+      handleError(error);
+    }
   }
   return (
     <div className={containerClass} id={post.id}>
-      <PostMain post={post} type={"post"} />
-      {originalPost && <PostMain post={originalPost} type={"rebark"} />}
+      <PostMain post={post} view={view} />
+      {originalPost && <PostMain post={originalPost} view={"rebarked"} />}
       <PostFooter
         displayComment={displayComment}
         addLike={addLike}

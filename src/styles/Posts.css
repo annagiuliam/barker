@@ -20,7 +20,7 @@
   }
 
   .post-footer {
-    border: 0.5px solid red;
+    /* border: 0.5px solid red; */
     padding-left: 20px;
     display: flex;
     flex-direction: row;
@@ -45,7 +45,7 @@
     align-items: center;
   }
 
-  .rebark-main {
+  .rebarked-main {
     margin: 10px;
     border: 0.5px solid darkgray;
   }
@@ -56,12 +56,12 @@
     margin-bottom: 10px;
   }
 
-  /* .comment-container {
-    margin-left: 15px;
-    border-bottom: 0.5px solid darkgray;
-  } */
+  .comment-container {
+    /* margin-left: 15px; */
+    border-top: 0.5px solid darkgray;
+  }
 
   .comment-main {
-    margin-left: 20px;
+    margin-left: 30px;
   }
   
