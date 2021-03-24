@@ -12,6 +12,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Main from "./Main";
 import Profile from "./profile/Profile";
+import PostPage from "../components/PostPage";
 
 const Home = () => {
   const { url, path } = useRouteMatch();
@@ -24,6 +25,7 @@ const Home = () => {
         <Switch>
           <Route path={`/home`} exact component={Main} />
           <Route path={`${path}profile/:uid`} component={Profile} />
+          <Route path={`${path}post/:id`} component={PostPage} />
         </Switch>
       </div>
     </div>

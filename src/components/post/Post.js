@@ -28,6 +28,7 @@ const Post = (props) => {
   const containerClass = view ? `${view}-container` : "post-container";
 
   useEffect(() => {
+    //find post that was rebarked
     function findOriginalPost() {
       let original;
       if (post.type === "rebark") {
