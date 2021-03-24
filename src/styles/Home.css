@@ -59,3 +59,23 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+/* Post Page */
+
+.post-page {
+    text-align: center;
+}
+
+#arrow-left{
+    height: 25px;
+    width: 25px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+#arrow-left:hover {
+    color: white;
+    background-color:var(--theme-color);
+    cursor: pointer;
+}

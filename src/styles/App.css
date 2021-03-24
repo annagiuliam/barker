@@ -23,14 +23,11 @@ textarea {
     height: 100%
 }
 
-
-/* Home */
-/* .home-container {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: auto;
-  width: 100%;
-} */
+/* https://www.bitdegree.org/learn/css-link-color */
+.link-username:link {
+  text-decoration: none;
+  color:black;
+}
 
 
 
