@@ -10,59 +10,70 @@ const db = firebaseApp.firestore();
 
 const ProfileComments = (props) => {
   // const { uid } = useParams();
-  const { posts, uid } = props;
-  const { handleError } = useContext(BarkerContext);
+  const { uid } = props;
+  const { contents, comments, handleError } = useContext(BarkerContext);
 
   const [commentedPosts, setCommentedPosts] = useState();
 
   useEffect(() => {
     //get the comments made by the profile
-    function getComments() {
-      const unsubscribe = db
-        .collection("comments")
-        .where("uid", "==", uid)
-        .orderBy("timestamp", "asc")
-        .onSnapshot(
-          (snapshot) => {
-            const comments = snapshot.docs.map((doc) => {
-              return { id: doc.id, ...doc.data() };
-            });
-            addCommentsToPosts(comments);
-          },
-          (error) => {
-            handleError(error);
-          }
-        );
+    // function getComments() {
+    //   const unsubscribe = db
+    //     .collection("comments")
+    //     .where("uid", "==", uid)
+    //     .orderBy("timestamp", "asc")
+    //     .onSnapshot(
+    //       (snapshot) => {
+    //         const comments = snapshot.docs.map((doc) => {
+    //           return { id: doc.id, ...doc.data() };
+    //         });
+    //         addCommentsToPosts(comments);
+    //       },
+    //       (error) => {
+    //         handleError(error);
+    //       }
+    //     );
 
-      return unsubscribe;
-    }
+    //   return unsubscribe;
+    // }
 
     // create array with all commented posts and the comments made by the profile
-    function addCommentsToPosts(comments) {
+    function addCommentsToPosts() {
       let filtered = [];
       let commPosts = [];
       let commPost = {};
+      const posts = contents.filter(
+        (item) =>
+          item.type === "posts" || item.type === "rebark" || item.comments > 0
+      );
+
+      console.log(posts);
       //look for the original posts among all posts
       for (let i = 0; i < posts.length; i++) {
-        filtered = comments.filter(
-          //look fot the comments that refer to the original post
-          (comment) => comment.originalPostId === posts[i].id
-        );
-        if (filtered.length > 0) {
-          //add the comments to the original posts
-          commPost = { ...posts[i], commentData: [...filtered] };
-          commPosts.push(commPost);
+        if (comments) {
+          filtered = comments.filter(
+            //look fot the comments that refer to the original post
+            (comment) =>
+              comment.uid === uid && comment.originalPostId === posts[i].id
+          );
+          if (filtered.length > 0) {
+            //add the comments to the original posts
+            commPost = { ...posts[i], commentData: [...filtered] };
+            commPosts.push(commPost);
+          }
         }
       }
       setCommentedPosts(commPosts);
     }
 
-    const unsubscribe = getComments();
+    addCommentsToPosts();
 
-    return () => {
-      unsubscribe();
-    };
-  }, [handleError, posts, uid]);
+    // const unsubscribe = getComments();
+
+    // return () => {
+    //   unsubscribe();
+    // };
+  }, [contents, comments, uid]);
 
   useEffect(() => {
     //console.log(commentedPosts);
@@ -76,7 +87,7 @@ const ProfileComments = (props) => {
             <Post post={post} view={"comm-post"} />
 
             {post.commentData.map((data) => (
-              <PostMain post={data} key={data.id} view={"comment"} />
+              <Post post={data} key={data.id} view={"comment"} />
             ))}
           </div>
         ))}

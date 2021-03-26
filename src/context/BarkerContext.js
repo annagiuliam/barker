@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from "react";
+import React, { useState, createContext, useEffect, useCallback } from "react";
 import firebase from "firebase/app";
 import firebaseApp from "../firebase/firebase";
 import placeholder from "../images/profile_placeholder.png";
@@ -16,6 +16,7 @@ export const ContextProvider = ({ children }) => {
   // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [users, setUsers] = useState([]);
+  const [contents, setContents] = useState([]);
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
 
@@ -27,21 +28,82 @@ export const ContextProvider = ({ children }) => {
   const [signInModal, setSignInModal] = useState(false);
 
   useEffect(() => {
+    function syncContents() {
+      db.collection("contents")
+        // .where("type", "!=", "comment")
+        .orderBy("timestamp", "desc")
+        // .where("type", "==", "comment")
+        // .orderBy("timestamp", "asc")
+        .onSnapshot(
+          (snapshot) => {
+            const fetchedContents = snapshot.docs.map((doc) => {
+              return { id: doc.id, ...doc.data() };
+            });
+
+            setContents(fetchedContents);
+            const comments = fetchedContents
+              .filter((item) => item.type === "comment")
+              .sort((x, y) => x.timestamp - y.timestamp);
+
+            setComments(comments);
+
+            const posts = fetchedContents.filter(
+              (item) => item.type === "post" || item.type === "rebark"
+            );
+            setPosts(posts);
+          },
+          (error) => {
+            handleError(error);
+          }
+        );
+    }
+
+    function syncUsers() {
+      db.collection("users").onSnapshot(
+        (snapshot) => {
+          const fetchedUsers = snapshot.docs.map((doc) => {
+            return { uid: doc.id, ...doc.data() };
+          });
+          setUsers(fetchedUsers);
+        },
+        (error) => {
+          handleError(error);
+        }
+      );
+    }
+
     auth.onAuthStateChanged((user) => {
       if (user) {
         afterLoginActions(user);
-        downloadPosts();
-        downloadUsers();
+        // downloadPosts();
+
+        syncContents();
+
+        syncUsers();
         // downloadComments();
       } else setUserLoggedIn(false);
     });
   }, []);
 
+  // useEffect(() => {
+  //   const posts = contents.filter(
+  //     (item) => item.type === "post" || item.type === "rebark"
+  //   );
+  //   setPosts(posts);
+  //   const comments = contents
+  //     .filter((item) => item.type === "comment")
+  //     .sort((x, y) => x.timestamp - y.timestamp);
+
+  //   setComments(comments);
+  //   // console.log(posts);
+  //   // //console.log(userInfo);
+  //   // console.log(users);
+  //   // console.log(userInfo.username);
+  // }, [contents]);
+
   useEffect(() => {
-    // console.log(posts);
-    // //console.log(userInfo);
-    // console.log(users);
-    // console.log(userInfo.username);
+    console.log(contents);
+    console.log(comments);
   });
 
   function downloadPosts() {
@@ -55,34 +117,9 @@ export const ContextProvider = ({ children }) => {
           setPosts(posts);
         },
         (error) => {
-          // var errorCode = error.code;
-          // var errorMessage = error.message;
-
-          // console.log(errorMessage);
-          // const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-          // setError(displayedError);
           handleError(error);
         }
       );
-  }
-  function downloadUsers() {
-    db.collection("users").onSnapshot(
-      (snapshot) => {
-        const users = snapshot.docs.map((doc) => {
-          return { uid: doc.id, ...doc.data() };
-        });
-        setUsers(users);
-      },
-      (error) => {
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-
-        // console.log(errorMessage);
-        // const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-        // setError(displayedError);
-        handleError(error);
-      }
-    );
   }
 
   // function downloadComments() {
@@ -203,19 +240,19 @@ export const ContextProvider = ({ children }) => {
     e,
     submittedText,
     type,
-    collection,
+    // collection,
     originalId = null
   ) {
     e.preventDefault();
 
     try {
-      await db.collection(collection).add({
+      await db.collection("contents").add({
         uid: userInfo.uid,
         username: userInfo.username,
         url: userInfo.url,
         //text: rebarkText || postText,
         type: type,
-        collection: collection,
+        //collection: collection,
         text: submittedText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,
@@ -258,6 +295,7 @@ export const ContextProvider = ({ children }) => {
       value={{
         anonName,
         comments,
+        contents,
         database,
         error,
         posts,

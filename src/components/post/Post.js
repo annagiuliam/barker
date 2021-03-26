@@ -15,7 +15,7 @@ const Post = (props) => {
   const { post, view } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
-  const { posts, userInfo, handleError, submitPost } = useContext(
+  const { contents, posts, userInfo, handleError, submitPost } = useContext(
     BarkerContext
   );
   const [showComment, setShowComment] = useState(false);
@@ -28,17 +28,25 @@ const Post = (props) => {
   const containerClass = view ? `${view}-container` : "post-container";
 
   useEffect(() => {
+    //QUALCOSA NON FUNGE QUI
     //find post that was rebarked
     function findOriginalPost() {
       let original;
-      if (post.type === "rebark") {
-        original = posts.find((ele) => ele.id === post.originalPostId);
+      if (post.rebarkedBy.length > 0) {
+        original = contents.find(function (ele) {
+          console.log(contents);
+          console.log(post.originalPostId);
+          return ele.id === post.originalPostId;
+        });
+        console.log(original);
       }
       setOriginalPost(original);
     }
 
     findOriginalPost();
-  });
+  }, [contents, post.originalPostId, post.rebarkedBy.length]);
+
+  useEffect(() => console.log(post.rebarkedBy.length));
 
   function displayComment() {
     setShowComment(true);
@@ -50,14 +58,14 @@ const Post = (props) => {
   function submitComment(e) {
     e.preventDefault();
     incrementCommentNumber();
-    submitPost(e, commentText, "comment", "comments", post.id);
+    submitPost(e, commentText, "comment", post.id);
     setCommentText("");
     setShowComment(false);
   }
 
   async function incrementCommentNumber() {
     try {
-      const postRef = await db.collection(post.collection).doc(post.id);
+      const postRef = await db.collection("contents").doc(post.id);
       await postRef.update({
         comments: firebase.firestore.FieldValue.increment(1),
       });
@@ -67,12 +75,12 @@ const Post = (props) => {
   }
 
   function addLike() {
-    const postRef = db.collection("posts").doc(post.id);
+    const postRef = db.collection("contents").doc(post.id);
     postRef
       .update({
         likedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
       })
-      .catch((error) => console.log("error", error.message));
+      .catch((error) => handleError(error));
   }
 
   function displayRebark() {
@@ -89,14 +97,14 @@ const Post = (props) => {
   function submitRebark(e) {
     e.preventDefault();
     updateOriginal();
-    submitPost(e, rebarkText, "rebark", "posts", post.id);
+    submitPost(e, rebarkText, "rebark", post.id);
     setRebarkText("");
     setShowRebark(false);
   }
 
   async function updateOriginal() {
     try {
-      const postRef = await db.collection(post.collection).doc(post.id);
+      const postRef = await db.collection("contents").doc(post.id);
       postRef.update({
         rebarkedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
       });
