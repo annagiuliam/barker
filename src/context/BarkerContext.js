@@ -28,6 +28,7 @@ export const ContextProvider = ({ children }) => {
   const [signInModal, setSignInModal] = useState(false);
 
   useEffect(() => {
+    //  MOVE SYNC USERS
     function syncUsers() {
       db.collection("users").onSnapshot(
         (snapshot) => {
