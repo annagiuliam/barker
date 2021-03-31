@@ -28,36 +28,6 @@ export const ContextProvider = ({ children }) => {
   const [signInModal, setSignInModal] = useState(false);
 
   useEffect(() => {
-    function syncContents() {
-      db.collection("contents")
-        // .where("type", "!=", "comment")
-        .orderBy("timestamp", "desc")
-        // .where("type", "==", "comment")
-        // .orderBy("timestamp", "asc")
-        .onSnapshot(
-          (snapshot) => {
-            const fetchedContents = snapshot.docs.map((doc) => {
-              return { id: doc.id, ...doc.data() };
-            });
-
-            setContents(fetchedContents);
-            const comments = fetchedContents
-              .filter((item) => item.type === "comment")
-              .sort((x, y) => x.timestamp - y.timestamp);
-
-            setComments(comments);
-
-            const posts = fetchedContents.filter(
-              (item) => item.type === "post" || item.type === "rebark"
-            );
-            setPosts(posts);
-          },
-          (error) => {
-            handleError(error);
-          }
-        );
-    }
-
     function syncUsers() {
       db.collection("users").onSnapshot(
         (snapshot) => {
@@ -67,6 +37,7 @@ export const ContextProvider = ({ children }) => {
           setUsers(fetchedUsers);
         },
         (error) => {
+          console.log(error.code);
           handleError(error);
         }
       );
@@ -74,38 +45,24 @@ export const ContextProvider = ({ children }) => {
 
     auth.onAuthStateChanged((user) => {
       if (user) {
+        console.log(user);
         afterLoginActions(user);
-        // downloadPosts();
-
-        syncContents();
-
+        // syncContents();
         syncUsers();
-        // downloadComments();
-      } else setUserLoggedIn(false);
+      } else {
+        setUserLoggedIn(false);
+      }
     });
   }, []);
-
-  // useEffect(() => {
-  //   const posts = contents.filter(
-  //     (item) => item.type === "post" || item.type === "rebark"
-  //   );
-  //   setPosts(posts);
-  //   const comments = contents
-  //     .filter((item) => item.type === "comment")
-  //     .sort((x, y) => x.timestamp - y.timestamp);
-
-  //   setComments(comments);
-  //   // console.log(posts);
-  //   // //console.log(userInfo);
-  //   // console.log(users);
-  //   // console.log(userInfo.username);
-  // }, [contents]);
 
   useEffect(() => {
     console.log(contents);
     console.log(comments);
   });
 
+  function storeContents(fetchedContents) {
+    setContents(fetchedContents);
+  }
   function downloadPosts() {
     db.collection("posts")
       .orderBy("timestamp", "desc")
@@ -117,6 +74,7 @@ export const ContextProvider = ({ children }) => {
           setPosts(posts);
         },
         (error) => {
+          console.log(error.code);
           handleError(error);
         }
       );
@@ -170,6 +128,7 @@ export const ContextProvider = ({ children }) => {
       addToUsersCollection(user);
       afterLoginActions(user);
     } catch (error) {
+      console.log(error.code);
       handleError(error);
     }
   }
@@ -191,6 +150,7 @@ export const ContextProvider = ({ children }) => {
       await afterLoginActions(currUser, anonName);
       setSignInModal(false);
     } catch (error) {
+      console.log(error.code);
       handleError(error);
     }
   }
@@ -208,6 +168,7 @@ export const ContextProvider = ({ children }) => {
       });
       console.log("succesfully added to user collection");
     } catch (error) {
+      console.log(error.code);
       handleError(error);
     }
   }
@@ -232,6 +193,7 @@ export const ContextProvider = ({ children }) => {
       setAnonName("");
       console.log("logged out");
     } catch (error) {
+      console.log(error.code);
       handleError(error);
     }
   }
@@ -264,6 +226,7 @@ export const ContextProvider = ({ children }) => {
       });
       //setPostText("");
     } catch (error) {
+      console.log(error.code);
       handleError(error);
     }
   }
@@ -285,7 +248,7 @@ export const ContextProvider = ({ children }) => {
     var errorCode = error.code;
     var errorMessage = error.message;
 
-    console.log(errorMessage);
+    //console.log(error.code);
     const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
     setError(displayedError);
   }
@@ -312,6 +275,7 @@ export const ContextProvider = ({ children }) => {
         signIn,
         signInAnonymous,
         showSignInModal,
+        storeContents,
 
         submitPost,
         updateAnonName,

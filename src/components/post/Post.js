@@ -12,10 +12,10 @@ import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
-  const { post, view } = props;
+  const { contents, post, view } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
-  const { contents, posts, userInfo, handleError, submitPost } = useContext(
+  const { posts, userInfo, handleError, submitPost } = useContext(
     BarkerContext
   );
   const [showComment, setShowComment] = useState(false);
@@ -32,7 +32,7 @@ const Post = (props) => {
     //find post that was rebarked
     function findOriginalPost() {
       let original;
-      if (post.rebarkedBy.length > 0) {
+      if (post.type === "rebark") {
         original = contents.find(function (ele) {
           console.log(contents);
           console.log(post.originalPostId);
