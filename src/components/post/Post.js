@@ -15,9 +15,7 @@ const Post = (props) => {
   const { contents, post, view } = props;
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
-  const { posts, userInfo, handleError, submitPost } = useContext(
-    BarkerContext
-  );
+  const { userInfo, handleError, submitPost } = useContext(BarkerContext);
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
   const [originalPost, setOriginalPost] = useState(null);

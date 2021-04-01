@@ -4,9 +4,9 @@ import Post from "../post/Post";
 
 const ProfileLikes = (props) => {
   const { uid } = useParams();
-  const { posts } = props;
+  const { contents } = props;
 
-  const userLikedPosts = posts.filter((post) => post.likedBy.includes(uid));
+  const userLikedPosts = contents.filter((post) => post.likedBy.includes(uid));
   return (
     <div className="posts-container">
       {userLikedPosts.map((post) => (

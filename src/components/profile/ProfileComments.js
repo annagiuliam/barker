@@ -10,32 +10,31 @@ const db = firebaseApp.firestore();
 
 const ProfileComments = (props) => {
   // const { uid } = useParams();
-  const { uid } = props;
-  const { contents, comments, handleError } = useContext(BarkerContext);
+  const { uid, contents } = props;
+  const { handleError } = useContext(BarkerContext);
+  const [comments, setComments] = useState([]);
 
   const [commentedPosts, setCommentedPosts] = useState();
 
   useEffect(() => {
     //get the comments made by the profile
-    // function getComments() {
-    //   const unsubscribe = db
-    //     .collection("comments")
-    //     .where("uid", "==", uid)
-    //     .orderBy("timestamp", "asc")
-    //     .onSnapshot(
-    //       (snapshot) => {
-    //         const comments = snapshot.docs.map((doc) => {
-    //           return { id: doc.id, ...doc.data() };
-    //         });
-    //         addCommentsToPosts(comments);
-    //       },
-    //       (error) => {
-    //         handleError(error);
-    //       }
-    //     );
 
-    //   return unsubscribe;
-    // }
+    //VERIFY COMMENT DISPLAY
+    const unsubscribe = db
+      .collection("comments")
+      .where("uid", "==", uid)
+      .orderBy("timestamp", "asc")
+      .onSnapshot(
+        (snapshot) => {
+          const comments = snapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          });
+          addCommentsToPosts(comments);
+        },
+        (error) => {
+          handleError(error);
+        }
+      );
 
     // create array with all commented posts and the comments made by the profile
     function addCommentsToPosts() {
@@ -47,7 +46,6 @@ const ProfileComments = (props) => {
           item.type === "posts" || item.type === "rebark" || item.comments > 0
       );
 
-      console.log(posts);
       //look for the original posts among all posts
       for (let i = 0; i < posts.length; i++) {
         if (comments) {
@@ -66,17 +64,11 @@ const ProfileComments = (props) => {
       setCommentedPosts(commPosts);
     }
 
-    addCommentsToPosts();
-
-    // const unsubscribe = getComments();
-
-    // return () => {
-    //   unsubscribe();
-    // };
-  }, [contents, comments, uid]);
+    return () => unsubscribe();
+  }, [handleError, comments, contents, uid]);
 
   useEffect(() => {
-    //console.log(commentedPosts);
+    console.log(commentedPosts);
   });
 
   return (

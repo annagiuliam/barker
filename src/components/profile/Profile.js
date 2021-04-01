@@ -13,12 +13,12 @@ import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
-  const { posts, users } = useContext(BarkerContext);
+  const { contents, posts, users } = props;
   const [bioText, setBioText] = useState("");
   //const [comments, setComments] = useState("");
   const { uid } = useParams();
   const { url, path } = useRouteMatch();
-
+  console.log(users);
   const user = users.find((ele) => ele.uid === uid);
 
   return (
@@ -51,7 +51,9 @@ const Profile = (props) => {
         <Route
           exact
           path={`${path}`}
-          render={(props) => <ProfileBarks {...props} posts={posts} />}
+          render={(props) => (
+            <ProfileBarks {...props} contents={contents} posts={posts} />
+          )}
         />
 
         <Route
@@ -59,6 +61,8 @@ const Profile = (props) => {
           render={(props) => (
             <ProfileComments
               {...props}
+              contents={contents}
+              posts={posts}
               // comments={comments}
               // posts={posts}
               uid={uid}
@@ -68,7 +72,9 @@ const Profile = (props) => {
         />
         <Route
           path={`${path}/likes`}
-          render={(props) => <ProfileLikes {...props} posts={posts} />}
+          render={(props) => (
+            <ProfileLikes {...props} contents={contents} posts={posts} />
+          )}
         />
       </Switch>
     </div>

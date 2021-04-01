@@ -3,6 +3,7 @@ import Post from "../post/Post";
 import { useParams } from "react-router-dom";
 
 const ProfileBarks = (props) => {
+  const { contents } = props;
   const { uid } = useParams();
   const { posts } = props;
   const userPosts = posts.filter((post) => post.uid === uid);
@@ -10,7 +11,7 @@ const ProfileBarks = (props) => {
   return (
     <div className="posts-container">
       {userPosts.map((post) => (
-        <Post post={post} key={post.id} />
+        <Post post={post} contents={contents} key={post.id} />
       ))}
     </div>
   );

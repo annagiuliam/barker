@@ -3,11 +3,12 @@ import React from "react";
 import PostInput from "./PostInput";
 import Feed from "./Feed";
 
-const Main = () => {
+const Main = (props) => {
+  const { contents, posts } = props;
   return (
     <div className="center-container">
       <PostInput />
-      <Feed />
+      <Feed contents={contents} posts={posts} />
     </div>
   );
 };

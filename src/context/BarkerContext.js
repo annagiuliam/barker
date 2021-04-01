@@ -29,27 +29,27 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     //  MOVE SYNC USERS
-    function syncUsers() {
-      db.collection("users").onSnapshot(
-        (snapshot) => {
-          const fetchedUsers = snapshot.docs.map((doc) => {
-            return { uid: doc.id, ...doc.data() };
-          });
-          setUsers(fetchedUsers);
-        },
-        (error) => {
-          console.log(error.code);
-          handleError(error);
-        }
-      );
-    }
+    // function syncUsers() {
+    //   db.collection("users").onSnapshot(
+    //     (snapshot) => {
+    //       const fetchedUsers = snapshot.docs.map((doc) => {
+    //         return { uid: doc.id, ...doc.data() };
+    //       });
+    //       setUsers(fetchedUsers);
+    //     },
+    //     (error) => {
+    //       console.log(error.code);
+    //       handleError(error);
+    //     }
+    //   );
+    // }
 
     auth.onAuthStateChanged((user) => {
       if (user) {
         console.log(user);
         afterLoginActions(user);
         // syncContents();
-        syncUsers();
+        // syncUsers();
       } else {
         setUserLoggedIn(false);
       }
