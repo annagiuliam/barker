@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
-import { useParams } from "react-router-dom";
-import PostMain from "../post/PostMain";
 import Post from "../post/Post";
 //import firebase from "firebase/app";
 import firebaseApp from "../../firebase/firebase";
@@ -12,16 +10,14 @@ const ProfileComments = (props) => {
   // const { uid } = useParams();
   const { uid, contents } = props;
   const { handleError } = useContext(BarkerContext);
-  const [comments, setComments] = useState([]);
 
   const [commentedPosts, setCommentedPosts] = useState();
 
   useEffect(() => {
     //get the comments made by the profile
-
-    //VERIFY COMMENT DISPLAY
     const unsubscribe = db
-      .collection("comments")
+      .collection("contents")
+      .where("type", "==", "comment")
       .where("uid", "==", uid)
       .orderBy("timestamp", "asc")
       .onSnapshot(
@@ -29,34 +25,32 @@ const ProfileComments = (props) => {
           const comments = snapshot.docs.map((doc) => {
             return { id: doc.id, ...doc.data() };
           });
+
           addCommentsToPosts(comments);
         },
         (error) => {
+          console.log(error);
           handleError(error);
         }
       );
 
     // create array with all commented posts and the comments made by the profile
-    function addCommentsToPosts() {
+    function addCommentsToPosts(comments) {
       let filtered = [];
       let commPosts = [];
       let commPost = {};
-      const posts = contents.filter(
-        (item) =>
-          item.type === "posts" || item.type === "rebark" || item.comments > 0
-      );
 
-      //look for the original posts among all posts
-      for (let i = 0; i < posts.length; i++) {
+      //look for the original posts among the contents
+      for (let i = 0; i < contents.length; i++) {
         if (comments) {
           filtered = comments.filter(
             //look fot the comments that refer to the original post
             (comment) =>
-              comment.uid === uid && comment.originalPostId === posts[i].id
+              comment.uid === uid && comment.originalPostId === contents[i].id
           );
           if (filtered.length > 0) {
             //add the comments to the original posts
-            commPost = { ...posts[i], commentData: [...filtered] };
+            commPost = { ...contents[i], commentData: [...filtered] };
             commPosts.push(commPost);
           }
         }
@@ -65,21 +59,22 @@ const ProfileComments = (props) => {
     }
 
     return () => unsubscribe();
-  }, [handleError, comments, contents, uid]);
-
-  useEffect(() => {
-    console.log(commentedPosts);
-  });
+  }, [handleError, contents, uid]);
 
   return (
     <div className="posts-container">
       {commentedPosts &&
         commentedPosts.map((post) => (
           <div className="post-w-comments-container" key={post.id}>
-            <Post post={post} view={"comm-post"} />
+            <Post post={post} contents={contents} view={"comm-post"} />
 
             {post.commentData.map((data) => (
-              <Post post={data} key={data.id} view={"comment"} />
+              <Post
+                post={data}
+                contents={contents}
+                key={data.id}
+                view={"comment"}
+              />
             ))}
           </div>
         ))}

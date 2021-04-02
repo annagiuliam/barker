@@ -46,7 +46,6 @@ export const ContextProvider = ({ children }) => {
 
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user);
         afterLoginActions(user);
         // syncContents();
         // syncUsers();
@@ -55,11 +54,6 @@ export const ContextProvider = ({ children }) => {
       }
     });
   }, []);
-
-  useEffect(() => {
-    console.log(contents);
-    console.log(comments);
-  });
 
   function storeContents(fetchedContents) {
     setContents(fetchedContents);

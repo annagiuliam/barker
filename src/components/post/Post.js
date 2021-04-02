@@ -32,19 +32,17 @@ const Post = (props) => {
       let original;
       if (post.type === "rebark") {
         original = contents.find(function (ele) {
-          console.log(contents);
-          console.log(post.originalPostId);
+          // console.log(contents);
+          // console.log(post.originalPostId);
           return ele.id === post.originalPostId;
         });
-        console.log(original);
+        // console.log(original);
       }
       setOriginalPost(original);
     }
 
     findOriginalPost();
-  }, [contents, post.originalPostId, post.rebarkedBy.length]);
-
-  useEffect(() => console.log(post.rebarkedBy.length));
+  }, [contents, post.originalPostId, post.type]);
 
   function displayComment() {
     setShowComment(true);

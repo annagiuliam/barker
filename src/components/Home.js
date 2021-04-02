@@ -72,7 +72,6 @@ const Home = () => {
     return () => unsubscribe();
   }, [handleError]);
 
-  useEffect(() => console.log(users));
   return (
     <div className="home-container">
       <Header />
