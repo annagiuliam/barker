@@ -16,7 +16,10 @@ const Sidebar = () => {
           <li>Home</li>
         </Link>
 
-        <li>Other barkers</li>
+        <Link to={`${url}barkers`}>
+          <li>Other barkers</li>
+        </Link>
+
         <Link to={`${url}profile/${userInfo.uid}`}>
           <li>Your profile</li>
         </Link>

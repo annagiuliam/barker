@@ -1,5 +1,6 @@
 :root{
   --theme-color: #e17bad;
+  --barker-border: 0.5px solid darkgray;
 }
 
 .App {

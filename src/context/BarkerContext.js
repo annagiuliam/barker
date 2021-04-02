@@ -78,13 +78,16 @@ export const ContextProvider = ({ children }) => {
       const imageUrl = user.photoURL || placeholder;
       // create user collection with UID = to curr user uid at authentication
       const displayName = username || user.displayName;
-      await db.collection("users").doc(user.uid).set({
-        // no need to add uid because it is the doc id
-        username: displayName,
-        url: imageUrl,
-        followers: [],
-        following: [],
-      });
+      await db
+        .collection("users")
+        .doc(user.uid)
+        .set({
+          // no need to add uid because it is the doc id
+          username: displayName,
+          url: imageUrl,
+          followers: [],
+          following: ["olyO4oe4gsYRyr1mXXayPJkkvmY2"],
+        });
       console.log("succesfully added to user collection");
     } catch (error) {
       console.log(error.code);

@@ -7,6 +7,7 @@ import Sidebar from "./Sidebar";
 import Main from "./Main";
 import Profile from "./profile/Profile";
 import PostPage from "../components/PostPage";
+import BarkersPage from "../components/BarkersPage";
 
 import firebaseApp from "../firebase/firebase";
 
@@ -64,8 +65,7 @@ const Home = () => {
   }, [handleError]);
 
   useEffect(() => {
-    if (users) {
-    }
+    //console.log(users);
   });
 
   return (
@@ -93,6 +93,11 @@ const Home = () => {
                 users={users}
               />
             )}
+          />
+
+          <Route
+            path={`${path}barkers`}
+            render={(props) => <BarkersPage {...props} users={users} />}
           />
           <Route
             path={`${path}post/:id`}
