@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import firebase from "firebase/app";
 
 const Header = () => {
-  const { userLoggedIn, userInfo, signIn, logOut } = useContext(BarkerContext);
+  const { userInfo, logOut } = useContext(BarkerContext);
   return (
     <header id="header">
       <div>

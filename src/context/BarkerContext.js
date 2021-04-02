@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect, useCallback } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import firebase from "firebase/app";
 import firebaseApp from "../firebase/firebase";
 import placeholder from "../images/profile_placeholder.png";
@@ -9,7 +9,7 @@ const auth = firebaseApp.auth();
 export const BarkerContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  const [database] = useState(db);
+  // const [database] = useState(db);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   //const [currentUser, setCurrentUser] = useState(null);
   const [anonName, setAnonName] = useState("");

@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BarkerContext } from "../context/BarkerContext";
-import {
-  Link,
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Post from "../components/post/Post";
 

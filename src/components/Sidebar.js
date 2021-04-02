@@ -1,12 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-import { Link, useParams, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import { GiBalloonDog } from "react-icons/gi";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   const { userInfo } = useContext(BarkerContext);
-  const { url, path } = useRouteMatch();
+  const { url } = useRouteMatch();
 
   return (
     <div className="sidebar">

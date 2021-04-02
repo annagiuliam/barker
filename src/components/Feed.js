@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { BarkerContext } from "../context/BarkerContext";
+import React from "react";
 
 import Post from "./post/Post";
-import CommentedPost from "./post/CommentedPost";
+//import CommentedPost from "./post/CommentedPost";
 
 const Feed = (props) => {
   const { contents, posts } = props;
-  const { handleError } = useContext(BarkerContext);
 
   return (
     <div className="posts-container">

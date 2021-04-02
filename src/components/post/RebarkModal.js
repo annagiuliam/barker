@@ -1,14 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 import PostMain from "./PostMain";
 
-import firebase from "firebase/app";
-import firebaseApp from "../../firebase/firebase";
-const db = firebaseApp.firestore();
-
 const RebarkModal = (props) => {
   const { post, updateRebark, submitRebark, rebarkText } = props;
-  const { submitPost, userInfo } = useContext(BarkerContext);
+  const { userInfo } = useContext(BarkerContext);
 
   return (
     <div className="modal">

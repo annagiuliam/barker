@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BarkerContext } from "../context/BarkerContext";
-import {
-  BrowserRouter,
-  Switch,
-  Route,
-  useParams,
-  useRouteMatch,
-} from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -20,7 +14,7 @@ const db = firebaseApp.firestore();
 
 const Home = () => {
   const { handleError } = useContext(BarkerContext);
-  const { url, path } = useRouteMatch();
+  const { path } = useRouteMatch();
   const [contents, setContents] = useState([]);
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);

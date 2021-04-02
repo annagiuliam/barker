@@ -1,6 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-
 import { BarkerContext } from "../../context/BarkerContext";
 
 import PostMain from "./PostMain";
@@ -13,7 +11,6 @@ import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
-  const history = useHistory();
   const { contents, post, view } = props;
   const { userInfo, handleError, submitPost } = useContext(BarkerContext);
 
@@ -46,9 +43,6 @@ const Post = (props) => {
     findOriginalPost();
   }, [contents, post.originalPostId, post.type]);
 
-  function handleClick() {
-    history.push(`/post/${post.id}`);
-  }
   function displayComment() {
     setShowComment(true);
   }
