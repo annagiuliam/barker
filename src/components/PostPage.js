@@ -21,7 +21,6 @@ const PostPage = (props) => {
   const { history, contents } = props;
   const [comments, setComments] = useState(null);
   const post = contents.find((post) => post.id === id);
-  console.log(id);
 
   useEffect(() => {
     //get the all comments to the post
@@ -36,7 +35,7 @@ const PostPage = (props) => {
           const comments = snapshot.docs.map((doc) => {
             return { id: doc.id, ...doc.data() };
           });
-          console.log(comments);
+
           setComments(comments);
         },
         (error) => {

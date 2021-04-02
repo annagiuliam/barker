@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
 import { BarkerContext } from "../../context/BarkerContext";
 
@@ -12,6 +13,7 @@ import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
+  const history = useHistory();
   const { contents, post, view } = props;
   const { userInfo, handleError, submitPost } = useContext(BarkerContext);
 
@@ -25,7 +27,9 @@ const Post = (props) => {
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
   const rebarkNum = post.rebarkedBy.length > 0 ? post.rebarkedBy.length : "";
-  const containerClass = view ? `${view}-container` : "post-container";
+  const containerClass = view
+    ? `${view}-container clickable`
+    : "post-container clickable";
 
   useEffect(() => {
     //find post that was rebarked
@@ -42,6 +46,9 @@ const Post = (props) => {
     findOriginalPost();
   }, [contents, post.originalPostId, post.type]);
 
+  function handleClick() {
+    history.push(`/post/${post.id}`);
+  }
   function displayComment() {
     setShowComment(true);
   }

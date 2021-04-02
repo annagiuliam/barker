@@ -27,6 +27,25 @@ textarea {
 .link-username:link {
   text-decoration: none;
   color:black;
+  
+}
+
+.link-username:visited {
+  text-decoration: none;
+  color:black;
+
+}
+
+.link-username:hover {
+  text-decoration: underline;
+  color:black;
+  font-weight:bold
+}
+
+.link-username:active {
+  text-decoration: underline;
+  color:black;
+  font-weight:bold
 }
 
 

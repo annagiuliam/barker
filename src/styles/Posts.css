@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
   }
-  
+
   .user-info {
     display: flex;
     flex-direction: row;
@@ -48,6 +48,7 @@
   .rebarked-main {
     margin: 10px;
     border: 0.5px solid darkgray;
+    border-radius: 18px;
   }
 
   .post-w-comments-container {
@@ -65,3 +66,25 @@
     margin-left: 30px;
   }
   
+
+  .link-text-content:link {
+    text-decoration: none;
+    color:black;
+    
+  }
+  
+  .link-text-content:visited {
+    text-decoration: none;
+    color:black;
+  
+  }
+  
+  .link-text-content:hover {
+    text-decoration: none;
+    
+  }
+  
+  .link-text-content:active {
+    text-decoration: none;
+    
+  }
