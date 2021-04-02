@@ -25,6 +25,7 @@ const Home = () => {
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect(() => {
+    //sync contents
     const unsubscribe = db
       .collection("contents")
       .orderBy("timestamp", "desc")
@@ -35,17 +36,12 @@ const Home = () => {
           });
 
           setContents(fetchedContents);
-          // const comments = fetchedContents
-          //   .filter((item) => item.type === "comment")
-          //   .sort((x, y) => x.timestamp - y.timestamp);
 
-          // setComments(comments);
-
+          //MODIFICA QUESTA LOGICA, TRATTA I COMMENTI COME POST
           const posts = fetchedContents.filter(
             (item) => item.type === "post" || item.type === "rebark"
           );
           setPosts(posts);
-          //storeContents(fetchedContents);
         },
         (error) => {
           console.log(error.code);
@@ -57,6 +53,7 @@ const Home = () => {
   }, [handleError]);
 
   useEffect(() => {
+    //sinc users
     const unsubscribe = db.collection("users").onSnapshot(
       (snapshot) => {
         const fetchedUsers = snapshot.docs.map((doc) => {
@@ -78,23 +75,23 @@ const Home = () => {
       <div className="app-container">
         <Sidebar />
         <Switch>
-          {/* <Route path={`/home`} exact component={Main} /> */}
           <Route
             exact
             path={`/home`}
+            //RIVEDERE LOGICA SU COME MOSTRARE ANCHE I COMMENTI
             render={(props) => (
               <Main {...props} contents={contents} posts={posts} />
             )}
           />
-          {/* <Route path={`${path}profile/:uid`} component={Profile} /> */}
+
           <Route
             path={`${path}profile/:uid`}
             render={(props) => (
               <Profile
                 {...props}
                 contents={contents}
-                users={users}
                 posts={posts}
+                users={users}
               />
             )}
           />

@@ -28,91 +28,15 @@ export const ContextProvider = ({ children }) => {
   const [signInModal, setSignInModal] = useState(false);
 
   useEffect(() => {
-    //  MOVE SYNC USERS
-    // function syncUsers() {
-    //   db.collection("users").onSnapshot(
-    //     (snapshot) => {
-    //       const fetchedUsers = snapshot.docs.map((doc) => {
-    //         return { uid: doc.id, ...doc.data() };
-    //       });
-    //       setUsers(fetchedUsers);
-    //     },
-    //     (error) => {
-    //       console.log(error.code);
-    //       handleError(error);
-    //     }
-    //   );
-    // }
-
     auth.onAuthStateChanged((user) => {
       if (user) {
         afterLoginActions(user);
-        // syncContents();
-        // syncUsers();
       } else {
         setUserLoggedIn(false);
       }
     });
   }, []);
 
-  function storeContents(fetchedContents) {
-    setContents(fetchedContents);
-  }
-  function downloadPosts() {
-    db.collection("posts")
-      .orderBy("timestamp", "desc")
-      .onSnapshot(
-        (snapshot) => {
-          const posts = snapshot.docs.map((doc) => {
-            return { id: doc.id, ...doc.data() };
-          });
-          setPosts(posts);
-        },
-        (error) => {
-          console.log(error.code);
-          handleError(error);
-        }
-      );
-  }
-
-  // function downloadComments() {
-  //   database.collection("comments").onSnapshot(
-  //     (snapshot) => {
-  //       const comments = snapshot.docs.map((doc) => {
-  //         return { id: doc.id, ...doc.data() };
-  //       });
-  //       setComments(comments);
-  //     },
-  //     (error) => {
-  //       var errorCode = error.code;
-  //       var errorMessage = error.message;
-
-  //       console.log(errorMessage);
-  //       const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-  //       // setError(displayedError);
-  //       console.log(displayedError);
-  //     }
-  //   );
-  // }
-
-  // function downloadComments() {
-  //   db.collection("comments").onSnapshot(
-  //     (snapshot) => {
-  //       const comments = snapshot.docs.map((doc) => {
-  //         return { id: doc.id, ...doc.data() };
-  //       });
-  //       setComments(comments);
-  //     },
-  //     (error) => {
-  //       var errorCode = error.code;
-  //       var errorMessage = error.message;
-
-  //       console.log(errorMessage);
-  //       const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-  //       setError(displayedError);
-  //     }
-  //   );
-  // }
   async function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
@@ -193,13 +117,7 @@ export const ContextProvider = ({ children }) => {
     }
   }
 
-  async function submitPost(
-    e,
-    submittedText,
-    type,
-    // collection,
-    originalId = null
-  ) {
+  async function submitPost(e, submittedText, type, originalId = null) {
     e.preventDefault();
 
     try {
@@ -252,11 +170,11 @@ export const ContextProvider = ({ children }) => {
     <BarkerContext.Provider
       value={{
         anonName,
-        comments,
+
         contents,
-        database,
+        // database,
         error,
-        posts,
+        // posts,
         //postText,
         // rebarkText
         showError,
@@ -270,7 +188,6 @@ export const ContextProvider = ({ children }) => {
         signIn,
         signInAnonymous,
         showSignInModal,
-        storeContents,
 
         submitPost,
         updateAnonName,

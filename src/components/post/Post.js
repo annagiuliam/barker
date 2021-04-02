@@ -13,9 +13,11 @@ const db = firebaseApp.firestore();
 
 const Post = (props) => {
   const { contents, post, view } = props;
+  const { userInfo, handleError, submitPost } = useContext(BarkerContext);
+
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
-  const { userInfo, handleError, submitPost } = useContext(BarkerContext);
+
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
   const [originalPost, setOriginalPost] = useState(null);
@@ -26,17 +28,13 @@ const Post = (props) => {
   const containerClass = view ? `${view}-container` : "post-container";
 
   useEffect(() => {
-    //QUALCOSA NON FUNGE QUI
     //find post that was rebarked
     function findOriginalPost() {
       let original;
       if (post.type === "rebark") {
         original = contents.find(function (ele) {
-          // console.log(contents);
-          // console.log(post.originalPostId);
           return ele.id === post.originalPostId;
         });
-        // console.log(original);
       }
       setOriginalPost(original);
     }
@@ -51,6 +49,7 @@ const Post = (props) => {
   function updateComment(e) {
     setCommentText(e.target.value);
   }
+
   function submitComment(e) {
     e.preventDefault();
     incrementCommentNumber();
