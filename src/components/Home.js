@@ -95,7 +95,12 @@ const Home = () => {
               />
             )}
           />
-          <Route path={`${path}post/:id`} component={PostPage} />
+          <Route
+            path={`${path}post/:id`}
+            render={(props) => {
+              <PostPage {...props} contents={contents} />;
+            }}
+          />
         </Switch>
       </div>
     </div>

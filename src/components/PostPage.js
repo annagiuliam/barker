@@ -17,40 +17,36 @@ import firebaseApp from "../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const PostPage = (props) => {
-  const { posts, handleError } = useContext(BarkerContext);
+  const { handleError } = useContext(BarkerContext);
   const { id } = useParams();
-  const { history } = props;
+  const { history, contents } = props;
   const [comments, setComments] = useState(null);
-  const post = posts.find((post) => post.id === id);
-  console.log(history);
+  const post = contents.find((post) => post.id === id);
+  console.log(id);
 
   useEffect(() => {
-    //get the comments made by the profile
-    function getComments() {
-      const unsubscribe = db
-        .collection("comments")
-        .where("originalPostId", "==", id)
-        .orderBy("timestamp", "asc")
-        .onSnapshot(
-          (snapshot) => {
-            const comments = snapshot.docs.map((doc) => {
-              return { id: doc.id, ...doc.data() };
-            });
-            setComments(comments);
-          },
-          (error) => {
-            handleError(error);
-          }
-        );
+    //get the all comments to the post
 
-      return unsubscribe;
-    }
+    const unsubscribe = db
+      .collection("contents")
+      //.where("type", "==", "comment")
+      .where("originalPostId", "==", id)
+      .orderBy("timestamp", "asc")
+      .onSnapshot(
+        (snapshot) => {
+          const comments = snapshot.docs.map((doc) => {
+            return { id: doc.id, ...doc.data() };
+          });
+          console.log(comments);
+          setComments(comments);
+        },
+        (error) => {
+          console.log(error);
+          handleError(error);
+        }
+      );
 
-    const unsubscribe = getComments();
-
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, [handleError, id]);
   return (
     <div className="center-container">
