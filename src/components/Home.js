@@ -69,6 +69,11 @@ const Home = () => {
     return () => unsubscribe();
   }, [handleError]);
 
+  useEffect(() => {
+    if (users) {
+    }
+  });
+
   return (
     <div className="home-container">
       <Header />
@@ -97,9 +102,7 @@ const Home = () => {
           />
           <Route
             path={`${path}post/:id`}
-            render={(props) => {
-              <PostPage {...props} contents={contents} />;
-            }}
+            render={(props) => <PostPage {...props} contents={contents} />}
           />
         </Switch>
       </div>

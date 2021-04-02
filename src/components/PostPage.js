@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
 
 import Post from "../components/post/Post";
-import PostMain from "../components/post/PostMain";
 
 import { FiArrowLeft } from "react-icons/fi";
 
@@ -29,7 +28,7 @@ const PostPage = (props) => {
 
     const unsubscribe = db
       .collection("contents")
-      //.where("type", "==", "comment")
+      .where("type", "==", "comment")
       .where("originalPostId", "==", id)
       .orderBy("timestamp", "asc")
       .onSnapshot(
@@ -54,10 +53,10 @@ const PostPage = (props) => {
         <FiArrowLeft id="arrow-left" onClick={() => history.goBack()} />
       </div>
       <div className="post-w-comments-container" key={post.id}>
-        <Post post={post} view={"comm-post"} />
+        <Post post={post} contents={contents} view={"comm-post"} />
         {comments &&
           comments.map((comment) => (
-            <PostMain post={post} view={"comment"} key={comment.id} />
+            <Post post={comment} view={"comment"} key={comment.id} />
           ))}
       </div>
     </div>

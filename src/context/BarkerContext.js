@@ -15,10 +15,10 @@ export const ContextProvider = ({ children }) => {
   const [anonName, setAnonName] = useState("");
   // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  const [users, setUsers] = useState([]);
-  const [contents, setContents] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState([]);
+  // const [users, setUsers] = useState([]);
+  // const [contents, setContents] = useState([]);
+  // const [posts, setPosts] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   //const [postText, setPostText] = useState("");
 
@@ -171,7 +171,7 @@ export const ContextProvider = ({ children }) => {
       value={{
         anonName,
 
-        contents,
+        //contents,
         // database,
         error,
         // posts,
@@ -181,7 +181,7 @@ export const ContextProvider = ({ children }) => {
         signInModal,
         userInfo,
         userLoggedIn,
-        users,
+        //users,
         closeError,
         handleError,
         logOut,

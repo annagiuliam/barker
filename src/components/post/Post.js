@@ -31,7 +31,7 @@ const Post = (props) => {
     //find post that was rebarked
     function findOriginalPost() {
       let original;
-      if (post.type === "rebark") {
+      if (post.type === "rebark" && contents) {
         original = contents.find(function (ele) {
           return ele.id === post.originalPostId;
         });
