@@ -11,7 +11,7 @@ import {
 import ProfileBarks from "./ProfileBarks";
 import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
-
+import FollowPage from "./FollowPage";
 const Profile = (props) => {
   const { contents, users, posts } = props;
   //const [bioText, setBioText] = useState("");
@@ -21,15 +21,20 @@ const Profile = (props) => {
   const user = users.find((ele) => ele.uid === uid);
 
   return (
-    <div className="center-container">
+    <div>
       {/* user profile data */}
       <div className="info-container">
         <div className="profile-pic-div">
           <img alt="pic" src={user.url} className="profile-pic"></img>
         </div>
         <h2 className="bio-username">{user.username}</h2>
-        {/* bio, insert form later */}
-        <div className="bio-container">THIS IS THE BIO</div>
+        <div className="follow-numbers">
+          <Link to={`${url}/following`}>
+            <div>{user.following.length} following</div>
+          </Link>
+
+          <div className="followers">{user.followers.length} followers</div>
+        </div>
         {/* tabs */}
         <div className="profile-tabs-container">
           <ul className="profile-tabs">
@@ -69,6 +74,10 @@ const Profile = (props) => {
         <Route
           path={`${path}/likes`}
           render={(props) => <ProfileLikes {...props} contents={contents} />}
+        />
+        <Route
+          path={`details/profile/${uid}/following`}
+          render={(props) => <FollowPage {...props} contents={contents} />}
         />
       </Switch>
     </div>

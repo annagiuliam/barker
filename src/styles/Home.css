@@ -57,7 +57,23 @@
 .profile-tabs {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+}
+ul.profile-tabs a {
+    width: 25%;
+    height: 25%;
+    margin:5%;
+}
+
+.follow-numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+
+.followers {
+    margin-left: 15px
 }
 
 /* Post Page */
