@@ -11,7 +11,7 @@ import {
 import ProfileBarks from "./ProfileBarks";
 import ProfileLikes from "./ProfileLikes";
 import ProfileComments from "./ProfileComments";
-import FollowPage from "./FollowPage";
+
 const Profile = (props) => {
   const { contents, users, posts } = props;
   //const [bioText, setBioText] = useState("");
