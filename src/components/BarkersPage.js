@@ -9,9 +9,9 @@ const BarkersPage = (props) => {
 
   // USER DISAPPEARS AFTER FOLLOWING, YOU SHOULD CHANGE BUTTON TO FOLLOWING
   return (
-    <div className={"center-container"}>
+    <div className="center-container">
       {users
-        .filter((user) => user.uid !== currUser.uid)
+        .filter((user) => user.uid !== userInfo.uid)
         .map((ele) => (
           <UserTile user={ele} currUser={currUser} key={ele.uid} />
         ))}

@@ -21,7 +21,7 @@ const Profile = (props) => {
   const user = users.find((ele) => ele.uid === uid);
 
   return (
-    <div>
+    <div className="center-container">
       {/* user profile data */}
       <div className="info-container">
         <div className="profile-pic-div">
@@ -29,11 +29,12 @@ const Profile = (props) => {
         </div>
         <h2 className="bio-username">{user.username}</h2>
         <div className="follow-numbers">
-          <Link to={`${url}/following`}>
+          <Link to={`/${uid}/follow-page`}>
             <div>{user.following.length} following</div>
           </Link>
-
-          <div className="followers">{user.followers.length} followers</div>
+          <Link to={`/${uid}/follow-page/followers`}>
+            <div className="followers">{user.followers.length} followers</div>
+          </Link>
         </div>
         {/* tabs */}
         <div className="profile-tabs-container">
@@ -75,10 +76,10 @@ const Profile = (props) => {
           path={`${path}/likes`}
           render={(props) => <ProfileLikes {...props} contents={contents} />}
         />
-        <Route
+        {/* <Route
           path={`details/profile/${uid}/following`}
           render={(props) => <FollowPage {...props} contents={contents} />}
-        />
+        /> */}
       </Switch>
     </div>
   );

@@ -13,12 +13,12 @@ import FollowPage from "./FollowPage";
 const ProfilePage = (props) => {
   const { contents, posts, users } = props;
   const { path } = useRouteMatch();
-
+  const { uid } = useParams();
   return (
     <div className="center-container">
-      <Switch>
+      {/* <Switch>
         <Route
-          path={`${path}/following`}
+          path={`/profile/:uid/following`}
           render={(props) => <FollowPage {...props} users={users} />}
         />
         <Route
@@ -32,7 +32,7 @@ const ProfilePage = (props) => {
             />
           )}
         />
-      </Switch>
+      </Switch> */}
     </div>
   );
 };

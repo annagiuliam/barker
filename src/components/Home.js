@@ -9,7 +9,6 @@ import Profile from "./profile/Profile";
 import PostPage from "../components/PostPage";
 import BarkersPage from "../components/BarkersPage";
 import FollowPage from "./profile/FollowPage";
-import ProfilePage from "./profile/ProfilePage";
 
 import firebaseApp from "../firebase/firebase";
 
@@ -88,7 +87,7 @@ const Home = () => {
           <Route
             path={`${path}profile/:uid`}
             render={(props) => (
-              <ProfilePage
+              <Profile
                 {...props}
                 contents={contents}
                 posts={posts}
@@ -97,27 +96,10 @@ const Home = () => {
             )}
           />
 
-          {/* <Route
-             path={`${path}profile/:uid`}
-             render={(props) => (
-               <Profile
-                 {...props}
-                 contents={contents}
-                 posts={posts}
-                 users={users}
-               />
-             )}
-           /> 
-            <Route
-             path={`${path}:uid/following`}
-             render={(props) => (
-               <FollowPage
-                 {...props}
-                 contents={contents}
-                 posts={posts}
-                 users={users}
-               />
-             )} */}
+          <Route
+            path={`${path}:uid/follow-page`}
+            render={(props) => <FollowPage {...props} users={users} />}
+          />
 
           <Route
             path={`${path}barkers`}

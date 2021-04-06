@@ -10,7 +10,7 @@ import {
 import { FiArrowLeft } from "react-icons/fi";
 
 import Following from "./Following";
-import Followers from "./Following";
+import Followers from "./Followers";
 
 const FollowPage = (props) => {
   const { history, users } = props;
@@ -18,9 +18,8 @@ const FollowPage = (props) => {
   const { url, path } = useRouteMatch();
   const user = users.find((ele) => ele.uid === uid);
 
-  console.log(url);
   return (
-    <div>
+    <div className="center-container">
       <div className="arrow-left-container">
         <FiArrowLeft id="arrow-left" onClick={() => history.goBack()} />
       </div>
@@ -30,18 +29,21 @@ const FollowPage = (props) => {
           <Link to={`${url}`}>
             <li>Following</li>
           </Link>
-          <Link to={`/profile/${uid}/followers`}>
+          <Link to={`${url}/followers`}>
             <li>Followers</li>
           </Link>
         </ul>
       </div>
       <Switch>
         <Route
-          path={`${url}`}
+          exact
+          path={`${path}`}
           render={(props) => <Following {...props} users={users} />}
         />
-
-        <Route exact path={`/profile/:uid/followers`} component={Followers} />
+        <Route
+          path={`${path}/followers`}
+          render={(props) => <Followers {...props} users={users} />}
+        />
       </Switch>
     </div>
   );

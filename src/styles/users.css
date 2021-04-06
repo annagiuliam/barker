@@ -1,3 +1,5 @@
+/* Barkers Page */
+
 .user-tile {
     width: 60%;
     display: flex;
@@ -5,4 +7,10 @@
     justify-content: space-between;
     border:var(--barker-border);
     margin-bottom: 10px;
+}
+
+/* Follow Page */
+
+.tiles-container {
+    text-align: center;
 }

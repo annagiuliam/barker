@@ -51,9 +51,10 @@ const UserTile = (props) => {
           <span className="username">{user.username}</span>
         </Link>
       </div>
-      {following ? (
+      {user.uid !== currUser.uid && following && (
         <button onClick={unfollow}>Unfollow</button>
-      ) : (
+      )}
+      {user.uid !== currUser.uid && !following && (
         <button onClick={follow}>Follow</button>
       )}
     </div>
