@@ -10,7 +10,7 @@ const Following = (props) => {
   const currUser = users.find((user) => user.uid === userInfo.uid);
   const profileOwner = users.find((user) => user.uid === uid);
   let followingUsers = [];
-  profileOwner.following.map((uid) => {
+  profileOwner.following.forEach((uid) => {
     for (let i = 0; i < users.length; i++) {
       if (users[i].uid === uid) {
         followingUsers.push(users[i]);
