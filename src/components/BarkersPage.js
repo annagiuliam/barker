@@ -11,10 +11,7 @@ const BarkersPage = (props) => {
   return (
     <div className={"center-container"}>
       {users
-        .filter(
-          (user) =>
-            !currUser.following.includes(user.uid) && user.uid !== currUser.uid
-        )
+        .filter((user) => user.uid !== currUser.uid)
         .map((ele) => (
           <UserTile user={ele} currUser={currUser} key={ele.uid} />
         ))}

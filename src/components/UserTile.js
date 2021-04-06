@@ -9,9 +9,9 @@ const db = firebaseApp.firestore();
 const UserTile = (props) => {
   const { user, currUser } = props;
   const { handleError } = useContext(BarkerContext);
+  const following = currUser.following.includes(user.uid);
 
   function follow() {
-    //CONTROLLA INSERIMENTO DATI
     const userRef = db.collection("users").doc(user.uid);
     userRef
       .update({
@@ -27,6 +27,22 @@ const UserTile = (props) => {
       .catch((error) => handleError(error));
   }
 
+  function unfollow() {
+    const userRef = db.collection("users").doc(user.uid);
+    userRef
+      .update({
+        followers: firebase.firestore.FieldValue.arrayRemove(currUser.uid),
+      })
+      .catch((error) => handleError(error));
+
+    const currRef = db.collection("users").doc(currUser.uid);
+    currRef
+      .update({
+        following: firebase.firestore.FieldValue.arrayRemove(user.uid),
+      })
+      .catch((error) => handleError(error));
+  }
+
   return (
     <div className="user-tile">
       <div className="user-info">
@@ -35,7 +51,11 @@ const UserTile = (props) => {
           <span className="username">{user.username}</span>
         </Link>
       </div>
-      <button onClick={follow}>Follow</button>
+      {following ? (
+        <button onClick={unfollow}>Unfollow</button>
+      ) : (
+        <button onClick={follow}>Follow</button>
+      )}
     </div>
   );
 };
