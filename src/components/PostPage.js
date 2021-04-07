@@ -12,7 +12,7 @@ const db = firebaseApp.firestore();
 const PostPage = (props) => {
   const { handleError } = useContext(BarkerContext);
   const { id } = useParams();
-  const { history, contents } = props;
+  const { history, contents, users } = props;
   const [comments, setComments] = useState(null);
   const post = contents.find((post) => post.id === id);
 
@@ -46,7 +46,12 @@ const PostPage = (props) => {
         <FiArrowLeft id="arrow-left" onClick={() => history.goBack()} />
       </div>
       <div className="post-w-comments-container" key={post.id}>
-        <Post post={post} contents={contents} view={"comm-post"} />
+        <Post
+          post={post}
+          contents={contents}
+          view={"comm-post"}
+          users={users}
+        />
         {comments &&
           comments.map((comment) => (
             <Post post={comment} view={"comment"} key={comment.id} />

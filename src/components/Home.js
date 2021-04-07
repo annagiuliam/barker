@@ -33,7 +33,6 @@ const Home = () => {
 
           setContents(fetchedContents);
 
-          //MODIFICA QUESTA LOGICA, TRATTA I COMMENTI COME POST
           const posts = fetchedContents.filter(
             (item) => item.type === "post" || item.type === "rebark"
           );
@@ -66,8 +65,9 @@ const Home = () => {
   }, [handleError]);
 
   useEffect(() => {
-    //console.log(users);
-  });
+    console.log(contents);
+    console.log(users);
+  }, [users, contents]);
 
   return (
     <div className="home-container">
@@ -112,7 +112,9 @@ const Home = () => {
           />
           <Route
             path={`${path}post/:id`}
-            render={(props) => <PostPage {...props} contents={contents} />}
+            render={(props) => (
+              <PostPage {...props} contents={contents} users={users} />
+            )}
           />
         </Switch>
       </div>

@@ -5,13 +5,14 @@ import PostMain from "./PostMain";
 import PostFooter from "./PostFooter";
 import CommentInput from "./CommentInput";
 import RebarkModal from "./RebarkModal";
+import PostExtras from "./PostExtras";
 
 import firebase from "firebase/app";
 import firebaseApp from "../../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const Post = (props) => {
-  const { contents, post, view } = props;
+  const { contents, post, view, users } = props;
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
 
   const [commentText, setCommentText] = useState("");
@@ -112,6 +113,14 @@ const Post = (props) => {
     <div className={containerClass} id={post.id}>
       <PostMain post={post} view={view} />
       {originalPost && <PostMain post={originalPost} view={"rebarked"} />}
+      {(likesNumber || rebarkNum) && users && (
+        <PostExtras
+          users={users}
+          post={post}
+          likesNumber={likesNumber}
+          rebarkNum={rebarkNum}
+        />
+      )}
       <PostFooter
         displayComment={displayComment}
         addLike={addLike}

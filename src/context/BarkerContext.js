@@ -16,7 +16,7 @@ export const ContextProvider = ({ children }) => {
   // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
   const [adminUid] = useState("olyO4oe4gsYRyr1mXXayPJkkvmY2");
-  // const [users, setUsers] = useState([]);
+  //const [users, setUsers] = useState([]);
   // const [contents, setContents] = useState([]);
   // const [posts, setPosts] = useState([]);
   // const [comments, setComments] = useState([]);
@@ -37,10 +37,6 @@ export const ContextProvider = ({ children }) => {
       }
     });
   }, []);
-
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
 
   async function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
@@ -203,7 +199,7 @@ export const ContextProvider = ({ children }) => {
         signInModal,
         //currentUser,
         userLoggedIn,
-        //users,
+
         closeError,
         handleError,
         logOut,
@@ -213,6 +209,7 @@ export const ContextProvider = ({ children }) => {
 
         submitPost,
         updateAnonName,
+
         // updatePost,
         // updateRebark,
       }}
