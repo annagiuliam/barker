@@ -7,7 +7,6 @@ const BarkersPage = (props) => {
   const { userInfo } = useContext(BarkerContext);
   const currUser = users.find((user) => user.uid === userInfo.uid);
 
-  // USER DISAPPEARS AFTER FOLLOWING, YOU SHOULD CHANGE BUTTON TO FOLLOWING
   return (
     <div className="center-container">
       {users
