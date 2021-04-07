@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
 const PostInput = () => {
-  const { userInfo, submitPost } = useContext(BarkerContext);
+  const { currentUser, submitPost } = useContext(BarkerContext);
   const [postText, setPostText] = useState("");
   function updatePost(e) {
     setPostText(e.target.value);
@@ -10,7 +10,7 @@ const PostInput = () => {
   return (
     <div className="post-input">
       <div className="user-info">
-        <img alt="pic" src={userInfo.url} className="avatar-img"></img>
+        <img alt="pic" src={currentUser.url} className="avatar-img"></img>
       </div>
       <div className="form-container">
         <form

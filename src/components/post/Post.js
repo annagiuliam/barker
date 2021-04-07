@@ -12,7 +12,7 @@ const db = firebaseApp.firestore();
 
 const Post = (props) => {
   const { contents, post, view } = props;
-  const { userInfo, handleError, submitPost } = useContext(BarkerContext);
+  const { currentUser, handleError, submitPost } = useContext(BarkerContext);
 
   const [commentText, setCommentText] = useState("");
   const [rebarkText, setRebarkText] = useState("");
@@ -74,14 +74,14 @@ const Post = (props) => {
     const postRef = db.collection("contents").doc(post.id);
     postRef
       .update({
-        likedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
+        likedBy: firebase.firestore.FieldValue.arrayUnion(currentUser.uid),
       })
       .catch((error) => handleError(error));
   }
 
   function displayRebark() {
     // don't open rebarked modal if user has already rebarked this post
-    if (!post.rebarkedBy.includes(userInfo.uid)) {
+    if (!post.rebarkedBy.includes(currentUser.uid)) {
       setShowRebark(true);
     }
   }
@@ -102,7 +102,7 @@ const Post = (props) => {
     try {
       const postRef = await db.collection("contents").doc(post.id);
       postRef.update({
-        rebarkedBy: firebase.firestore.FieldValue.arrayUnion(userInfo.uid),
+        rebarkedBy: firebase.firestore.FieldValue.arrayUnion(currentUser.uid),
       });
     } catch (error) {
       handleError(error);

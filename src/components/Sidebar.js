@@ -5,7 +5,7 @@ import { Link, useRouteMatch } from "react-router-dom";
 import { GiBalloonDog } from "react-icons/gi";
 
 const Sidebar = () => {
-  const { userInfo } = useContext(BarkerContext);
+  const { currentUser } = useContext(BarkerContext);
   const { url } = useRouteMatch();
 
   return (
@@ -20,7 +20,7 @@ const Sidebar = () => {
           <li>Other barkers</li>
         </Link>
 
-        <Link to={`${url}profile/${userInfo.uid}`}>
+        <Link to={`${url}profile/${currentUser.uid}`}>
           <li>Your profile</li>
         </Link>
       </ul>
