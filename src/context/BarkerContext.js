@@ -11,7 +11,7 @@ export const BarkerContext = createContext();
 export const ContextProvider = ({ children }) => {
   // const [database] = useState(db);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  //const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
   const [anonName, setAnonName] = useState("");
   // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
@@ -38,13 +38,16 @@ export const ContextProvider = ({ children }) => {
     });
   }, []);
 
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
+
   async function signIn() {
     // Sign into Firebase using popup auth & Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
     try {
       const result = await auth.signInWithPopup(provider);
       let user = result.user;
-
       addToUsersCollection(user);
       afterLoginActions(user);
     } catch (error) {
@@ -65,10 +68,11 @@ export const ContextProvider = ({ children }) => {
 
       const currUser = await auth.currentUser;
       //add curr user to user collection in firebase
-      await addToUsersCollection(currUser, anonName);
+      addToUsersCollection(currUser, anonName);
       addToAdminFollowers(user);
       // set user information in state
-      await afterLoginActions(currUser, anonName);
+      afterLoginActions(currUser, anonName);
+
       setSignInModal(false);
     } catch (error) {
       console.log(error.code);
@@ -91,7 +95,7 @@ export const ContextProvider = ({ children }) => {
           following: [adminUid],
         });
 
-        //console.log("succesfully added to user collection");
+        console.log("succesfully added to user collection");
       }
     } catch (error) {
       // console.log(error.code);
@@ -119,7 +123,7 @@ export const ContextProvider = ({ children }) => {
       username: displayName,
       url: imageUrl,
     };
-    setUserInfo(info);
+    setCurrentUser(info);
     setUserLoggedIn(true);
   }
 
@@ -140,16 +144,16 @@ export const ContextProvider = ({ children }) => {
 
     try {
       await db.collection("contents").add({
-        uid: userInfo.uid,
-        username: userInfo.username,
-        url: userInfo.url,
+        uid: currentUser.uid,
+        username: currentUser.username,
+        url: currentUser.url,
         //text: rebarkText || postText,
         type: type,
         //collection: collection,
         text: submittedText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,
-        likes: 0,
+        //likes: 0,
         likedBy: [],
         //isRebark: rebark,
         rebarkedBy: [],
@@ -188,7 +192,7 @@ export const ContextProvider = ({ children }) => {
     <BarkerContext.Provider
       value={{
         anonName,
-
+        currentUser,
         //contents,
         // database,
         error,
@@ -197,7 +201,7 @@ export const ContextProvider = ({ children }) => {
         // rebarkText
         showError,
         signInModal,
-        userInfo,
+        //currentUser,
         userLoggedIn,
         //users,
         closeError,
