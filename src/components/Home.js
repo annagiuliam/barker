@@ -80,7 +80,12 @@ const Home = () => {
             path={`/home`}
             //RIVEDERE LOGICA SU COME MOSTRARE ANCHE I COMMENTI
             render={(props) => (
-              <Main {...props} contents={contents} posts={posts} />
+              <Main
+                {...props}
+                contents={contents}
+                posts={posts}
+                users={users}
+              />
             )}
           />
 
