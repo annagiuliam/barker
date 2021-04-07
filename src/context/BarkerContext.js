@@ -15,6 +15,7 @@ export const ContextProvider = ({ children }) => {
   const [anonName, setAnonName] = useState("");
   // const [currUsername, setCurrUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
+  const [adminUid] = useState("olyO4oe4gsYRyr1mXXayPJkkvmY2");
   // const [users, setUsers] = useState([]);
   // const [contents, setContents] = useState([]);
   // const [posts, setPosts] = useState([]);
@@ -65,6 +66,7 @@ export const ContextProvider = ({ children }) => {
       const currUser = await auth.currentUser;
       //add curr user to user collection in firebase
       await addToUsersCollection(currUser, anonName);
+      addToAdminFollowers(user);
       // set user information in state
       await afterLoginActions(currUser, anonName);
       setSignInModal(false);
@@ -86,15 +88,25 @@ export const ContextProvider = ({ children }) => {
           username: displayName,
           url: imageUrl,
           followers: [],
-          following: ["olyO4oe4gsYRyr1mXXayPJkkvmY2"],
+          following: [adminUid],
         });
 
-        //ADD THIS USER TO ADMIN FOLLOWERS ARRAY
-        console.log("succesfully added to user collection");
+        //console.log("succesfully added to user collection");
       }
     } catch (error) {
-      console.log(error.code);
+      // console.log(error.code);
       handleError(error);
+    }
+  }
+
+  function addToAdminFollowers(user) {
+    if (user.uid !== adminUid) {
+      const userRef = db.collection("users").doc(adminUid);
+      userRef
+        .update({
+          followers: firebase.firestore.FieldValue.arrayUnion(user.uid),
+        })
+        .catch((error) => handleError(error));
     }
   }
 
