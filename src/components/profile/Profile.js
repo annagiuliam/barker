@@ -81,22 +81,13 @@ const Profile = (props) => {
         <Route
           path={`${path}/comments`}
           render={(props) => (
-            <ProfileComments
-              {...props}
-              contents={contents}
-              uid={uid}
-              // database={database}
-            />
+            <ProfileComments {...props} contents={contents} uid={uid} />
           )}
         />
         <Route
           path={`${path}/likes`}
           render={(props) => <ProfileLikes {...props} contents={contents} />}
         />
-        {/* <Route
-          path={`details/profile/${uid}/following`}
-          render={(props) => <FollowPage {...props} contents={contents} />}
-        /> */}
       </Switch>
     </div>
   );

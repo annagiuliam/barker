@@ -16,7 +16,7 @@ const PostInput = () => {
         <form
           className="post-input-form"
           onSubmit={(e) => {
-            submitPost(e, postText, "post", "posts");
+            submitPost(e, postText, "post");
             setPostText("");
           }}
         >

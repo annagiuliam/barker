@@ -54,7 +54,12 @@ const PostPage = (props) => {
         />
         {comments &&
           comments.map((comment) => (
-            <Post post={comment} view={"comment"} key={comment.id} />
+            <Post
+              post={comment}
+              contents={contents}
+              view={"comment"}
+              key={comment.id}
+            />
           ))}
       </div>
     </div>

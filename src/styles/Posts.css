@@ -51,6 +51,11 @@
     border-radius: 18px;
   }
 
+  .main-top {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   .post-w-comments-container {
     border: 0.5px solid darkgray;
     max-width: 420px;

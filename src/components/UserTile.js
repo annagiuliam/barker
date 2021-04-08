@@ -9,7 +9,7 @@ const db = firebaseApp.firestore();
 const UserTile = (props) => {
   const { user, users } = props;
   const { follow, unfollow, currentUser } = useContext(BarkerContext);
-  //search for current users in users collection because all data are complete in the collection
+  //check if the current user follows the user
   const following = users
     .find((user) => user.uid === currentUser.uid)
     .following.includes(user.uid);
