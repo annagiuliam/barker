@@ -8,41 +8,11 @@ const db = firebaseApp.firestore();
 
 const UserTile = (props) => {
   const { user, users } = props;
-  const { handleError, currentUser } = useContext(BarkerContext);
-  const currUser = users.find((user) => user.uid === currentUser.uid);
-  const following = currUser.following.includes(user.uid);
-
-  function follow() {
-    const userRef = db.collection("users").doc(user.uid);
-    userRef
-      .update({
-        followers: firebase.firestore.FieldValue.arrayUnion(currUser.uid),
-      })
-      .catch((error) => handleError(error));
-
-    const currRef = db.collection("users").doc(currUser.uid);
-    currRef
-      .update({
-        following: firebase.firestore.FieldValue.arrayUnion(user.uid),
-      })
-      .catch((error) => handleError(error));
-  }
-
-  function unfollow() {
-    const userRef = db.collection("users").doc(user.uid);
-    userRef
-      .update({
-        followers: firebase.firestore.FieldValue.arrayRemove(currUser.uid),
-      })
-      .catch((error) => handleError(error));
-
-    const currRef = db.collection("users").doc(currUser.uid);
-    currRef
-      .update({
-        following: firebase.firestore.FieldValue.arrayRemove(user.uid),
-      })
-      .catch((error) => handleError(error));
-  }
+  const { follow, unfollow, currentUser } = useContext(BarkerContext);
+  //search for current users in users collection because all data are complete in the collection
+  const following = users
+    .find((user) => user.uid === currentUser.uid)
+    .following.includes(user.uid);
 
   return (
     <div className="user-tile">
@@ -52,11 +22,11 @@ const UserTile = (props) => {
           <span className="username">{user.username}</span>
         </Link>
       </div>
-      {user.uid !== currUser.uid && following && (
-        <button onClick={unfollow}>Unfollow</button>
+      {user.uid !== currentUser.uid && following && (
+        <button onClick={() => unfollow(user)}>Unfollow</button>
       )}
-      {user.uid !== currUser.uid && !following && (
-        <button onClick={follow}>Follow</button>
+      {user.uid !== currentUser.uid && !following && (
+        <button onClick={() => follow(user)}>Follow</button>
       )}
     </div>
   );

@@ -76,6 +76,11 @@ ul.profile-tabs a {
     margin-left: 15px
 }
 
+.info-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 /* Post Page */
 
 .post-page {

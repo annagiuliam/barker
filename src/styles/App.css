@@ -28,13 +28,13 @@ textarea {
 .link-username:link {
   text-decoration: none;
   color:black;
-  
+  font-weight:bold
 }
 
 .link-username:visited {
   text-decoration: none;
   color:black;
-
+  font-weight:bold
 }
 
 .link-username:hover {

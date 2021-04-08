@@ -184,6 +184,37 @@ export const ContextProvider = ({ children }) => {
     setError(displayedError);
   }
 
+  function follow(user) {
+    const userRef = db.collection("users").doc(user.uid);
+    userRef
+      .update({
+        followers: firebase.firestore.FieldValue.arrayUnion(currentUser.uid),
+      })
+      .catch((error) => handleError(error));
+
+    const currRef = db.collection("users").doc(currentUser.uid);
+    currRef
+      .update({
+        following: firebase.firestore.FieldValue.arrayUnion(user.uid),
+      })
+      .catch((error) => handleError(error));
+  }
+
+  function unfollow(user) {
+    const userRef = db.collection("users").doc(user.uid);
+    userRef
+      .update({
+        followers: firebase.firestore.FieldValue.arrayRemove(currentUser.uid),
+      })
+      .catch((error) => handleError(error));
+
+    const currRef = db.collection("users").doc(currentUser.uid);
+    currRef
+      .update({
+        following: firebase.firestore.FieldValue.arrayRemove(user.uid),
+      })
+      .catch((error) => handleError(error));
+  }
   return (
     <BarkerContext.Provider
       value={{
@@ -201,6 +232,7 @@ export const ContextProvider = ({ children }) => {
         userLoggedIn,
 
         closeError,
+        follow,
         handleError,
         logOut,
         signIn,
@@ -208,6 +240,7 @@ export const ContextProvider = ({ children }) => {
         showSignInModal,
 
         submitPost,
+        unfollow,
         updateAnonName,
 
         // updatePost,

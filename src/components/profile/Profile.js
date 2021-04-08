@@ -1,5 +1,5 @@
-import React from "react";
-//import { BarkerContext } from "../../context/BarkerContext";
+import React, { useContext } from "react";
+import { BarkerContext } from "../../context/BarkerContext";
 import {
   Link,
   Switch,
@@ -14,11 +14,17 @@ import ProfileComments from "./ProfileComments";
 
 const Profile = (props) => {
   const { contents, users, posts } = props;
+  const { currentUser, follow, unfollow } = useContext(BarkerContext);
   //const [bioText, setBioText] = useState("");
 
   const { uid } = useParams();
   const { url, path } = useRouteMatch();
   const user = users.find((ele) => ele.uid === uid);
+
+  //check if current user follows the user
+  const following = users
+    .find((user) => user.uid === currentUser.uid)
+    .following.includes(user.uid);
 
   return (
     <div className="center-container">
@@ -27,7 +33,17 @@ const Profile = (props) => {
         <div className="profile-pic-div">
           <img alt="pic" src={user.url} className="profile-pic"></img>
         </div>
-        <h2 className="bio-username">{user.username}</h2>
+        <div className="info-center">
+          <h2 className="bio-username">{user.username}</h2>
+
+          {user.uid !== currentUser.uid && following && (
+            <button onClick={() => unfollow(user)}>Unfollow</button>
+          )}
+          {user.uid !== currentUser.uid && !following && (
+            <button onClick={() => follow(user)}>Follow</button>
+          )}
+        </div>
+
         <div className="follow-numbers">
           <Link to={`/${uid}/follow-page`}>
             <div>{user.following.length} following</div>
@@ -36,6 +52,7 @@ const Profile = (props) => {
             <div className="followers">{user.followers.length} followers</div>
           </Link>
         </div>
+
         {/* tabs */}
         <div className="profile-tabs-container">
           <ul className="profile-tabs">
