@@ -21,7 +21,12 @@ const Followers = (props) => {
   return (
     <div className="tiles-container">
       {followers.map((follower) => (
-        <UserTile user={follower} currUser={currUser} key={follower.uid} />
+        <UserTile
+          user={follower}
+          users={users}
+          currUser={currUser}
+          key={follower.uid}
+        />
       ))}
     </div>
   );

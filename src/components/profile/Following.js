@@ -21,7 +21,12 @@ const Following = (props) => {
   return (
     <div className="tiles-container">
       {followingUsers.map((user) => (
-        <UserTile user={user} currUser={currUser} key={user.uid} />
+        <UserTile
+          user={user}
+          users={users}
+          currUser={currUser}
+          key={user.uid}
+        />
       ))}
     </div>
   );

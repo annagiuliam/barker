@@ -140,3 +140,7 @@
     text-align: right;
     margin-bottom: 20px;
   }
+
+  .tiles-container{
+    padding-left: 25%;
+  }

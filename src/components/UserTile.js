@@ -7,8 +7,9 @@ import firebaseApp from "../firebase/firebase";
 const db = firebaseApp.firestore();
 
 const UserTile = (props) => {
-  const { user, currUser } = props;
-  const { handleError } = useContext(BarkerContext);
+  const { user, users } = props;
+  const { handleError, currentUser } = useContext(BarkerContext);
+  const currUser = users.find((user) => user.uid === currentUser.uid);
   const following = currUser.following.includes(user.uid);
 
   function follow() {

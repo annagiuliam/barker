@@ -1,11 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import RebarkedByModal from "../modals/RebarkedByModal";
+import InteractionsModal from "../modals/InteractionsModal";
 
 const PostExtras = (props) => {
   const { post, users, likesNumber, rebarkNum } = props;
-
   const [showRebarkedByModal, setShowRebarkedByModal] = useState(false);
+  const [showLikeddByModal, setShowLikedByModal] = useState(false);
+  const [rebarkedBy, setRebarkedBy] = useState(null);
+  const [likedBy, setLikedBy] = useState(null);
+
+  useEffect(() => {
+    if (post.rebarkedBy) {
+      let newArr;
+      post.rebarkedBy.forEach((rebarker) => {
+        newArr = users.filter((user) => rebarker === user.uid);
+      });
+      setRebarkedBy(newArr);
+    }
+  }, [post.rebarkedBy, users]);
+
+  useEffect(() => {
+    if (post.likedBy) {
+      let newArr;
+      post.likedBy.forEach((liker) => {
+        newArr = users.filter((user) => liker === user.uid);
+      });
+      setLikedBy(newArr);
+    }
+  }, [post.likedBy, users]);
+
+  useEffect(() => {
+    // console.log(post.rebarkedBy);
+    //console.log(likedBy);
+  });
 
   return (
     <div className="extras-container">
@@ -16,10 +43,24 @@ const PostExtras = (props) => {
           </li>
         )}
         {likesNumber > 0 && (
-          <li onClick={() => alert("hello")}>{likesNumber} likes</li>
+          <li onClick={() => setShowLikedByModal(true)}>{likesNumber} likes</li>
         )}
       </ul>
-      {showRebarkedByModal && <RebarkedByModal />}
+      {showRebarkedByModal && (
+        <InteractionsModal
+          onClick={() => setShowRebarkedByModal(false)}
+          interactions={rebarkedBy}
+          users={users}
+        />
+      )}
+
+      {showLikeddByModal && (
+        <InteractionsModal
+          onClick={() => setShowLikedByModal(false)}
+          interactions={likedBy}
+          users={users}
+        />
+      )}
     </div>
   );
 };
