@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-import BarkersPage from "./BarkersPage";
 import Post from "./post/Post";
-//import CommentedPost from "./post/CommentedPost";
 
 const Feed = (props) => {
   const { contents, posts, users } = props;

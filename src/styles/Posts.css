@@ -13,7 +13,11 @@
     justify-content: left;
     align-items: center;
   }
-  
+
+  .clickable:hover{
+    background-color: lightgray;
+    cursor: pointer
+  }  
   .post-content {
     padding-left: 20px;
     margin-bottom: 10px;
