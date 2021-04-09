@@ -24,11 +24,9 @@ function App() {
         {!userLoggedIn ? <Redirect to="/login" /> : <Home />}{" "}
       </Route>
 
-      {/* <Route path="/home" component={Home} /> */}
       {showError && <ErrorModal />}
     </BrowserRouter>
   );
-  // userLoggedIn ? <Home /> : <LoginPage />);
 }
 
 export default App;

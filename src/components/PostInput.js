@@ -4,6 +4,7 @@ import { BarkerContext } from "../context/BarkerContext";
 const PostInput = () => {
   const { currentUser, submitPost } = useContext(BarkerContext);
   const [postText, setPostText] = useState("");
+
   function updatePost(e) {
     setPostText(e.target.value);
   }

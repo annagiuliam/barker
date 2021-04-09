@@ -1,25 +1,18 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
-import { Link, useHistory } from "react-router-dom";
-import Linkify from "linkifyjs/react";
-import hashtag from "linkifyjs/plugins/hashtag";
+import { Link } from "react-router-dom";
 
 import { BsTrash } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 
 const PostMain = (props) => {
-  let history = useHistory();
   const { post, view, deletePost, setShowEdit } = props;
   const { currentUser } = useContext(BarkerContext);
 
   const postClass = view ? `${view}-main` : "post-main";
 
-  function handleClick() {
-    history.push(`/post/${post.id}`);
-  }
-
   return (
-    <div className={postClass} id={post.id} onClick={handleClick}>
+    <div className={postClass} id={post.id}>
       <div className="main-top">
         <div className="user-info">
           <img alt="pic" src={post.url} className="avatar-img"></img>
@@ -43,18 +36,9 @@ const PostMain = (props) => {
         )}
       </div>
 
-      {/* <Link to={`/post/${post.id}`} className="link-text-content">
+      <Link to={`/post/${post.id}`} className="link-text-content">
         <div className="post-content">{post.text}</div>
-        <div>
-          <Linkify tagName="p">{post.text}</Linkify>
-        </div>
-      </Link> */}
-
-      <div>
-        <Linkify tagName="p" className="post-content">
-          {post.text}
-        </Linkify>
-      </div>
+      </Link>
     </div>
   );
 };

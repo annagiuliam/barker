@@ -9,19 +9,11 @@ const auth = firebaseApp.auth();
 export const BarkerContext = createContext();
 
 export const ContextProvider = ({ children }) => {
-  // const [database] = useState(db);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [anonName, setAnonName] = useState("");
-  // const [currUsername, setCurrUsername] = useState("");
-  const [userInfo, setUserInfo] = useState({});
-  const [adminUid] = useState("olyO4oe4gsYRyr1mXXayPJkkvmY2");
-  //const [users, setUsers] = useState([]);
-  // const [contents, setContents] = useState([]);
-  // const [posts, setPosts] = useState([]);
-  // const [comments, setComments] = useState([]);
 
-  //const [postText, setPostText] = useState("");
+  const [adminUid] = useState("olyO4oe4gsYRyr1mXXayPJkkvmY2");
 
   const [error, setError] = useState(null);
   const [showError, setShowError] = useState(false);
@@ -94,7 +86,6 @@ export const ContextProvider = ({ children }) => {
         console.log("succesfully added to user collection");
       }
     } catch (error) {
-      // console.log(error.code);
       handleError(error);
     }
   }
@@ -143,21 +134,15 @@ export const ContextProvider = ({ children }) => {
         uid: currentUser.uid,
         username: currentUser.username,
         url: currentUser.url,
-        //text: rebarkText || postText,
         type: type,
-        //collection: collection,
         text: submittedText,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         comments: 0,
-        //likes: 0,
         likedBy: [],
-        //isRebark: rebark,
         rebarkedBy: [],
         originalPostId: originalId || "",
       });
-      //setPostText("");
     } catch (error) {
-      console.log(error.code);
       handleError(error);
     }
   }
@@ -178,8 +163,6 @@ export const ContextProvider = ({ children }) => {
     setShowError(true);
     var errorCode = error.code;
     var errorMessage = error.message;
-
-    //console.log(error.code);
     const displayedError = `Error code: ${errorCode}. ${errorMessage}`;
     setError(displayedError);
   }
@@ -220,17 +203,10 @@ export const ContextProvider = ({ children }) => {
       value={{
         anonName,
         currentUser,
-        //contents,
-        // database,
         error,
-        // posts,
-        //postText,
-        // rebarkText
         showError,
         signInModal,
-        //currentUser,
         userLoggedIn,
-
         closeError,
         follow,
         handleError,
@@ -238,13 +214,9 @@ export const ContextProvider = ({ children }) => {
         signIn,
         signInAnonymous,
         showSignInModal,
-
         submitPost,
         unfollow,
         updateAnonName,
-
-        // updatePost,
-        // updateRebark,
       }}
     >
       {children}

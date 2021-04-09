@@ -20,6 +20,7 @@ const Home = () => {
   const [contents, setContents] = useState([]);
   const [posts, setPosts] = useState([]);
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
     //sync contents
     const unsubscribe = db
@@ -39,7 +40,6 @@ const Home = () => {
           setPosts(posts);
         },
         (error) => {
-          console.log(error.code);
           handleError(error);
         }
       );
@@ -48,7 +48,7 @@ const Home = () => {
   }, [handleError]);
 
   useEffect(() => {
-    //sinc users
+    //sync users
     const unsubscribe = db.collection("users").onSnapshot(
       (snapshot) => {
         const fetchedUsers = snapshot.docs.map((doc) => {
@@ -57,7 +57,6 @@ const Home = () => {
         setUsers(fetchedUsers);
       },
       (error) => {
-        console.log(error.code);
         handleError(error);
       }
     );
@@ -73,7 +72,6 @@ const Home = () => {
           <Route
             exact
             path={`/home`}
-            //RIVEDERE LOGICA SU COME MOSTRARE ANCHE I COMMENTI
             render={(props) => (
               <Main
                 {...props}

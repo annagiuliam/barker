@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 
 const EditModal = (props) => {
-  const { post, editText, setShowEdit, submitEdit, updateEdit } = props;
+  const { editText, setShowEdit, submitEdit, updateEdit } = props;
   const { currentUser } = useContext(BarkerContext);
 
   return (
@@ -17,11 +17,7 @@ const EditModal = (props) => {
           </div>
           <div className="form-container">
             <form className="post-input-form" onSubmit={submitEdit}>
-              <textarea
-                onChange={updateEdit}
-                value={editText}
-                // placeholder="Bark what's on your mind!"
-              ></textarea>
+              <textarea onChange={updateEdit} value={editText}></textarea>
               <div className="input-btn-div">
                 <button type="submit">Submit</button>
               </div>

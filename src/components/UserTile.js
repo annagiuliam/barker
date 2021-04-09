@@ -2,10 +2,6 @@ import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 import { Link } from "react-router-dom";
 
-import firebase from "firebase/app";
-import firebaseApp from "../firebase/firebase";
-const db = firebaseApp.firestore();
-
 const UserTile = (props) => {
   const { user, users } = props;
   const { follow, unfollow, currentUser } = useContext(BarkerContext);

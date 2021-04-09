@@ -202,7 +202,6 @@ const Post = (props) => {
 
       {showEdit && (
         <EditModal
-          post={post}
           editText={editText}
           setShowEdit={setShowEdit}
           updateEdit={updateEdit}
