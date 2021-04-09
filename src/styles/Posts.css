@@ -15,7 +15,7 @@
   }
 
   .clickable:hover{
-    background-color: lightgray;
+    background-color: #f7f7f7;
     cursor: pointer
   }  
   .post-content {
@@ -53,6 +53,9 @@
     margin: 10px;
     border: 0.5px solid darkgray;
     border-radius: 18px;
+  }
+  .rebarked-main:hover {
+    background-color: #e6e6e6;
   }
 
   .main-top {

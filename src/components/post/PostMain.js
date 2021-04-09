@@ -12,8 +12,6 @@ const PostMain = (props) => {
   const { post, view, deletePost, setShowEdit } = props;
   const { currentUser } = useContext(BarkerContext);
 
-  // const newText = post.text.replace(/(#[^\s]*)/g, `${(<a href="/">`$1`</a>)}`);
-
   const postClass = view ? `${view}-main` : "post-main";
 
   function handleClick() {
@@ -53,7 +51,9 @@ const PostMain = (props) => {
       </Link> */}
 
       <div>
-        <Linkify tagName="p">{post.text}</Linkify>
+        <Linkify tagName="p" className="post-content">
+          {post.text}
+        </Linkify>
       </div>
     </div>
   );
