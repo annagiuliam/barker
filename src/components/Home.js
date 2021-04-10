@@ -10,6 +10,8 @@ import PostPage from "../components/PostPage";
 import BarkersPage from "../components/BarkersPage";
 import FollowPage from "./profile/FollowPage";
 
+import HashtagPage from "./HashtagPage";
+
 import firebaseApp from "../firebase/firebase";
 
 const db = firebaseApp.firestore();
@@ -109,6 +111,8 @@ const Home = () => {
               <PostPage {...props} contents={contents} users={users} />
             )}
           />
+
+          <Route path={`${path}hashtag/:hashtag`} component={HashtagPage} />
         </Switch>
       </div>
     </div>

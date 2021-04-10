@@ -5,11 +5,26 @@ import { Link } from "react-router-dom";
 import { BsTrash } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 
+const reactStringReplace = require("react-string-replace");
+
 const PostMain = (props) => {
   const { post, view, deletePost, setShowEdit } = props;
   const { currentUser } = useContext(BarkerContext);
 
   const postClass = view ? `${view}-main` : "post-main";
+
+  const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
+    <Link
+      to={`/hashtag/${match.slice(1)}`}
+      key={i + match}
+      className="hashtag-link"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
+      {match}
+    </Link>
+  ));
 
   return (
     <div className={postClass} id={post.id}>
@@ -35,10 +50,11 @@ const PostMain = (props) => {
           </div>
         )}
       </div>
+      <div className="post-content">{hashedText}</div>
 
-      <Link to={`/post/${post.id}`} className="link-text-content">
+      {/* <Link to={`/post/${post.id}`} className="link-text-content">
         <div className="post-content">{post.text}</div>
-      </Link>
+      </Link> */}
     </div>
   );
 };

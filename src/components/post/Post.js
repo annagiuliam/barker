@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
+
+import { useHistory } from "react-router-dom";
 import { BarkerContext } from "../../context/BarkerContext";
 
 import PostMain from "./PostMain";
@@ -33,6 +35,14 @@ const Post = (props) => {
   const containerClass = view
     ? `${view}-container clickable`
     : "post-container clickable";
+
+  const history = useHistory();
+
+  const redirect = (e) => {
+    history.push({
+      pathname: `/post/${post.id}`,
+    });
+  };
 
   useEffect(() => {
     //find post that was rebarked
@@ -159,7 +169,7 @@ const Post = (props) => {
   }
 
   return (
-    <div className={containerClass} id={post.id}>
+    <div className={containerClass} id={post.id} onClick={redirect}>
       <PostMain
         post={post}
         view={view}

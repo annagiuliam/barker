@@ -79,7 +79,7 @@
   }
   
 
-  .link-text-content:link {
+  /* .link-text-content:link {
     text-decoration: none;
     color:black;
     
@@ -99,6 +99,19 @@
   .link-text-content:active {
     text-decoration: none;
     
+  } */
+
+  .hashtag-link {
+    text-decoration: none;
+    color: #3747f1;
+  }
+
+  .hashtag-link:hover{
+    text-decoration: underline;
+  }
+  .hashtag-link:visited {
+    text-decoration: none;
+    color: #3747f1;
   }
 
   .extras-container {
@@ -110,7 +123,7 @@
     width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    justify-content: flex-start;
     padding: 0px;
     border-top: var(--barker-border);
     border-bottom: var(--barker-border)
