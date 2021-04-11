@@ -112,7 +112,10 @@ const Home = () => {
             )}
           />
 
-          <Route path={`${path}hashtag/:hashtag`} component={HashtagPage} />
+          <Route
+            path={`${path}hashtag/:hashtag`}
+            render={(props) => <HashtagPage {...props} contents={contents} />}
+          />
         </Switch>
       </div>
     </div>
