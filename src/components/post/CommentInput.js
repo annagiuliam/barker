@@ -6,8 +6,15 @@ const PostInput = (props) => {
   return (
     <div className="comment-input">
       <form onSubmit={submitComment}>
-        <input type="text" onChange={updateComment} value={commentText}></input>
-        <button type="submit">Reply</button>
+        <input
+          type="text"
+          value={commentText}
+          onClick={(e) => e.stopPropagation()}
+          onChange={updateComment}
+        ></input>
+        <button onClick={(e) => e.stopPropagation()} type="submit">
+          Reply
+        </button>
       </form>
     </div>
   );

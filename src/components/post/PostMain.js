@@ -31,7 +31,13 @@ const PostMain = (props) => {
       <div className="main-top">
         <div className="user-info">
           <img alt="pic" src={post.url} className="avatar-img"></img>
-          <Link to={`/profile/${post.uid}`} className="link-username">
+          <Link
+            to={`/profile/${post.uid}`}
+            className="link-username"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <span className="username">{post.username}</span>
           </Link>
         </div>

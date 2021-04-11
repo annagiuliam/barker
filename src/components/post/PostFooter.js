@@ -17,19 +17,32 @@ const PostFooter = (props) => {
         <FaRegComment
           className="post-icon"
           title="Reply"
-          onClick={displayComment}
+          onClick={(e) => {
+            e.stopPropagation();
+            displayComment();
+          }}
         />
         <div>{commentNumber}</div>
       </div>
       <div className="post-icon-div">
-        <FaPaw className="post-icon" title="Like" onClick={addLike} />
+        <FaPaw
+          className="post-icon"
+          title="Like"
+          onClick={(e) => {
+            e.stopPropagation();
+            addLike();
+          }}
+        />
         <div>{likesNumber}</div>
       </div>
       <div className="post-icon-div">
         <FaRetweet
           className="post-icon"
           title="Rebark"
-          onClick={displayRebark}
+          onClick={(e) => {
+            e.stopPropagation();
+            displayRebark();
+          }}
         />
         <div>{rebarkNum}</div>
       </div>

@@ -112,6 +112,10 @@ const Post = (props) => {
     setShowRebark(false);
   }
 
+  function closeRebark() {
+    setShowRebark(false);
+  }
+
   function updateEdit(e) {
     setEditText(e.target.value);
   }
@@ -216,6 +220,7 @@ const Post = (props) => {
           setShowEdit={setShowEdit}
           updateEdit={updateEdit}
           submitEdit={submitEdit}
+          closeRebark={closeRebark}
         />
       )}
     </div>

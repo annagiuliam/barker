@@ -211,6 +211,7 @@ export const ContextProvider = ({ children }) => {
         follow,
         handleError,
         logOut,
+        setSignInModal,
         signIn,
         signInAnonymous,
         showSignInModal,
