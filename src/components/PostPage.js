@@ -2,9 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 import { useParams } from "react-router-dom";
 
-import Post from "../components/post/Post";
-
-import { FiArrowLeft } from "react-icons/fi";
+import Post from "./post/Post";
+import ArrowLeft from "./reusables/ArrowLeft";
 
 import firebaseApp from "../firebase/firebase";
 const db = firebaseApp.firestore();
@@ -18,6 +17,7 @@ const PostPage = (props) => {
 
   useEffect(() => {
     //get the all comments to the post
+    // started another onSnapshot bc the one of context collects comments in descending order
 
     const unsubscribe = db
       .collection("contents")
@@ -42,9 +42,7 @@ const PostPage = (props) => {
   }, [handleError, id]);
   return (
     <div className="center-container">
-      <div className="arrow-left-container">
-        <FiArrowLeft id="arrow-left" onClick={() => history.goBack()} />
-      </div>
+      <ArrowLeft onClick={() => history.goBack()} />
       <div className="post-w-comments-container" key={post.id}>
         <Post
           post={post}
