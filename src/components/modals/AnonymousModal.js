@@ -1,13 +1,18 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 
+import CloseButton from "../reusables/CloseButton";
+
 const AnonymousModal = () => {
-  const { signInAnonymous, updateAnonName } = useContext(BarkerContext);
+  const { signInAnonymous, setSignInModal, updateAnonName } = useContext(
+    BarkerContext
+  );
 
   return (
     <div className="modal">
       <section className="modal-main">
-        <form onSubmit={signInAnonymous}>
+        <CloseButton onClick={() => setSignInModal(false)} />
+        <form className="sign-in-form" onSubmit={signInAnonymous}>
           <input
             type="text"
             placeholder="choose a username"
