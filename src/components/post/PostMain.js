@@ -20,7 +20,6 @@ const PostMain = (props) => {
     });
   };
 
-  console.log(post.id);
   const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
     <Link
       to={`/hashtag/${match.slice(1)}`}
