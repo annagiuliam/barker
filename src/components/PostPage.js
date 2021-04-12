@@ -40,26 +40,35 @@ const PostPage = (props) => {
 
     return () => unsubscribe();
   }, [handleError, id]);
+
+  useEffect(() => {
+    if (!post) {
+      history.goBack();
+    }
+  }, [post, history]);
+
   return (
     <div className="center-container">
       <ArrowLeft onClick={() => history.goBack()} />
-      <div className="post-w-comments-container" key={post.id}>
-        <Post
-          post={post}
-          contents={contents}
-          view={"comm-post"}
-          users={users}
-        />
-        {comments &&
-          comments.map((comment) => (
-            <Post
-              post={comment}
-              contents={contents}
-              view={"comment"}
-              key={comment.id}
-            />
-          ))}
-      </div>
+      {post && (
+        <div className="post-w-comments-container" key={post.id}>
+          <Post
+            post={post}
+            contents={contents}
+            view={"comm-post"}
+            users={users}
+          />
+          {comments &&
+            comments.map((comment) => (
+              <Post
+                post={comment}
+                contents={contents}
+                view={"comment"}
+                key={comment.id}
+              />
+            ))}
+        </div>
+      )}
     </div>
   );
 };
