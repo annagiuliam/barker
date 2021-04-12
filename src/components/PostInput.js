@@ -22,6 +22,7 @@ const PostInput = () => {
           }}
         >
           <textarea
+            className="post-textarea"
             onChange={updatePost}
             value={postText}
             placeholder="Bark what's on your mind!"
