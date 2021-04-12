@@ -14,8 +14,11 @@ body, html , #root {
 button {
   margin: 15px;
 } 
-
 textarea {
+  border: 0.5px, solid, grey
+}
+
+.post-textarea {
   border: none;
     background-color: transparent;
     resize: none;
