@@ -11,9 +11,13 @@ const PostExtras = (props) => {
 
   useEffect(() => {
     if (post.rebarkedBy) {
-      let newArr;
+      let newArr = [];
       post.rebarkedBy.forEach((rebarker) => {
-        newArr = users.filter((user) => rebarker === user.uid);
+        for (let i = 0; i < users.length; i++) {
+          if (rebarker === users[i].uid) {
+            newArr.push(users[i]);
+          }
+        }
       });
       setRebarkedBy(newArr);
     }
@@ -21,29 +25,45 @@ const PostExtras = (props) => {
 
   useEffect(() => {
     if (post.likedBy) {
-      let newArr;
+      let newArr = [];
       post.likedBy.forEach((liker) => {
-        newArr = users.filter((user) => liker === user.uid);
+        for (let i = 0; i < users.length; i++) {
+          if (liker === users[i].uid) {
+            newArr.push(users[i]);
+          }
+        }
       });
       setLikedBy(newArr);
     }
   }, [post.likedBy, users]);
 
   useEffect(() => {
-    // console.log(post.rebarkedBy);
-    //console.log(likedBy);
+    // console.log(rebarkedBy);
+    // console.log(likedBy);
   });
 
   return (
     <div className="extras-container">
       <ul className="extras">
         {rebarkNum > 0 && (
-          <li onClick={() => setShowRebarkedByModal(true)}>
+          <li
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowRebarkedByModal(true);
+            }}
+          >
             {rebarkNum} rebarks
           </li>
         )}
         {likesNumber > 0 && (
-          <li onClick={() => setShowLikedByModal(true)}>{likesNumber} likes</li>
+          <li
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowLikedByModal(true);
+            }}
+          >
+            {likesNumber} likes
+          </li>
         )}
       </ul>
       {showRebarkedByModal && (
