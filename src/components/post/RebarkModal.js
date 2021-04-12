@@ -11,20 +11,25 @@ const RebarkModal = (props) => {
   return (
     <div className="modal">
       <section className="rebark-container modal-main">
-        <CloseButton onClick={closeRebark} />
+        <CloseButton
+          onClick={(e) => {
+            e.stopPropagation();
+            closeRebark();
+          }}
+        />
         <div className="user-info">
           <img alt="pic" src={currentUser.url} className="avatar-img"></img>
           <span className="username">{currentUser.username}</span>
         </div>
         <div className="post-input">
           <form onSubmit={submitRebark}>
-            <input
-              type="text"
+            <textarea
+              className="rebark-textarea"
               onClick={(e) => e.stopPropagation()}
               onChange={updateRebark}
               value={rebarkText}
-            ></input>
-            <PostMain post={post} />
+            ></textarea>
+            <PostMain post={post} view="rebarked" />
             <button type="submit" onClick={(e) => e.stopPropagation()}>
               Submit post
             </button>

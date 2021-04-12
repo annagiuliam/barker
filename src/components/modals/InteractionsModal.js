@@ -3,8 +3,9 @@ import React from "react";
 import UserTile from "../UserTile";
 import CloseButton from "../reusables/CloseButton";
 
-const RebarkedByModal = (props) => {
+const InteractionsModal = (props) => {
   const { interactions, users } = props;
+
   return (
     <div className="extras-modal">
       <div className="extras-modal-main">
@@ -19,4 +20,4 @@ const RebarkedByModal = (props) => {
   );
 };
 
-export default RebarkedByModal;
+export default InteractionsModal;

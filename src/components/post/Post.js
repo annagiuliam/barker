@@ -37,7 +37,6 @@ const Post = (props) => {
     : "post-container clickable";
 
   const history = useHistory();
-
   const redirect = (e) => {
     history.push({
       pathname: `/post/${post.id}`,
@@ -119,7 +118,13 @@ const Post = (props) => {
   function updateEdit(e) {
     setEditText(e.target.value);
   }
+  function openEditModal() {
+    setShowEdit(true);
+  }
 
+  function closeEditModal() {
+    setShowEdit(false);
+  }
   function submitEdit(e) {
     e.preventDefault();
     updatePost();
@@ -178,7 +183,7 @@ const Post = (props) => {
         post={post}
         view={view}
         deletePost={deletePost}
-        setShowEdit={setShowEdit}
+        openEditModal={openEditModal}
       />
       {originalPost && <PostMain post={originalPost} view={"rebarked"} />}
       {(likesNumber || rebarkNum) && users && (
@@ -211,16 +216,16 @@ const Post = (props) => {
           updateRebark={updateRebark}
           submitRebark={submitRebark}
           rebarkText={rebarkText}
+          closeRebark={closeRebark}
         />
       )}
 
       {showEdit && (
         <EditModal
           editText={editText}
-          setShowEdit={setShowEdit}
           updateEdit={updateEdit}
           submitEdit={submitEdit}
-          closeRebark={closeRebark}
+          closeEditModal={closeEditModal}
         />
       )}
     </div>
