@@ -4,21 +4,22 @@ import { BarkerContext } from "../context/BarkerContext";
 import AnonymousModal from "./modals/AnonymousModal";
 
 const LoginPage = () => {
-  const { userLoggedIn, signIn, showSignInModal, signInModal } = useContext(
-    BarkerContext
-  );
+  const { signIn, showSignInModal, signInModal } = useContext(BarkerContext);
 
   return (
     <div id="login-page">
-      <div id="login-btns">
-        {!userLoggedIn && (
-          <div>
-            <button onClick={signIn}>Log in with Google</button>
-            <button onClick={showSignInModal}>Log In Anonimously</button>
-            {signInModal && <AnonymousModal />}
-          </div>
-        )}
+      <div className="welcome-box">
+        <div>
+          <h2>Welcome to Barker!</h2>
+          <p>Sign In to access the Barker world!</p>
+        </div>
+
+        <div className="btns-container">
+          <button onClick={signIn}>Log in with Google</button>
+          <button onClick={showSignInModal}>Log In Anonimously</button>
+        </div>
       </div>
+      {signInModal && <AnonymousModal />}
     </div>
   );
 };

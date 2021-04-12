@@ -1,5 +1,5 @@
 :root{
-  --theme-color: #e17bad;
+  --theme-color: #fe6a03;
   --barker-border: 0.5px solid darkgray;
 }
 
@@ -12,19 +12,33 @@ body, html , #root {
   margin: 0 
 }
 button {
-  margin: 15px;
-} 
+  background-color: var(--theme-color);
+  transition-duration: 0.4s;
+  border: 2px solid var(--theme-color);
+  border-radius: 25px;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: white;
+  color: var(--theme-color)
+}
 textarea {
   border: 0.5px, solid, grey
 }
 
-.post-textarea {
-  border: none;
-    background-color: transparent;
-    resize: none;
-    outline: none;
-    width: 100%;
-    height: 100%
+
+
+ul {
+  list-style-type: none;
 }
 
 /* https://www.bitdegree.org/learn/css-link-color */

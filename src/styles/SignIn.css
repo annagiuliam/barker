@@ -2,12 +2,10 @@
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url("../images/dog-pattern.jpg");
+    background-image: url("../images/dog-pattern_2.jpg");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat; 
-    /* position: relative; */
-    /* text-align: center; */
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -15,15 +13,30 @@
     
   }
   
-  #login-btns {
-    margin-right: 10vh;
-    padding: 10vh;
-  }
+ .welcome-box {
+   background-color: #ececec;
+   padding: 15px;
+   height: 30vh;
+   border-radius: 25px;
+   margin-right: 20%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-evenly;
+   text-align: center;
+   
+
+ }
+
+ .btns-container {
+  height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+ }
   
-  
-  .display-block {
+  /* .display-block {
     display: block;
-  }
+  } */
   
   .display-none {
     display: none;
