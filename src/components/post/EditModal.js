@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 
-import { AiOutlineClose } from "react-icons/ai";
+import CloseButton from "../reusables/CloseButton";
 
 const EditModal = (props) => {
   const { editText, closeEditModal, submitEdit, updateEdit } = props;
@@ -10,15 +10,7 @@ const EditModal = (props) => {
   return (
     <div className="modal">
       <section className="modal-main">
-        <div className="btn-container-right">
-          <AiOutlineClose
-            className="icon icon-close"
-            onClick={(e) => {
-              e.stopPropagation();
-              closeEditModal(false);
-            }}
-          />
-        </div>
+        <CloseButton onClick={closeEditModal} />
         <div className="post-edit-container">
           <div className="post-input">
             <div className="user-info">

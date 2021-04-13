@@ -59,6 +59,10 @@
     background-color: #e6e6e6;
   }
 
+  .rebark-input-container {
+    border: var(--barker-border)
+  }
+
   .main-top {
     display:flex;
     flex-direction: row;

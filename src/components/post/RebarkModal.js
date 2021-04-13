@@ -10,30 +10,30 @@ const RebarkModal = (props) => {
 
   return (
     <div className="modal">
-      <section className="rebark-container modal-main">
-        <CloseButton
-          onClick={(e) => {
-            e.stopPropagation();
-            closeRebark();
-          }}
-        />
-        <div className="user-info">
-          <img alt="pic" src={currentUser.url} className="avatar-img"></img>
-          <span className="username">{currentUser.username}</span>
-        </div>
+      <section className="modal-main">
+        <CloseButton onClick={closeRebark} />
         <div className="post-input">
-          <form onSubmit={submitRebark}>
-            <textarea
-              className="rebark-textarea"
-              onClick={(e) => e.stopPropagation()}
-              onChange={updateRebark}
-              value={rebarkText}
-            ></textarea>
-            <PostMain post={post} view="rebarked" />
-            <button type="submit" onClick={(e) => e.stopPropagation()}>
-              Submit post
-            </button>
-          </form>
+          <div className="user-info">
+            <img alt="pic" src={currentUser.url} className="avatar-img"></img>
+            {/* <span className="username">{currentUser.username}</span> */}
+          </div>
+          <div className="form-container">
+            <form onSubmit={submitRebark}>
+              <textarea
+                className="post-input-form"
+                onClick={(e) => e.stopPropagation()}
+                onChange={updateRebark}
+                value={rebarkText}
+              ></textarea>
+              <div>
+                <PostMain post={post} view="rebarked" />
+              </div>
+
+              <button type="submit" onClick={(e) => e.stopPropagation()}>
+                Submit post
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </div>
