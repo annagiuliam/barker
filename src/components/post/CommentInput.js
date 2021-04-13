@@ -4,14 +4,13 @@ const PostInput = (props) => {
   const { submitComment, updateComment, commentText } = props;
 
   return (
-    <div className="comment-input">
-      <form onSubmit={submitComment}>
-        <input
-          type="text"
+    <div className="comment-input-container">
+      <form onSubmit={submitComment} className="comment-form">
+        <textarea
           value={commentText}
           onClick={(e) => e.stopPropagation()}
           onChange={updateComment}
-        ></input>
+        ></textarea>
         <button onClick={(e) => e.stopPropagation()} type="submit">
           Reply
         </button>

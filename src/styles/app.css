@@ -14,9 +14,7 @@ body, html , #root {
   font-family: Helvetica, sans-serif
 }
 
-textarea {
-  border: 0.5px, solid, grey
-}
+
 
 ul {
    list-style: none;
