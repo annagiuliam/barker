@@ -58,7 +58,7 @@ const PostMain = (props) => {
           <div className="post-icon-div">
             <div>
               <BsTrash
-                className="post-icon"
+                className="icon"
                 onClick={(e) => {
                   e.stopPropagation();
                   deletePost();
@@ -67,7 +67,7 @@ const PostMain = (props) => {
             </div>
             <div>
               <AiOutlineEdit
-                className="post-icon"
+                className="icon"
                 onClick={(e) => {
                   e.stopPropagation();
                   openEditModal();

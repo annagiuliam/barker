@@ -13,35 +13,14 @@ body, html , #root {
   margin: 0 ;
   font-family: Helvetica, sans-serif
 }
-button {
-  background-color: var(--theme-color);
-  transition-duration: 0.4s;
-  border: 2px solid var(--theme-color);
-  border-radius: 25px;
-  color: white;
-  padding: 5px 15px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  max-height: 35px;
-  cursor: pointer;
-}
 
-button:hover{
-  background-color: white;
-  color: var(--theme-color)
-}
 textarea {
   border: 0.5px, solid, grey
 }
 
-
-
 ul {
-  list-style-type: none;
-}
+   list-style: none;
+ }
 
 /* https://www.bitdegree.org/learn/css-link-color */
 .link-username:link {

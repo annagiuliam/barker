@@ -1,0 +1,52 @@
+button {
+    background-color: var(--theme-color);
+    transition-duration: 0.4s;
+    border: 2px solid var(--theme-color);
+    border-radius: 25px;
+    color: white;
+    padding: 5px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    max-height: 35px;
+    cursor: pointer;
+  }
+  
+  button:hover{
+    background-color: white;
+    color: var(--theme-color)
+  }
+  .btn-container-right {
+    text-align: right;
+    
+  }
+
+  #arrow-left{
+    height: 25px;
+    width: 25px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+#arrow-left:hover {
+    color: var(--theme-color);
+    background-color:var(--hover-background);
+    cursor: pointer;
+}
+
+.icon {
+  margin: 10px;
+  border-radius: 25px;
+}
+.icon:hover{
+  cursor: pointer;
+  color: var(--theme-color);
+  
+}
+
+.icon-close {
+  font-size: x-large;
+}

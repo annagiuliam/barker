@@ -33,15 +33,7 @@
     align-items: center;
   }
 
-  .post-icon {
-    margin: 10px;
-    border-radius: 25px;
-  }
-  .post-icon:hover{
-    cursor: pointer;
-    color: var(--theme-color);
-    
-  }
+  
 
   .post-icon-div {
     display: flex;
@@ -148,11 +140,12 @@
     border-radius: 5px;
   }
 
-  .modal-close-btn-container {
-    text-align: right;
-    margin-bottom: 20px;
-  }
-
   .tiles-container{
     padding-left: 25%;
+  }
+
+  .post-edit-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
   }

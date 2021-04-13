@@ -15,7 +15,7 @@ const PostFooter = (props) => {
     <div className="post-footer">
       <div className="post-icon-div">
         <FaRegComment
-          className="post-icon"
+          className="icon"
           title="Reply"
           onClick={(e) => {
             e.stopPropagation();
@@ -26,7 +26,7 @@ const PostFooter = (props) => {
       </div>
       <div className="post-icon-div">
         <FaPaw
-          className="post-icon"
+          className="icon"
           title="Like"
           onClick={(e) => {
             e.stopPropagation();
@@ -37,7 +37,7 @@ const PostFooter = (props) => {
       </div>
       <div className="post-icon-div">
         <FaRetweet
-          className="post-icon"
+          className="icon"
           title="Rebark"
           onClick={(e) => {
             e.stopPropagation();

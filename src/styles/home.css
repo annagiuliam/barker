@@ -18,9 +18,11 @@
   }
 
   .post-input {
+      width: 100%;
     max-width: 390px;
     border: 0.5px solid darkgray; 
     padding: 15px;   
+    margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: row;
@@ -43,19 +45,6 @@
     text-align: center;
 }
 
-#arrow-left{
-    height: 25px;
-    width: 25px;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 50%;
-}
-
-#arrow-left:hover {
-    color: white;
-    background-color:var(--theme-color);
-    cursor: pointer;
-}
 
 
 
