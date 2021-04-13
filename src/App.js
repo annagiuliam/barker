@@ -8,6 +8,7 @@ import "./styles/SignIn.css";
 import "./styles/Sidebar.css";
 import "./styles/Home.css";
 import "./styles/users.css";
+import "./styles/profile.css";
 
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 import {
+  NavLink,
   Link,
   Switch,
   Route,
@@ -56,23 +57,24 @@ const Profile = (props) => {
         {/* tabs */}
         <div className="profile-tabs-container">
           <ul className="profile-tabs">
-            <Link to={`${url}`}>
+            <NavLink to={`${url}/barks`} activeClassName={"active"}>
               <li>Barks</li>
-            </Link>
-            <Link to={`${url}/comments`}>
+            </NavLink>
+            <NavLink to={`${url}/comments`} activeClassName={"active"}>
               <li>Comments</li>
-            </Link>
-            <Link to={`${url}/likes`}>
+            </NavLink>
+            <NavLink to={`${url}/likes`} activeClassName={"active"}>
               <li>Likes</li>
-            </Link>
+            </NavLink>
           </ul>
         </div>
       </div>
       {/* user content */}
       <Switch>
         <Route
-          exact
-          path={`${path}`}
+          // exact
+          // path={`${path}`}
+          path={`${path}/barks`}
           render={(props) => (
             <ProfileBarks {...props} contents={contents} posts={posts} />
           )}

@@ -9,17 +9,24 @@ const Header = () => {
   const { currentUser, logOut } = useContext(BarkerContext);
   return (
     <header id="header">
-      <div>
-        <img
-          className="avatar-img"
-          src={currentUser.url}
-          alt="user avatar"
-        ></img>
+      <div className="header-content">
+        <div className="header-user">
+          <div>
+            <img
+              className="avatar-img"
+              src={currentUser.url}
+              alt="user avatar"
+            ></img>
+          </div>
+          <div>
+            <Link to={`/profile/${currentUser.uid}`} className="link-username">
+              <span className="username">{currentUser.username}</span>
+            </Link>
+          </div>
+        </div>
+
+        <button onClick={logOut}>Log Out</button>
       </div>
-      <Link to={`/profile/${currentUser.uid}`} className="link-username">
-        <span className="username">{currentUser.username}</span>
-      </Link>
-      <button onClick={logOut}>Log Out</button>
     </header>
   );
 };

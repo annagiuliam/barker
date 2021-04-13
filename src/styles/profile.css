@@ -1,0 +1,53 @@
+/* Profile */
+.info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.profile-pic {
+    height: 20vh;
+    width: 20vh;
+    border-radius: 50%;
+}
+
+.profile-tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+ul.profile-tabs a {
+    width: 25%;
+    height: 25%;
+    margin:5%;
+}
+
+.follow-numbers {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+
+.follow-numbers a:link {
+    text-decoration: none;
+  color:grey;
+}
+
+.follow-numbers a:hover {
+    text-decoration: underline;
+  color:grey;
+}
+
+.follow-numbers a:visited {
+    text-decoration: none;
+    color:grey;
+}
+.followers {
+    margin-left: 15px
+}
+
+.info-center{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

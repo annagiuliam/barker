@@ -31,7 +31,7 @@ const Sidebar = (props) => {
         </NavLink>
 
         <NavLink
-          to={`${url}profile/${currentUser.uid}`}
+          to={`${url}profile/${currentUser.uid}/barks`}
           activeClassName={"active"}
         >
           <div className="sidebar-option">

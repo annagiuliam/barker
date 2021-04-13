@@ -1,12 +1,20 @@
 
-
-
-  
+ /* .posts-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  align-content: center
+} */
 
 /* Main */
 .center-container {
+    padding-top: 30px;
     margin-left: 300px;
-    width: 50%
+    width: 50%;
+    /* border-right: 0.5px solid lightgray;
+    border-left: 0.5px solid lightgray; */
+    /* padding-left: 5%; */
+    
   }
 
   .post-input {
@@ -28,45 +36,7 @@
     text-align: end;
 }
 
-/* Profile */
-.info-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-.profile-pic {
-    height: 20vh;
-    width: 20vh;
-    border-radius: 50%;
-}
 
-.profile-tabs {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-ul.profile-tabs a {
-    width: 25%;
-    height: 25%;
-    margin:5%;
-}
-
-.follow-numbers {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    
-}
-
-.followers {
-    margin-left: 15px
-}
-
-.info-center{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
 /* Post Page */
 
 .post-page {
@@ -86,4 +56,6 @@ ul.profile-tabs a {
     background-color:var(--theme-color);
     cursor: pointer;
 }
+
+
 
