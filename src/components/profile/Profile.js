@@ -56,8 +56,9 @@ const Profile = (props) => {
 
         {/* tabs */}
         <div className="profile-tabs-container">
-          <ul className="profile-tabs">
-            <NavLink to={`${url}/barks`} activeClassName={"active"}>
+          {/* <ul className="profile-tabs"> */}
+          {/* link needs to be active only if the path is exact */}
+          {/* <NavLink to={`${url}`} exact={true} activeClassName={"active"}>
               <li>Barks</li>
             </NavLink>
             <NavLink to={`${url}/comments`} activeClassName={"active"}>
@@ -66,15 +67,25 @@ const Profile = (props) => {
             <NavLink to={`${url}/likes`} activeClassName={"active"}>
               <li>Likes</li>
             </NavLink>
-          </ul>
+          </ul> */}
+
+          {/* link needs to be active only if the path is exact */}
+          <NavLink to={`${url}`} exact={true} activeClassName={"active"}>
+            <div>Barks</div>
+          </NavLink>
+          <NavLink to={`${url}/comments`} activeClassName={"active"}>
+            <div>Comments</div>
+          </NavLink>
+          <NavLink to={`${url}/likes`} activeClassName={"active"}>
+            <div>Likes</div>
+          </NavLink>
         </div>
       </div>
       {/* user content */}
       <Switch>
         <Route
-          // exact
-          // path={`${path}`}
-          path={`${path}/barks`}
+          exact
+          path={`${path}`}
           render={(props) => (
             <ProfileBarks {...props} contents={contents} posts={posts} />
           )}

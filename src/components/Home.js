@@ -85,7 +85,7 @@ const Home = () => {
           />
 
           <Route
-            path={`${path}profile/:uid/barks`}
+            path={`${path}profile/:uid`}
             render={(props) => (
               <Profile
                 {...props}

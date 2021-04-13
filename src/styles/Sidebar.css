@@ -58,9 +58,6 @@
     color: var(--theme-color)   
   }
 
-  .sidebar-option:active {
-    color: red
-  }
 
 #dog-icon {
     font-size: 60px;
