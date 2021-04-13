@@ -56,20 +56,6 @@ const Profile = (props) => {
 
         {/* tabs */}
         <div className="profile-tabs-container">
-          {/* <ul className="profile-tabs"> */}
-          {/* link needs to be active only if the path is exact */}
-          {/* <NavLink to={`${url}`} exact={true} activeClassName={"active"}>
-              <li>Barks</li>
-            </NavLink>
-            <NavLink to={`${url}/comments`} activeClassName={"active"}>
-              <li>Comments</li>
-            </NavLink>
-            <NavLink to={`${url}/likes`} activeClassName={"active"}>
-              <li>Likes</li>
-            </NavLink>
-          </ul> */}
-
-          {/* link needs to be active only if the path is exact */}
           <NavLink to={`${url}`} exact={true} activeClassName={"active"}>
             <div>Barks</div>
           </NavLink>

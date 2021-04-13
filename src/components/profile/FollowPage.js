@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  Link,
+  NavLink,
   Switch,
   Route,
   useParams,
@@ -24,16 +24,16 @@ const FollowPage = (props) => {
         <FiArrowLeft id="arrow-left" onClick={() => history.goBack()} />
       </div>
       <h2>{user.username}</h2>
+
       <div className="profile-tabs-container">
-        <ul className="profile-tabs">
-          <Link to={`${url}`}>
-            <li>Following</li>
-          </Link>
-          <Link to={`${url}/followers`}>
-            <li>Followers</li>
-          </Link>
-        </ul>
+        <NavLink to={`${url}`} exact={true} activeClassName={"active"}>
+          <div>Following</div>
+        </NavLink>
+        <NavLink to={`${url}/followers`} activeClassName={"active"}>
+          <div>Followers</div>
+        </NavLink>
       </div>
+
       <Switch>
         <Route
           exact
