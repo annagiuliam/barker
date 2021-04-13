@@ -1,5 +1,6 @@
 :root{
   --theme-color: #fe6a03;
+  --hover-background: #fde3d0;
   --barker-border: 0.5px solid darkgray;
 }
 
@@ -9,7 +10,8 @@
 body, html , #root {
   height: 100vh;
   width: 100%;
-  margin: 0 
+  margin: 0 ;
+  font-family: Helvetica, sans-serif
 }
 button {
   background-color: var(--theme-color);
@@ -126,28 +128,6 @@ ul {
 
 
 
-/* Login Page */
-
-/* #login-page::after {
-  content: "";
-  
-  opacity: 0.5;
-  top: 0;
-  left: 0;
-  bottom:0;
-  right: 0;
-  position: absolute;
-  z-index: -1;  
-} */
-
-/* .footer {
-  padding: 20px;
-} */
-
-/* Post */
-
-
-/* sign in modal */
 
 
 
