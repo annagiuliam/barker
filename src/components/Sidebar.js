@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 
-import { Router, Link, NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink, useRouteMatch } from "react-router-dom";
 import { GiBalloonDog } from "react-icons/gi";
 import { FaHome } from "react-icons/fa";
 import { BsPeopleFill, BsPersonFill } from "react-icons/bs";

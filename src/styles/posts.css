@@ -59,10 +59,19 @@
     background-color: #e6e6e6;
   }
 
-  .rebark-input-container {
+  /* .rebark-input-container {
     border: var(--barker-border)
+  } */
+  .rebark-form-container {
+    padding-top: 10px;
+    width: 80%
   }
 
+  .rebark-form {
+display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
   .main-top {
     display:flex;
     flex-direction: row;
