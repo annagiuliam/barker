@@ -22,7 +22,9 @@ const UserTile = (props) => {
         <button onClick={() => unfollow(user)}>Unfollow</button>
       )}
       {user.uid !== currentUser.uid && !following && (
-        <button onClick={() => follow(user)}>Follow</button>
+        <div>
+          <button onClick={() => follow(user)}>Follow</button>
+        </div>
       )}
     </div>
   );

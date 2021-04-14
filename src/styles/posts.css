@@ -163,9 +163,7 @@ display: flex;
     border-radius: 5px;
   }
 
-  .tiles-container{
-    padding-left: 25%;
-  }
+  
 
   .post-edit-container {
     display: flex;
