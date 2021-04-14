@@ -12,14 +12,18 @@ const AnonymousModal = () => {
     <div className="modal">
       <section className="modal-main">
         <CloseButton onClick={() => setSignInModal(false)} />
-        <form className="sign-in-form" onSubmit={signInAnonymous}>
-          <input
-            type="text"
-            placeholder="choose a username"
-            onChange={updateAnonName}
-          ></input>
-          <button type="submit">Sign In Anonymously</button>
-        </form>
+        <div className="sign-in-form-container">
+          <form className="sign-in-form" onSubmit={signInAnonymous}>
+            <input
+              type="text"
+              placeholder="choose a username"
+              onChange={updateAnonName}
+            ></input>
+            <button type="submit" className="sign-in-btn">
+              Sign In Anonymously
+            </button>
+          </form>
+        </div>
       </section>
     </div>
   );

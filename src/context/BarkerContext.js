@@ -39,7 +39,6 @@ export const ContextProvider = ({ children }) => {
       addToUsersCollection(user);
       afterLoginActions(user);
     } catch (error) {
-      console.log(error.code);
       handleError(error);
     }
   }
@@ -63,7 +62,6 @@ export const ContextProvider = ({ children }) => {
 
       setSignInModal(false);
     } catch (error) {
-      console.log(error.code);
       handleError(error);
     }
   }
@@ -82,8 +80,6 @@ export const ContextProvider = ({ children }) => {
           followers: [],
           following: [adminUid],
         });
-
-        console.log("succesfully added to user collection");
       }
     } catch (error) {
       handleError(error);
@@ -119,7 +115,6 @@ export const ContextProvider = ({ children }) => {
       await auth.signOut();
       setUserLoggedIn(false);
       setAnonName("");
-      console.log("logged out");
     } catch (error) {
       console.log(error.code);
       handleError(error);

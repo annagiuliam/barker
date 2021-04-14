@@ -37,11 +37,6 @@ const PostExtras = (props) => {
     }
   }, [post.likedBy, users]);
 
-  useEffect(() => {
-    // console.log(rebarkedBy);
-    // console.log(likedBy);
-  });
-
   return (
     <div className="extras-container">
       <ul className="extras">

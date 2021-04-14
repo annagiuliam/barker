@@ -33,7 +33,6 @@ const PostPage = (props) => {
           setComments(comments);
         },
         (error) => {
-          console.log(error);
           handleError(error);
         }
       );

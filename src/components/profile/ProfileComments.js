@@ -29,7 +29,6 @@ const ProfileComments = (props) => {
           addCommentsToPosts(comments);
         },
         (error) => {
-          console.log(error);
           handleError(error);
         }
       );

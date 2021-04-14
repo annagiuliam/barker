@@ -10,7 +10,7 @@ const InteractionsModal = (props) => {
     <div className="extras-modal">
       <div className="extras-modal-main">
         <CloseButton onClick={props.onClick} />
-        <div className="tiles-container">
+        <div className="extras-tiles-container">
           {interactions.map((rebarker) => (
             <UserTile user={rebarker} users={users} key={rebarker.uid} />
           ))}
