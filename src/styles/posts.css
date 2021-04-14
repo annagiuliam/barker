@@ -163,6 +163,13 @@ display: flex;
     border-radius: 5px;
   }
 
+  .extras-tiles-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   
 
   .post-edit-container {
