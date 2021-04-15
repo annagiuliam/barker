@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/barker/static/css/main.8799e402.chunk.css",
+    "main.css": "/barker/static/css/main.52e9d24c.chunk.css",
     "main.js": "/barker/static/js/main.afbd6841.chunk.js",
     "main.js.map": "/barker/static/js/main.afbd6841.chunk.js.map",
     "runtime-main.js": "/barker/static/js/runtime-main.7ce64c40.js",
@@ -8,14 +8,14 @@
     "static/js/2.7baf9297.chunk.js": "/barker/static/js/2.7baf9297.chunk.js",
     "static/js/2.7baf9297.chunk.js.map": "/barker/static/js/2.7baf9297.chunk.js.map",
     "index.html": "/barker/index.html",
-    "static/css/main.8799e402.chunk.css.map": "/barker/static/css/main.8799e402.chunk.css.map",
+    "static/css/main.52e9d24c.chunk.css.map": "/barker/static/css/main.52e9d24c.chunk.css.map",
     "static/js/2.7baf9297.chunk.js.LICENSE.txt": "/barker/static/js/2.7baf9297.chunk.js.LICENSE.txt",
     "static/media/signIn.css": "/barker/static/media/dog-pattern_2.f6ae7c76.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.7ce64c40.js",
     "static/js/2.7baf9297.chunk.js",
-    "static/css/main.8799e402.chunk.css",
+    "static/css/main.52e9d24c.chunk.css",
     "static/js/main.afbd6841.chunk.js"
   ]
 }
