@@ -19,7 +19,10 @@ button {
     color: var(--theme-color)
   }
 
-  button:focus { outline-style: none; }
+  button:focus { 
+    outline-style: none; 
+  }
+  
   .btn-container-right {
     text-align: right;
     
