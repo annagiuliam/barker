@@ -6,7 +6,7 @@ import "./styles/app.css";
 import "./styles/posts.css";
 import "./styles/signIn.css";
 import "./styles/sidebar.css";
-import "./styles/users.css";
+import "./styles/home.css";
 import "./styles/profile.css";
 import "./styles/buttons.css";
 
