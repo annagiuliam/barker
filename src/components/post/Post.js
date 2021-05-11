@@ -28,6 +28,8 @@ const Post = (props) => {
   const [showEdit, setShowEdit] = useState(false);
 
   const [originalPost, setOriginalPost] = useState(null);
+  const [likedByUser, setLikedByUser] = useState(false);
+  const [rebarkedByUser, setRebarkedByUser] = useState(false);
 
   const commentNumber = post.comments > 0 ? post.comments : "";
   const likesNumber = post.likedBy.length > 0 ? post.likedBy.length : "";
@@ -58,6 +60,21 @@ const Post = (props) => {
     findOriginalPost();
   }, [contents, post.originalPostId, post.type]);
 
+  useEffect(() => {
+    //check if current user liked or rebarked this post
+    if (post.likedBy.length > 0) {
+      if (post.likedBy.includes(currentUser.uid)) {
+        setLikedByUser(true);
+      }
+    }
+
+    if (post.rebarkedBy.length > 0) {
+      if (post.rebarkedBy.includes(currentUser.uid)) {
+        setRebarkedByUser(true);
+      }
+    }
+  }, [currentUser.uid, post.likedBy, post.rebarkedBy]);
+
   function displayComment() {
     setShowComment(true);
   }
@@ -85,11 +102,20 @@ const Post = (props) => {
 
   function addLike() {
     const postRef = db.collection("contents").doc(post.id);
-    postRef
-      .update({
-        likedBy: firebase.firestore.FieldValue.arrayUnion(currentUser.uid),
-      })
-      .catch((error) => handleError(error));
+    if (post.likedBy.includes(currentUser.uid)) {
+      postRef
+        .update({
+          likedBy: firebase.firestore.FieldValue.arrayRemove(currentUser.uid),
+        })
+        .catch((error) => handleError(error));
+      setLikedByUser(false);
+    } else {
+      postRef
+        .update({
+          likedBy: firebase.firestore.FieldValue.arrayUnion(currentUser.uid),
+        })
+        .catch((error) => handleError(error));
+    }
   }
 
   function displayRebark() {
@@ -128,7 +154,6 @@ const Post = (props) => {
   function submitEdit(e) {
     e.preventDefault();
     updatePost();
-    //setEditText("");
     setShowEdit(false);
   }
 
@@ -157,7 +182,7 @@ const Post = (props) => {
       const postRef = await db.collection("contents").doc(post.id);
       let original;
       if (post.type === "rebark" || post.type === "comment") {
-        original = await contents.find((ele) => ele.id === post.originalPostId);
+        original = contents.find((ele) => ele.id === post.originalPostId);
         const originalRef = await db.collection("contents").doc(original.id);
         if (post.type === "rebark") {
           await originalRef.update({
@@ -201,6 +226,8 @@ const Post = (props) => {
         likesNumber={likesNumber}
         rebarkNum={rebarkNum}
         displayRebark={displayRebark}
+        likedByUser={likedByUser}
+        rebarkedByUser={rebarkedByUser}
       />
       {showComment && (
         <CommentInput

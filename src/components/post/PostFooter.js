@@ -3,6 +3,8 @@ import { FaRegComment, FaPaw, FaRetweet } from "react-icons/fa";
 
 const PostFooter = (props) => {
   const {
+    likedByUser,
+    rebarkedByUser,
     displayComment,
     displayRebark,
     commentNumber,
@@ -10,6 +12,9 @@ const PostFooter = (props) => {
     rebarkNum,
     addLike,
   } = props;
+
+  const likeActive = likedByUser ? "icon active" : "icon";
+  const rebarkActive = rebarkedByUser ? "icon active" : "icon";
 
   return (
     <div className="post-footer">
@@ -26,25 +31,25 @@ const PostFooter = (props) => {
       </div>
       <div className="post-icon-div">
         <FaPaw
-          className="icon"
+          className={likeActive}
           title="Like"
           onClick={(e) => {
             e.stopPropagation();
             addLike();
           }}
         />
-        <div>{likesNumber}</div>
+        <div className={likeActive}>{likesNumber}</div>
       </div>
       <div className="post-icon-div">
         <FaRetweet
-          className="icon"
+          className={rebarkActive}
           title="Rebark"
           onClick={(e) => {
             e.stopPropagation();
             displayRebark();
           }}
         />
-        <div>{rebarkNum}</div>
+        <div className={rebarkActive}>{rebarkNum}</div>
       </div>
     </div>
   );

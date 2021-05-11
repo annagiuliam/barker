@@ -50,8 +50,13 @@ button {
   cursor: pointer;
   color: var(--theme-color);
   
+  
 }
 
 .icon-close {
   font-size: x-large;
+}
+
+.active {
+  color: var(--theme-color);
 }
