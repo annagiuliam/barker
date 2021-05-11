@@ -18,6 +18,7 @@ const AnonymousModal = () => {
               type="text"
               placeholder="choose a username"
               onChange={updateAnonName}
+              required
             ></input>
             <button type="submit" className="sign-in-btn">
               Sign In Anonymously
