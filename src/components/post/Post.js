@@ -86,7 +86,7 @@ const Post = (props) => {
   function submitComment(e) {
     e.preventDefault();
     incrementCommentNumber();
-    submitPost(e, commentText, "comment", post.id);
+    submitPost(e, commentText, "comment", null, post.id);
     setCommentText("");
     setShowComment(false);
   }
@@ -132,7 +132,7 @@ const Post = (props) => {
   function submitRebark(e) {
     e.preventDefault();
     updateOriginal();
-    submitPost(e, rebarkText, "rebark", post.id);
+    submitPost(e, rebarkText, "rebark", null, post.id);
     setRebarkText("");
     setShowRebark(false);
   }

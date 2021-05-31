@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 import Post from "../post/Post";
-//import firebase from "firebase/app";
+
 import firebaseApp from "../../firebase/firebase";
 
 const db = firebaseApp.firestore();

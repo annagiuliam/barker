@@ -121,7 +121,13 @@ export const ContextProvider = ({ children }) => {
     }
   }
 
-  async function submitPost(e, submittedText, type, originalId = null) {
+  async function submitPost(
+    e,
+    submittedText,
+    type,
+    imageUrl,
+    originalId = null
+  ) {
     e.preventDefault();
 
     try {
@@ -136,6 +142,7 @@ export const ContextProvider = ({ children }) => {
         likedBy: [],
         rebarkedBy: [],
         originalPostId: originalId || "",
+        imageUrl: imageUrl,
       });
     } catch (error) {
       handleError(error);

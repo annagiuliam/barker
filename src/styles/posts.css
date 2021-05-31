@@ -24,6 +24,12 @@
   text-align: start
 }
 
+.post-img {
+  max-width: 500px;
+  max-height: 280px;
+  border-radius: 18px;
+}
+
 .post-footer {
   
   padding-left: 20px;

@@ -78,10 +78,9 @@ const PostMain = (props) => {
         )}
       </div>
       <div className="post-content">{hashedText}</div>
-
-      {/* <Link to={`/post/${post.id}`} className="link-text-content">
-        <div className="post-content">{post.text}</div>
-      </Link> */}
+      {post.imageUrl && (
+        <img src={post.imageUrl} alt="upload" className="post-img"></img>
+      )}
     </div>
   );
 };
