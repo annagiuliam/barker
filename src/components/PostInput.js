@@ -58,7 +58,7 @@ const PostInput = () => {
           <div className="form-footer">
             <div className="image-upload">
               <label htmlFor="file-upload" className="custom-file-upload">
-                <BiImageAdd />
+                <BiImageAdd id="image-upload-icon" />
               </label>
               <input id="file-upload" type="file" onChange={handleChange} />
               {/* {file && <div>{file.name}</div>} */}
