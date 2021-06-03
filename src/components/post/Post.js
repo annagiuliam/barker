@@ -12,8 +12,7 @@ import RebarkModal from "./RebarkModal";
 import EditModal from "./EditModal";
 
 import firebase from "firebase/app";
-import firebaseApp from "../../firebase/firebase";
-const db = firebaseApp.firestore();
+import { db } from "../../firebase/firebase";
 
 const Post = (props) => {
   const { contents, post, view, users } = props;

@@ -12,9 +12,7 @@ import FollowPage from "./profile/FollowPage";
 
 import HashtagPage from "./HashtagPage";
 
-import firebaseApp from "../firebase/firebase";
-
-const db = firebaseApp.firestore();
+import { db } from "../firebase/firebase";
 
 const Home = () => {
   const { handleError } = useContext(BarkerContext);

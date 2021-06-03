@@ -2,12 +2,9 @@ import React, { useEffect, useState, useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 import Post from "../post/Post";
 
-import firebaseApp from "../../firebase/firebase";
-
-const db = firebaseApp.firestore();
+import { db } from "../../firebase/firebase";
 
 const ProfileComments = (props) => {
-  // const { uid } = useParams();
   const { uid, contents } = props;
   const { handleError } = useContext(BarkerContext);
 

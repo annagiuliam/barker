@@ -5,8 +5,7 @@ import { useParams } from "react-router-dom";
 import Post from "./post/Post";
 import ArrowLeft from "./reusables/ArrowLeft";
 
-import firebaseApp from "../firebase/firebase";
-const db = firebaseApp.firestore();
+import { db } from "../firebase/firebase";
 
 const PostPage = (props) => {
   const { handleError } = useContext(BarkerContext);
