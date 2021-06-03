@@ -3,10 +3,13 @@ import { BarkerContext } from "../context/BarkerContext";
 import useStorage from "../hooks/useStorage";
 import ProgressBar from "../components/reusables/ProgressBar";
 
+import { BiImageAdd } from "react-icons/bi";
+
 const PostInput = () => {
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
   const [postText, setPostText] = useState("");
   const [file, setFile] = useState(null);
+  const [showImage, setShowImage] = useState(true);
   const { imageUrl } = useStorage(file);
   const types = ["image/png", "image/jpeg"];
 
@@ -37,6 +40,7 @@ const PostInput = () => {
           onSubmit={(e) => {
             submitPost(e, postText, "post", imageUrl);
             setPostText("");
+            setShowImage(false);
           }}
         >
           <textarea
@@ -45,11 +49,25 @@ const PostInput = () => {
             value={postText}
             placeholder="Bark what's on your mind!"
           ></textarea>
-          <input type="file" onChange={handleChange} />
-          {file && <ProgressBar file={file} setFile={setFile} />}
-          {/* <button onClick={handleUpload}> upload image</button> */}
-          <div className="input-btn-div">
-            <button type="submit">Bark</button>
+
+          {imageUrl && showImage && (
+            <div>
+              <img src={imageUrl} alt="uploaded" />
+            </div>
+          )}
+          <div className="form-footer">
+            <div className="image-upload">
+              <label htmlFor="file-upload" className="custom-file-upload">
+                <BiImageAdd />
+              </label>
+              <input id="file-upload" type="file" onChange={handleChange} />
+              {/* {file && <div>{file.name}</div>} */}
+            </div>
+            {file && <ProgressBar file={file} setFile={setFile} />}
+
+            <div className="input-btn-div">
+              <button type="submit">Bark</button>
+            </div>
           </div>
         </form>
       </div>
