@@ -17,6 +17,12 @@
     justify-content: flex-start;
     align-items: flex-start;
   }
+
+  .progress-bar {
+    height: 5px;
+    background-color: var(--hover-background);
+    margin-top: 20px;
+  }
   .form-container {
     width: 90%;
     height: 70%
