@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 import useStorage from "../hooks/useStorage";
 import ProgressBar from "../components/reusables/ProgressBar";
@@ -9,9 +9,15 @@ const PostInput = () => {
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
   const [postText, setPostText] = useState("");
   const [file, setFile] = useState(null);
-  const [showImage, setShowImage] = useState(true);
-  const { imageUrl } = useStorage(file);
+  let { imageUrl } = useStorage(file);
+  const [url, setUrl] = useState(null);
   const types = ["image/png", "image/jpeg"];
+
+  useEffect(() => {
+    if (imageUrl) {
+      setUrl(imageUrl);
+    }
+  }, [imageUrl]);
 
   function updatePost(e) {
     setPostText(e.target.value);
@@ -40,7 +46,7 @@ const PostInput = () => {
           onSubmit={(e) => {
             submitPost(e, postText, "post", imageUrl);
             setPostText("");
-            setShowImage(false);
+            setUrl(null);
           }}
         >
           <textarea
@@ -50,18 +56,18 @@ const PostInput = () => {
             placeholder="Bark what's on your mind!"
           ></textarea>
 
-          {imageUrl && showImage && (
-            <div>
-              <img src={imageUrl} alt="uploaded" />
-            </div>
-          )}
+          {url && <img src={imageUrl} alt="uploaded" className="post-img" />}
           <div className="form-footer">
             <div className="image-upload">
               <label htmlFor="file-upload" className="custom-file-upload">
                 <BiImageAdd id="image-upload-icon" />
               </label>
-              <input id="file-upload" type="file" onChange={handleChange} />
-              {/* {file && <div>{file.name}</div>} */}
+              <input
+                id="file-upload"
+                type="file"
+                onChange={handleChange}
+                onClick={(e) => (e.target.value = null)}
+              />
             </div>
             {file && <ProgressBar file={file} setFile={setFile} />}
 
