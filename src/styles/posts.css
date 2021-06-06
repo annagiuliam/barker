@@ -1,4 +1,4 @@
-.post-container {
+.post-container, .post-w-comments-container {
   
   max-width: 566px;
   border: 0.5px solid darkgray;
@@ -8,7 +8,7 @@
   justify-content: center;
 }
 
-.post-main {
+.post-main, .rebarked-main, .comm-post-main, .comment-main {
   max-width: 100%;
   padding: 15px;
   display: flex;
@@ -16,6 +16,7 @@
   align-items: stretch;
   justify-content: flex-start;
   align-items: stretch;
+  text-align: start;
   
 }
 
@@ -108,7 +109,8 @@
 }
 
 .rebarked-main {
-  margin: 10px;
+  margin: 10px 10%;
+  width: 80%;
   border: 0.5px solid darkgray;
   border-radius: 18px;
 }
@@ -131,19 +133,15 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.post-w-comments-container {
-  border: 0.5px solid darkgray;
-  max-width: 420px;
-  margin-bottom: 10px;
-}
+
 
 .comment-container {
   border-top: 0.5px solid darkgray;
 }
 
-.comment-main {
+/* .comment-main {
   margin-left: 30px;
-}
+} */
 
 .comment-input-container {
   padding: 10px

@@ -248,6 +248,7 @@ const Post = (props) => {
 
       {showEdit && (
         <EditModal
+          post={post}
           editText={editText}
           updateEdit={updateEdit}
           submitEdit={submitEdit}
