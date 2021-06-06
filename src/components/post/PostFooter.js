@@ -13,14 +13,14 @@ const PostFooter = (props) => {
     addLike,
   } = props;
 
-  const likeActive = likedByUser ? "icon active" : "icon";
-  const rebarkActive = rebarkedByUser ? "icon active" : "icon";
+  const likeActive = likedByUser ? "footer-icon active" : "footer-icon";
+  const rebarkActive = rebarkedByUser ? "footer-icon active" : "footer-icon";
 
   return (
     <div className="post-footer">
       <div className="post-icon-div">
         <FaRegComment
-          className="icon"
+          className="footer-icon"
           title="Reply"
           onClick={(e) => {
             e.stopPropagation();

@@ -92,9 +92,12 @@
 .post-icon-div {
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
+  width: 36px;
+  height: 36px;
 }
+
 .post-textarea {
   border: none;
   background-color: transparent;

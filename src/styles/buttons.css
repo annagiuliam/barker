@@ -46,7 +46,7 @@ button {
   margin: 10px;
   border-radius: 25px;
 }
-.icon:hover{
+.icon:hover, .footer-icon:hover {
   cursor: pointer;
   color: var(--theme-color);
   
