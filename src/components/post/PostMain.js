@@ -34,56 +34,52 @@ const PostMain = (props) => {
   ));
 
   return (
-    <div
-      className={postClass}
-      id={post.id}
-      // onClick={view === "rebarked" ? redirect : undefined}
-      onClick={redirect}
-    >
-      <div className="main-top">
-        <div className="user-info">
-          <img alt="pic" src={post.url} className="avatar-img"></img>
-          <Link
-            to={`/profile/${post.uid}`}
-            className="link-username"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            <span className="username">{post.username}</span>
-          </Link>
-        </div>
-
-        {currentUser.uid === post.uid && view !== "rebarked" && (
-          <div className="post-icon-div">
-            <div>
-              <BsTrash
-                className="icon"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  deletePost();
-                }}
-              />
-            </div>
-            <div>
-              <AiOutlineEdit
-                className="icon"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  openEditModal();
-                }}
-              />
-            </div>
-          </div>
-        )}
+    <div className={postClass} id={post.id} onClick={redirect}>
+      <div className="post-left">
+        <img alt="pic" src={post.url} className="post-avatar-img"></img>
       </div>
-      <div className="post-content">
-        <div className="post-text">{hashedText}</div>
-        {post.imageUrl && (
-          <div className="img-wrap">
-            <img src={post.imageUrl} alt="upload" className="post-img"></img>
+      <div className="post-right">
+        <div className="post-right-top">
+          <div className="username-container">
+            <Link
+              to={`/profile/${post.uid}`}
+              className="link-username"
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+            >
+              <span className="username">{post.username}</span>
+            </Link>
           </div>
-        )}
+          {currentUser.uid === post.uid && view !== "rebarked" && (
+            <div className="post-right-icons">
+              <div>
+                <BsTrash
+                  className="icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    deletePost();
+                  }}
+                />
+              </div>
+              <div>
+                <AiOutlineEdit
+                  className="icon"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openEditModal();
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className="post-content">
+          <div className="post-text">{hashedText}</div>
+          {post.imageUrl && (
+            <img src={post.imageUrl} alt="upload" className="post-img"></img>
+          )}
+        </div>
       </div>
     </div>
   );
