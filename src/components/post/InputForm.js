@@ -59,6 +59,11 @@ const InputForm = (props) => {
     }
   }
 
+  function discardImage(e) {
+    e.stopPropagation();
+    setUrl(null);
+  }
+
   return (
     <div className="post-input">
       <div className="user-info">
@@ -86,7 +91,10 @@ const InputForm = (props) => {
           {url && (
             <div className="image-container">
               <img src={url} alt="uploaded" className="post-img" />
-              <CloseButton btnClass={"discard-btn-container"} />
+              <CloseButton
+                btnClass={"discard-btn-container"}
+                onClick={discardImage}
+              />
             </div>
           )}
           <div className="form-footer">

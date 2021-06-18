@@ -11,7 +11,7 @@ const CloseButton = (props) => {
         className="icon icon-close"
         onClick={(e) => {
           e.stopPropagation();
-          props.onClick();
+          props.onClick(e);
         }}
       />
     </div>
