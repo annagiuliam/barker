@@ -10,7 +10,7 @@ import PostExtras from "./PostExtras";
 
 import RebarkModal from "./RebarkModal";
 import EditModal from "./EditModal";
-
+import EditModal2 from "./EditModal2";
 import firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 
@@ -150,17 +150,35 @@ const Post = (props) => {
   function closeEditModal() {
     setShowEdit(false);
   }
-  function submitEdit(e) {
+  // function submitEdit(e) {
+  //   e.preventDefault();
+  //   updatePost();
+  //   setShowEdit(false);
+  // }
+
+  // async function updatePost() {
+  //   try {
+  //     const postRef = await db.collection("contents").doc(post.id);
+  //     await postRef.update({
+  //       text: editText,
+  //     });
+  //   } catch (error) {
+  //     handleError(error);
+  //   }
+  // }
+
+  function submitEdit(e, editedText, postType, imageUrl) {
     e.preventDefault();
-    updatePost();
+    updatePost(editedText, imageUrl);
     setShowEdit(false);
   }
 
-  async function updatePost() {
+  async function updatePost(editedText, imageUrl) {
     try {
       const postRef = await db.collection("contents").doc(post.id);
       await postRef.update({
-        text: editText,
+        text: editedText,
+        imageUrl: imageUrl,
       });
     } catch (error) {
       handleError(error);
@@ -247,12 +265,18 @@ const Post = (props) => {
       )}
 
       {showEdit && (
-        <EditModal
+        // <EditModal
+        //   post={post}
+        //   editText={editText}
+        //   updateEdit={updateEdit}
+        //   submitEdit={submitEdit}
+        //   closeEditModal={closeEditModal}
+        // />
+        <EditModal2
           post={post}
-          editText={editText}
-          updateEdit={updateEdit}
           submitEdit={submitEdit}
           closeEditModal={closeEditModal}
+          form={"edit"}
         />
       )}
     </div>

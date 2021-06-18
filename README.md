@@ -1,7 +1,7 @@
 
 This project is deployed at  https://annagiuliam.github.io/barker/
 
-Barker is a Twitter inspired app. Main functinalities:
+Barker is a Twitter inspired app. Main functionalities:
 * Users can write, share, comment and like posts (called barks).
 * Users can follow each other in order to see their barks.
 * Each user has a profile page with information about their followers, who they are following and their activity on Barker (barks, comments and likes).

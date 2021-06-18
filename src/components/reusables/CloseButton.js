@@ -2,11 +2,11 @@ import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 const CloseButton = (props) => {
+  const containerClass = props.btnClass
+    ? props.btnClass
+    : "btn-container-right";
   return (
-    // <div className="modal-close-btn-container">
-    //   <button onClick={props.onClick}>X</button>
-    // </div>
-    <div className="btn-container-right">
+    <div className={containerClass}>
       <AiOutlineClose
         className="icon icon-close"
         onClick={(e) => {

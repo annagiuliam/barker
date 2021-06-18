@@ -1,109 +1,125 @@
 /* Main */
 .center-container {
-    padding-top: 30px;
-    margin-left: 300px;
-    width: 50%;
-  }
+  padding-top: 30px;
+  margin-left: 300px;
+  width: 50%;
+}
   
-  .post-input {
-    width: 100%;
-    max-width: 566px;
-    border: 0.5px solid darkgray; 
-    padding: 15px;   
-    margin-top: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-  }
+.post-input {
+  width: 100%;
+  max-width: 566px;
+  border: 0.5px solid darkgray; 
+  padding: 15px;   
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 
 
-  input[type="file"] {
-    display: none;
-  }
+input[type="file"] {
+  display: none;
+}
 
-  .custom-file-upload {
-    display: inline-block;
-    cursor: pointer;
-  }
+.custom-file-upload {
+  display: inline-block;
+  cursor: pointer;
+}
 
-  #image-upload-icon {
-    font-size: 25px;
-  }
+#image-upload-icon {
+  font-size: 25px;
+}
 
-  #image-upload-icon:hover {
-    color: var(--theme-color)
-  }
- 
-  .form-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
+#image-upload-icon:hover {
+  color: var(--theme-color)
+}
 
-  .progress-bar {
-    margin-left: 20px;
-    margin-right: 20px;
-    height: 5px;
-    background-color: var(--hover-background);
-  }
-
-
-  .form-container {
-    width: 90%;
-    height: 70%
-  }
-  
-  .sign-in-form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-  
-  .sign-in-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 50%
-  }
-  
-  .sign-in-btn {
-    margin-top: 10%
-  }
-  
-  .input-btn-div {
-    text-align: end;
-  }
-  
-  
-  /* Post Page */
-  
-  .post-page {
-    text-align: center;
-  }
-  
-
-/* Barkers Page */
-
-.user-tile {
-  width: 60%;
+.form-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-right: 5px;
-  border:var(--barker-border);
-  margin-bottom: 10px;
+}
+
+.progress-bar {
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 5px;
+  background-color: var(--hover-background);
+}
+
+.image-container {
+  position: relative;
+}
+
+.discard-btn-container {
+  position: absolute;
+  height: 45px;
+  width: 45px;
+  top: 30px;
+  left: 15px;
+  background: rgb(249 249 249 / 48%);
+  border-radius: 50px;
+}
+
+
+
+
+.form-container {
+  width: 90%;
+  height: 70%
+}
+
+.sign-in-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.sign-in-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 50%
+}
+
+.sign-in-btn {
+  margin-top: 10%
+}
+
+.input-btn-div {
+  text-align: end;
+}
+
+
+/* Post Page */
+
+.post-page {
+  text-align: center;
+}
+
+
+/* Barkers Page */
+
+.user-tile {
+width: 60%;
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+padding-right: 5px;
+border:var(--barker-border);
+margin-bottom: 10px;
 }
 
 .user-info {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+display: flex;
+flex-direction: row;
+justify-content: flex-start;
+align-items: center;
 }
 
 
