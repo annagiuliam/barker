@@ -29,14 +29,21 @@ const InputForm = (props) => {
   const types = ["image/png", "image/jpeg"];
   const postType = type ? type : "post";
   const fileInputId = `file-${form}`;
+  const submit = submitFunction ? submitFunction : submitPost;
 
   useEffect(() => {
-    if (post.imageUrl && !imageUrl) {
-      setUrl(post.imageUrl);
-    } else if (imageUrl) {
-      setUrl(imageUrl);
+    if (form !== "input") {
+      if (post.imageUrl && !imageUrl) {
+        setUrl(post.imageUrl);
+      } else if (imageUrl) {
+        setUrl(imageUrl);
+      }
+    } else {
+      if (imageUrl) {
+        setUrl(imageUrl);
+      }
     }
-  }, [imageUrl, post]);
+  }, [imageUrl, post, form]);
 
   useEffect(() => {
     if (post) {
@@ -75,7 +82,7 @@ const InputForm = (props) => {
           onSubmit={(e) => {
             // submitPost(e, postText, "post", imageUrl);
             e.stopPropagation();
-            submitFunction(e, postText, postType, imageUrl);
+            submit(e, postText, postType, imageUrl);
             setPostText("");
             setUrl(null);
           }}
