@@ -8,6 +8,7 @@ import PostFooter from "./PostFooter";
 import CommentInput from "./CommentInput";
 import PostExtras from "./PostExtras";
 
+import CommentRebark from "../modals/CommentModal";
 import RebarkModal from "../modals/RebarkModal";
 import EditModal from "../modals/EditModal";
 import firebase from "firebase/app";
@@ -71,10 +72,6 @@ const Post = (props) => {
     } else setRebarkedByUser(false);
   }, [currentUser.uid, post.likedBy, post.rebarkedBy]);
 
-  function displayComment() {
-    setShowComment(true);
-  }
-
   function updateComment(e) {
     setCommentText(e.target.value);
   }
@@ -114,7 +111,7 @@ const Post = (props) => {
     }
   }
 
-  function displayRebark() {
+  function openRebarkModal() {
     // don't open rebarked modal if user has already rebarked this post
     if (!post.rebarkedBy.includes(currentUser.uid)) {
       setShowRebark(true);
@@ -128,7 +125,7 @@ const Post = (props) => {
     setShowRebark(false);
   }
 
-  function closeRebark() {
+  function closeRebarkModal() {
     setShowRebark(false);
   }
 
@@ -138,6 +135,18 @@ const Post = (props) => {
 
   function closeEditModal() {
     setShowEdit(false);
+  }
+
+  function displayComment() {
+    setShowComment(true);
+  }
+
+  function openCommentModal() {
+    setShowComment(true);
+  }
+
+  function closeCommentModal() {
+    setShowComment(false);
   }
 
   function submitEdit(e, editedText, postType, imageUrl) {
@@ -216,15 +225,25 @@ const Post = (props) => {
         commentNumber={commentNumber}
         likesNumber={likesNumber}
         rebarkNum={rebarkNum}
-        displayRebark={displayRebark}
+        openRebarkModal={openRebarkModal}
         likedByUser={likedByUser}
         rebarkedByUser={rebarkedByUser}
       />
-      {showComment && (
+
+      {/* riprendi da qui, apri modal invece di input */}
+      {/* {showComment && (
         <CommentInput
           submitComment={submitComment}
           updateComment={updateComment}
           commentText={commentText}
+        />
+      )} */}
+
+      {showComment && (
+        <CommentRebark
+          post={post}
+          submitComment={submitComment}
+          closeCommentModal={closeCommentModal}
         />
       )}
 
@@ -232,7 +251,7 @@ const Post = (props) => {
         <RebarkModal
           post={post}
           submitRebark={submitRebark}
-          closeRebark={closeRebark}
+          closeRebarkModal={closeRebarkModal}
         />
       )}
 

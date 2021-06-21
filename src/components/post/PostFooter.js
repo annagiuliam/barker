@@ -6,7 +6,7 @@ const PostFooter = (props) => {
     likedByUser,
     rebarkedByUser,
     displayComment,
-    displayRebark,
+    openRebarkModal,
     commentNumber,
     likesNumber,
     rebarkNum,
@@ -46,7 +46,7 @@ const PostFooter = (props) => {
           title="Rebark"
           onClick={(e) => {
             e.stopPropagation();
-            displayRebark();
+            openRebarkModal();
           }}
         />
         <div className={rebarkActive}>{rebarkNum}</div>
