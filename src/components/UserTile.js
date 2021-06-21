@@ -14,7 +14,13 @@ const UserTile = (props) => {
     <div className="user-tile">
       <div className="user-info">
         <img alt="pic" src={user.url} className="avatar-img"></img>
-        <Link to={`/profile/${user.uid}`} className="link-username">
+        <Link
+          to={`/profile/${user.uid}`}
+          className="link-username"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <span className="username">{user.username}</span>
         </Link>
       </div>
