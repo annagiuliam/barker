@@ -1,10 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 import firebase from "firebase/app";
-// import firebaseApp from "../firebase/firebase";
 import placeholder from "../images/profile_placeholder.png";
 import { db, auth } from "../firebase/firebase";
-// const db = firebaseApp.firestore();
-// const auth = firebaseApp.auth();
 
 export const BarkerContext = createContext();
 
