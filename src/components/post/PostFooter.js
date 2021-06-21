@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FaRegComment, FaPaw, FaRetweet } from "react-icons/fa";
 
 const PostFooter = (props) => {
@@ -15,7 +15,6 @@ const PostFooter = (props) => {
 
   const likeActive = likedByUser ? "footer-icon active" : "footer-icon";
   const rebarkActive = rebarkedByUser ? "footer-icon active" : "footer-icon";
-  console.log(rebarkActive);
 
   return (
     <div className="post-footer">

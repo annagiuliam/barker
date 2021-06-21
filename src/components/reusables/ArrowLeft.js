@@ -1,6 +1,5 @@
 import React from "react";
 
-import { FiArrowLeft } from "react-icons/fi";
 import { FaArrowLeft } from "react-icons/fa";
 
 const ArrowLeft = (props) => {

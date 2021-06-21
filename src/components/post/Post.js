@@ -8,9 +8,8 @@ import PostFooter from "./PostFooter";
 import CommentInput from "./CommentInput";
 import PostExtras from "./PostExtras";
 
-import RebarkModal from "./RebarkModal";
-import EditModal from "./EditModal";
-import EditModal2 from "./EditModal2";
+import RebarkModal from "../modals/RebarkModal";
+import EditModal from "../modals/EditModal";
 import firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 
@@ -19,8 +18,6 @@ const Post = (props) => {
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
 
   const [commentText, setCommentText] = useState("");
-  const [rebarkText, setRebarkText] = useState("");
-  const [editText, setEditText] = useState(post.text);
 
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
@@ -71,7 +68,7 @@ const Post = (props) => {
       if (post.rebarkedBy.includes(currentUser.uid)) {
         setRebarkedByUser(true);
       }
-    }
+    } else setRebarkedByUser(false);
   }, [currentUser.uid, post.likedBy, post.rebarkedBy]);
 
   function displayComment() {
@@ -99,7 +96,7 @@ const Post = (props) => {
       .catch((error) => handleError(error));
   }
 
-  function addLike() {
+  function clickLike() {
     const postRef = db.collection("contents").doc(post.id);
     if (post.likedBy.includes(currentUser.uid)) {
       postRef
@@ -124,15 +121,10 @@ const Post = (props) => {
     }
   }
 
-  function updateRebark(e) {
-    setRebarkText(e.target.value);
-  }
-
-  function submitRebark(e) {
+  function submitRebark(e, postText, postType, imageUrl) {
     e.preventDefault();
     updateOriginal();
-    submitPost(e, rebarkText, "rebark", null, post.id);
-    setRebarkText("");
+    submitPost(e, postText, postType, imageUrl, post.id);
     setShowRebark(false);
   }
 
@@ -140,9 +132,6 @@ const Post = (props) => {
     setShowRebark(false);
   }
 
-  function updateEdit(e) {
-    setEditText(e.target.value);
-  }
   function openEditModal() {
     setShowEdit(true);
   }
@@ -150,22 +139,6 @@ const Post = (props) => {
   function closeEditModal() {
     setShowEdit(false);
   }
-  // function submitEdit(e) {
-  //   e.preventDefault();
-  //   updatePost();
-  //   setShowEdit(false);
-  // }
-
-  // async function updatePost() {
-  //   try {
-  //     const postRef = await db.collection("contents").doc(post.id);
-  //     await postRef.update({
-  //       text: editText,
-  //     });
-  //   } catch (error) {
-  //     handleError(error);
-  //   }
-  // }
 
   function submitEdit(e, editedText, postType, imageUrl) {
     e.preventDefault();
@@ -207,6 +180,7 @@ const Post = (props) => {
               currentUser.uid
             ),
           });
+          setRebarkedByUser(false);
         } else {
           await originalRef.update({
             comments: firebase.firestore.FieldValue.increment(-1),
@@ -238,7 +212,7 @@ const Post = (props) => {
       )}
       <PostFooter
         displayComment={displayComment}
-        addLike={addLike}
+        clickLike={clickLike}
         commentNumber={commentNumber}
         likesNumber={likesNumber}
         rebarkNum={rebarkNum}
@@ -257,26 +231,16 @@ const Post = (props) => {
       {showRebark && (
         <RebarkModal
           post={post}
-          updateRebark={updateRebark}
           submitRebark={submitRebark}
-          rebarkText={rebarkText}
           closeRebark={closeRebark}
         />
       )}
 
       {showEdit && (
-        // <EditModal
-        //   post={post}
-        //   editText={editText}
-        //   updateEdit={updateEdit}
-        //   submitEdit={submitEdit}
-        //   closeEditModal={closeEditModal}
-        // />
-        <EditModal2
+        <EditModal
           post={post}
           submitEdit={submitEdit}
           closeEditModal={closeEditModal}
-          form={"edit"}
         />
       )}
     </div>
