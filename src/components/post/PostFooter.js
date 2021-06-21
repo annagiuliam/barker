@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaRegComment, FaPaw, FaRetweet } from "react-icons/fa";
 
 const PostFooter = (props) => {
@@ -10,11 +10,12 @@ const PostFooter = (props) => {
     commentNumber,
     likesNumber,
     rebarkNum,
-    addLike,
+    clickLike,
   } = props;
 
   const likeActive = likedByUser ? "footer-icon active" : "footer-icon";
   const rebarkActive = rebarkedByUser ? "footer-icon active" : "footer-icon";
+  console.log(rebarkActive);
 
   return (
     <div className="post-footer">
@@ -35,7 +36,7 @@ const PostFooter = (props) => {
           title="Like"
           onClick={(e) => {
             e.stopPropagation();
-            addLike();
+            clickLike();
           }}
         />
         <div className={likeActive}>{likesNumber}</div>
