@@ -8,30 +8,30 @@ import { AiOutlineEdit } from "react-icons/ai";
 const reactStringReplace = require("react-string-replace");
 
 const PostMain = (props) => {
-  const { post, view, deletePost, openEditModal } = props;
+  const { post, view, deletePost, openEditModal, redirect, hashedText } = props;
   const { currentUser } = useContext(BarkerContext);
 
   const postClass = view ? `${view}-main` : "post-main";
-  const history = useHistory();
-  const redirect = (e) => {
-    e.stopPropagation();
-    history.push({
-      pathname: `/post/${post.id}`,
-    });
-  };
+  // const history = useHistory();
+  // const redirect = (e) => {
+  //   e.stopPropagation();
+  //   history.push({
+  //     pathname: `/post/${post.id}`,
+  //   });
+  // };
 
-  const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
-    <Link
-      to={`/hashtag/${match.slice(1)}`}
-      key={i + match}
-      className="hashtag-link"
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
-      {match}
-    </Link>
-  ));
+  // const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
+  //   <Link
+  //     to={`/hashtag/${match.slice(1)}`}
+  //     key={i + match}
+  //     className="hashtag-link"
+  //     onClick={(e) => {
+  //       e.stopPropagation();
+  //     }}
+  //   >
+  //     {match}
+  //   </Link>
+  // ));
 
   return (
     <div className={postClass} id={post.id} onClick={redirect}>

@@ -20,6 +20,16 @@
   
 }
 
+.username-container {
+  margin-bottom: 5px;
+}
+
+.post-text {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .post-left {
   display: flex;
   flex-direction: column;
@@ -53,7 +63,7 @@
   align-items: flex-start;
   flex-grow: 1;
 
-  margin-bottom: 15px;;
+  /* margin-bottom: 15px;; */
 }
 
 .post-right-icons {

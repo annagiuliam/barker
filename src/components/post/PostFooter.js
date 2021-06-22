@@ -5,7 +5,7 @@ const PostFooter = (props) => {
   const {
     likedByUser,
     rebarkedByUser,
-    displayComment,
+    openCommentModal,
     openRebarkModal,
     commentNumber,
     likesNumber,
@@ -24,7 +24,7 @@ const PostFooter = (props) => {
           title="Reply"
           onClick={(e) => {
             e.stopPropagation();
-            displayComment();
+            openCommentModal();
           }}
         />
         <div>{commentNumber}</div>

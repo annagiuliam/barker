@@ -24,8 +24,17 @@ button:focus {
 }
 
 .btn-container-right {
-  text-align: right;
+  /* text-align: right; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   
+  
+}
+
+.close-btn-bottom {
+  border-bottom: var(--barker-border);
+  height: 55px;
 }
 
 .arrow-left-container {

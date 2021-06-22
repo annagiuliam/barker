@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { BarkerContext } from "../../context/BarkerContext";
 
 import PostMain from "./PostMain";
@@ -8,11 +8,13 @@ import PostFooter from "./PostFooter";
 import CommentInput from "./CommentInput";
 import PostExtras from "./PostExtras";
 
-import CommentRebark from "../modals/CommentModal";
+import CommentModal from "../modals/CommentModal";
 import RebarkModal from "../modals/RebarkModal";
 import EditModal from "../modals/EditModal";
 import firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
+
+const reactStringReplace = require("react-string-replace");
 
 const Post = (props) => {
   const { contents, post, view, users } = props;
@@ -41,6 +43,19 @@ const Post = (props) => {
       pathname: `/post/${post.id}`,
     });
   };
+
+  const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
+    <Link
+      to={`/hashtag/${match.slice(1)}`}
+      key={i + match}
+      className="hashtag-link"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
+      {match}
+    </Link>
+  ));
 
   useEffect(() => {
     //find post that was rebarked
@@ -209,6 +224,8 @@ const Post = (props) => {
         view={view}
         deletePost={deletePost}
         openEditModal={openEditModal}
+        redirect={redirect}
+        hashedText={hashedText}
       />
       {originalPost && <PostMain post={originalPost} view={"rebarked"} />}
       {(likesNumber || rebarkNum) && users && (
@@ -226,6 +243,7 @@ const Post = (props) => {
         likesNumber={likesNumber}
         rebarkNum={rebarkNum}
         openRebarkModal={openRebarkModal}
+        openCommentModal={openCommentModal}
         likedByUser={likedByUser}
         rebarkedByUser={rebarkedByUser}
       />
@@ -240,10 +258,11 @@ const Post = (props) => {
       )} */}
 
       {showComment && (
-        <CommentRebark
+        <CommentModal
           post={post}
           submitComment={submitComment}
           closeCommentModal={closeCommentModal}
+          hashedText={hashedText}
         />
       )}
 
