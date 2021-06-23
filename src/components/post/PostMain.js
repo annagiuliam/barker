@@ -35,10 +35,10 @@ const PostMain = (props) => {
 
   return (
     <div className={postClass} id={post.id} onClick={redirect}>
-      <div className="post-left">
+      <div className="left-side">
         <img alt="avatar" src={post.url} className="avatar-img"></img>
       </div>
-      <div className="post-right">
+      <div className="right-side">
         <div className="post-right-top">
           <div className="username-container">
             <Link
@@ -77,7 +77,9 @@ const PostMain = (props) => {
         <div className="post-content">
           <div className="post-text">{hashedText}</div>
           {post.imageUrl && (
-            <img src={post.imageUrl} alt="upload" className="post-img"></img>
+            <div className="image-container">
+              <img src={post.imageUrl} alt="upload" className="post-img"></img>
+            </div>
           )}
         </div>
       </div>

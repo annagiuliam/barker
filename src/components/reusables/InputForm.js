@@ -22,6 +22,7 @@ const InputForm = (props) => {
   const types = ["image/png", "image/jpeg"];
   const fileInputId = `file-${form}`;
   const submit = submitFunction ? submitFunction : submitPost;
+  const wrapperClass = form === "input" ? "form-wrapper input" : "form-wrapper";
 
   useEffect(() => {
     if (form === "edit") {
@@ -61,10 +62,13 @@ const InputForm = (props) => {
   }
 
   return (
-    <div className="post-input">
-      <div className="user-info">
-        <img alt="pic" src={currentUser.url} className="avatar-img"></img>
+    <div className={wrapperClass}>
+      <div className="left-side">
+        <div className="user-info">
+          <img alt="pic" src={currentUser.url} className="avatar-img"></img>
+        </div>
       </div>
+
       <div className="form-container">
         <form
           className="post-input-form"
