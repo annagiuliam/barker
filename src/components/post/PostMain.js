@@ -77,9 +77,7 @@ const PostMain = (props) => {
         <div className="post-content">
           <div className="post-text">{hashedText}</div>
           {post.imageUrl && (
-            <div className="image-container">
-              <img src={post.imageUrl} alt="upload" className="post-img"></img>
-            </div>
+            <img src={post.imageUrl} alt="upload" className="post-img"></img>
           )}
         </div>
       </div>

@@ -4,18 +4,22 @@
   margin-left: 300px;
   width: 50%;
 }
-  
-.form-wrapper.input {
+
+.form-wrapper {
   width: 100%;
   max-width: 566px;
-  border: 0.5px solid darkgray; 
-  padding: 15px;   
-  margin-top: 20px;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  
+}
+  
+.form-wrapper.input {
+  border: 0.5px solid darkgray; 
+  padding: 15px;   
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 
@@ -41,6 +45,7 @@ input[type="file"] {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-right: 20px;
 }
 
 .progress-bar {
@@ -58,7 +63,7 @@ input[type="file"] {
 .post-img {
   max-width: 500px;
   max-height: 280px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 18px;
 }
 

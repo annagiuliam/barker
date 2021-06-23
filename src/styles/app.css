@@ -124,13 +124,14 @@ ul {
 .input-modal-content {
   display: flex;
   flex-direction: column;
+  padding: 15px;
 }
 
 .original-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 10px 16px;
+  /* padding: 10px 16px; */
 }
 
 .original-left {
@@ -145,6 +146,7 @@ ul {
   justify-content: flex-start;
   margin-left: 15px;
   padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .connection-line {
@@ -154,6 +156,15 @@ ul {
   background-color: darkgray;
   display: block;
   margin: 3px auto;
+}
+
+.top-space {
+  height: 20px;
+}
+
+.comment-input-container {
+  display: flex;
+  flex-direction: column;
 }
 
 

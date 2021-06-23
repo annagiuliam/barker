@@ -69,59 +69,62 @@ const InputForm = (props) => {
         </div>
       </div>
 
-      <div className="form-container">
-        <form
-          className="post-input-form"
-          onSubmit={(e) => {
-            e.stopPropagation();
-            submit(e, postText, postType, imageUrl);
-            setPostText("");
-            setUrl(null);
-          }}
-        >
-          <textarea
-            className="post-textarea"
-            onChange={updatePost}
-            onClick={(e) => e.stopPropagation()}
-            value={postText}
-            placeholder="Bark what's on your mind!"
-          ></textarea>
+      <div className="right-side">
+        {form === "comment" && <div className="top-space"></div>}
+        <div className="form-container">
+          <form
+            className="post-input-form"
+            onSubmit={(e) => {
+              e.stopPropagation();
+              submit(e, postText, postType, imageUrl);
+              setPostText("");
+              setUrl(null);
+            }}
+          >
+            <textarea
+              className="post-textarea"
+              onChange={updatePost}
+              onClick={(e) => e.stopPropagation()}
+              value={postText}
+              placeholder="Bark what's on your mind!"
+            ></textarea>
 
-          {url && (
-            <div className="image-container">
-              <img src={url} alt="uploaded" className="post-img" />
-              <CloseButton
-                btnClass={"discard-btn-container"}
-                onClick={discardImage}
-              />
-            </div>
-          )}
+            {url && (
+              <div className="image-container">
+                <img src={url} alt="uploaded" className="post-img" />
+                <CloseButton
+                  btnClass={"discard-btn-container"}
+                  onClick={discardImage}
+                />
+              </div>
+            )}
 
-          {postType === "rebark" && <PostMain post={post} view="rebarked" />}
-          <div className="form-footer">
-            <div className="image-input" onClick={(e) => e.stopPropagation()}>
-              <label htmlFor={fileInputId} className="custom-file-upload">
-                <BiImageAdd id="image-upload-icon" />
-              </label>
-              <input
-                id={fileInputId}
-                type="file"
-                onChange={handleChange}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  e.target.value = null;
-                }}
-              />
-            </div>
-            {file && <ProgressBar file={file} setFile={setFile} />}
+            {postType === "rebark" && <PostMain post={post} view="rebarked" />}
+            <div className="form-footer">
+              <div className="image-input" onClick={(e) => e.stopPropagation()}>
+                <label htmlFor={fileInputId} className="custom-file-upload">
+                  <BiImageAdd id="image-upload-icon" />
+                </label>
+                <input
+                  id={fileInputId}
+                  type="file"
+                  onChange={handleChange}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.target.value = null;
+                  }}
+                />
+              </div>
+              {file && <ProgressBar file={file} setFile={setFile} />}
 
-            <div className="input-btn-div">
-              <button type="submit" onClick={(e) => e.stopPropagation()}>
-                Bark
-              </button>
+              <div className="input-btn-div">
+                <button type="submit" onClick={(e) => e.stopPropagation()}>
+                  Bark
+                </button>
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

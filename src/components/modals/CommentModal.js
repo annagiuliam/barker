@@ -15,14 +15,12 @@ const CommentModal = (props) => {
           btnClass={"close-btn-bottom"}
         />
         <div className="input-modal-content">
+          {/* original post user is replying to */}
+
           <div className="original-wrapper">
             <div className="original-left">
               <div className="modal-avatar-wrapper">
-                <img
-                  alt="avatar"
-                  src={post.url}
-                  className="post-avatar-img"
-                ></img>
+                <img alt="avatar" src={post.url} className="avatar-img"></img>
               </div>
               <div className="connection-line"></div>
             </div>
@@ -42,26 +40,26 @@ const CommentModal = (props) => {
 
                 <div className="post-content">
                   <div className="post-text">{hashedText}</div>
-                  {post.imageUrl && (
+                  {/* {post.imageUrl && (
                     <img
                       src={post.imageUrl}
                       alt="upload"
                       className="post-img"
                     ></img>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* <div className="post-edit-container">
+          <div className="comment-input-container">
             <InputForm
               post={post}
-              // submitFunction={submitRebark}
-              postType={"rebark"}
-              form={"rebark"}
+              submitFunction={submitComment}
+              postType={"comment"}
+              form={"comment"}
             />
-          </div> */}
+          </div>
 
           <div className="modal-post-input-wrapper">
             <div className="modal-input-left"></div>
