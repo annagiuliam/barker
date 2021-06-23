@@ -13,7 +13,7 @@ const Header = () => {
         <div className="header-user">
           <div>
             <img
-              className="avatar-img"
+              className="avatar-img-small"
               src={currentUser.url}
               alt="user avatar"
             ></img>

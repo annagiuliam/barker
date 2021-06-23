@@ -36,7 +36,7 @@ const PostMain = (props) => {
   return (
     <div className={postClass} id={post.id} onClick={redirect}>
       <div className="post-left">
-        <img alt="avatar" src={post.url} className="post-avatar-img"></img>
+        <img alt="avatar" src={post.url} className="avatar-img"></img>
       </div>
       <div className="post-right">
         <div className="post-right-top">

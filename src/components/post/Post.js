@@ -87,9 +87,9 @@ const Post = (props) => {
     } else setRebarkedByUser(false);
   }, [currentUser.uid, post.likedBy, post.rebarkedBy]);
 
-  function updateComment(e) {
-    setCommentText(e.target.value);
-  }
+  // function updateComment(e) {
+  //   setCommentText(e.target.value);
+  // }
 
   function submitComment(e) {
     e.preventDefault();
