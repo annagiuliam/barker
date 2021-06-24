@@ -12,6 +12,9 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
   
 }
   
@@ -20,6 +23,10 @@
   padding: 15px;   
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.form-wrapper.rebark {
+  padding-top: 15px;
 }
 
 

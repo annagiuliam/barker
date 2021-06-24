@@ -10,6 +10,7 @@
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 
 .App {
@@ -115,23 +116,24 @@ ul {
   background: white;
   top: 10%;
   margin-left: calc((100% - 600px) / 2);
-  min-width: 600px;
-  max-width: 80vw;
+  max-width: 566px;
+  /* max-width: 80vw; */
   max-height: 90vh;
+  overflow-wrap: break-word;
   
 }
 
 .input-modal-content {
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  /* padding: 15px; */
 }
 
-.original-wrapper {
+/* .original-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  /* padding: 10px 16px; */
+  padding: 10px 16px;
 }
 
 .original-left {
@@ -147,7 +149,7 @@ ul {
   margin-left: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
-}
+} */
 
 .connection-line {
   width: 2px;

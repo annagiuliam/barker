@@ -16,8 +16,8 @@ const CommentModal = (props) => {
         />
         <div className="input-modal-content">
           {/* original post user is replying to */}
-          {/* <PostMain post={post} modal={"comment"} /> */}
-          <div className="original-wrapper">
+          <PostMain post={post} modal={"comment"} />
+          {/* <div className="original-wrapper">
             <div className="original-left">
               <div className="modal-avatar-wrapper">
                 <img alt="avatar" src={post.url} className="avatar-img"></img>
@@ -50,7 +50,7 @@ const CommentModal = (props) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="comment-input-container">
             <InputForm
