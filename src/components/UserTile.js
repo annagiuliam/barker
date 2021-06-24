@@ -13,7 +13,7 @@ const UserTile = (props) => {
   return (
     <div className="user-tile">
       <div className="user-info">
-        <img alt="pic" src={user.url} className="avatar-img"></img>
+        <img alt="pic" src={user.url} className="avatar-img-small"></img>
         <Link
           to={`/profile/${user.uid}`}
           className="link-username"

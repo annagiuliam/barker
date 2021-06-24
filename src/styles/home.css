@@ -65,6 +65,7 @@ input[type="file"] {
   max-height: 280px;
   object-fit: cover;
   border-radius: 18px;
+  margin-top: 10px;
 }
 
 .discard-btn-container {
@@ -77,13 +78,6 @@ input[type="file"] {
   border-radius: 50px;
 }
 
-
-
-
-.form-container {
-  width: 90%;
-  height: 70%
-}
 
 .sign-in-form-container {
   display: flex;
