@@ -10,7 +10,7 @@ import PostMain from "../post/PostMain";
 import { BiImageAdd } from "react-icons/bi";
 
 const InputForm = (props) => {
-  const { post, postType, form, submitFunction } = props;
+  const { post, postType, form, submitFunction, hashedText } = props;
 
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
   const [postText, setPostText] = useState("");
@@ -101,7 +101,7 @@ const InputForm = (props) => {
               </div>
             )}
 
-            {postType === "rebark" && <PostMain post={post} view="rebarked" />}
+            {form === "rebark" && <PostMain post={post} view="rebarked" />}
             <div className="form-footer">
               <div className="image-input" onClick={(e) => e.stopPropagation()}>
                 <label htmlFor={fileInputId} className="custom-file-upload">

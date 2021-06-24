@@ -8,7 +8,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 const reactStringReplace = require("react-string-replace");
 
 const PostMain = (props) => {
-  const { post, view, deletePost, openEditModal, redirect, hashedText } = props;
+  const { post, view, deletePost, openEditModal, redirect, modal } = props;
   const { currentUser } = useContext(BarkerContext);
 
   const postClass = view ? `${view}-main` : "post-main";
@@ -20,23 +20,26 @@ const PostMain = (props) => {
   //   });
   // };
 
-  // const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
-  //   <Link
-  //     to={`/hashtag/${match.slice(1)}`}
-  //     key={i + match}
-  //     className="hashtag-link"
-  //     onClick={(e) => {
-  //       e.stopPropagation();
-  //     }}
-  //   >
-  //     {match}
-  //   </Link>
-  // ));
+  const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
+    <Link
+      to={`/hashtag/${match.slice(1)}`}
+      key={i + match}
+      className="hashtag-link"
+      onClick={(e) => {
+        e.stopPropagation();
+      }}
+    >
+      {match}
+    </Link>
+  ));
 
   return (
     <div className={postClass} id={post.id} onClick={redirect}>
       <div className="left-side">
-        <img alt="avatar" src={post.url} className="avatar-img"></img>
+        <div className="modal-avatar-wrapper">
+          <img alt="avatar" src={post.url} className="avatar-img"></img>
+        </div>
+        {modal === "comment" && <div className="connection-line"></div>}
       </div>
       <div className="right-side">
         <div className="post-right-top">
@@ -51,7 +54,7 @@ const PostMain = (props) => {
               <span className="username">{post.username}</span>
             </Link>
           </div>
-          {currentUser.uid === post.uid && view !== "rebarked" && (
+          {currentUser.uid === post.uid && view !== "rebarked" && !modal && (
             <div className="post-right-icons">
               <div>
                 <BsTrash

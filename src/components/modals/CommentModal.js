@@ -6,7 +6,7 @@ import InputForm from "../reusables/InputForm";
 import PostMain from "../post/PostMain";
 
 const CommentModal = (props) => {
-  const { post, submitComment, closeCommentModal, hashedText } = props;
+  const { post, submitComment, closeCommentModal } = props;
   return (
     <div className="modal">
       <section className="input-modal-main">
@@ -16,7 +16,7 @@ const CommentModal = (props) => {
         />
         <div className="input-modal-content">
           {/* original post user is replying to */}
-
+          {/* <PostMain post={post} modal={"comment"} /> */}
           <div className="original-wrapper">
             <div className="original-left">
               <div className="modal-avatar-wrapper">
@@ -39,14 +39,14 @@ const CommentModal = (props) => {
                 </div>
 
                 <div className="post-content">
-                  <div className="post-text">{hashedText}</div>
-                  {/* {post.imageUrl && (
+                  <div className="post-text">{post.text}</div>
+                  {post.imageUrl && (
                     <img
                       src={post.imageUrl}
                       alt="upload"
                       className="post-img"
                     ></img>
-                  )} */}
+                  )}
                 </div>
               </div>
             </div>

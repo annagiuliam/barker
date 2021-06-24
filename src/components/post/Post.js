@@ -5,7 +5,7 @@ import { BarkerContext } from "../../context/BarkerContext";
 
 import PostMain from "./PostMain";
 import PostFooter from "./PostFooter";
-import CommentInput from "./CommentInput";
+// import CommentInput from "./CommentInput";
 import PostExtras from "./PostExtras";
 
 import CommentModal from "../modals/CommentModal";
@@ -14,7 +14,7 @@ import EditModal from "../modals/EditModal";
 import firebase from "firebase/app";
 import { db } from "../../firebase/firebase";
 
-const reactStringReplace = require("react-string-replace");
+// const reactStringReplace = require("react-string-replace");
 
 const Post = (props) => {
   const { contents, post, view, users } = props;
@@ -44,18 +44,18 @@ const Post = (props) => {
     });
   };
 
-  const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
-    <Link
-      to={`/hashtag/${match.slice(1)}`}
-      key={i + match}
-      className="hashtag-link"
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-    >
-      {match}
-    </Link>
-  ));
+  // const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
+  //   <Link
+  //     to={`/hashtag/${match.slice(1)}`}
+  //     key={i + match}
+  //     className="hashtag-link"
+  //     onClick={(e) => {
+  //       e.stopPropagation();
+  //     }}
+  //   >
+  //     {match}
+  //   </Link>
+  // ));
 
   useEffect(() => {
     //find post that was rebarked
@@ -223,7 +223,7 @@ const Post = (props) => {
         deletePost={deletePost}
         openEditModal={openEditModal}
         redirect={redirect}
-        hashedText={hashedText}
+        // hashedText={hashedText}
       />
       {originalPost && <PostMain post={originalPost} view={"rebarked"} />}
       {(likesNumber || rebarkNum) && users && (
@@ -260,7 +260,7 @@ const Post = (props) => {
           post={post}
           submitComment={submitComment}
           closeCommentModal={closeCommentModal}
-          hashedText={hashedText}
+          // hashedText={hashedText}
         />
       )}
 
@@ -269,6 +269,7 @@ const Post = (props) => {
           post={post}
           submitRebark={submitRebark}
           closeRebarkModal={closeRebarkModal}
+          // hashedText={hashedText}
         />
       )}
 
@@ -277,6 +278,7 @@ const Post = (props) => {
           post={post}
           submitEdit={submitEdit}
           closeEditModal={closeEditModal}
+          // hashedText={hashedText}
         />
       )}
     </div>
