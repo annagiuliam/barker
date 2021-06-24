@@ -20,7 +20,7 @@ const Post = (props) => {
   const { contents, post, view, users } = props;
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
 
-  const [commentText, setCommentText] = useState("");
+  // const [commentText, setCommentText] = useState("");
 
   const [showComment, setShowComment] = useState(false);
   const [showRebark, setShowRebark] = useState(false);
@@ -87,15 +87,13 @@ const Post = (props) => {
     } else setRebarkedByUser(false);
   }, [currentUser.uid, post.likedBy, post.rebarkedBy]);
 
-  // function updateComment(e) {
-  //   setCommentText(e.target.value);
-  // }
+  //
 
-  function submitComment(e) {
+  function submitComment(e, postText, postType, imageUrl) {
     e.preventDefault();
     incrementCommentNumber();
-    submitPost(e, commentText, "comment", null, post.id);
-    setCommentText("");
+    submitPost(e, postText, postType, imageUrl, post.id);
+    // setCommentText("");
     setShowComment(false);
   }
 

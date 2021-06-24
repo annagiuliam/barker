@@ -24,6 +24,8 @@ const InputForm = (props) => {
   const submit = submitFunction ? submitFunction : submitPost;
   const wrapperClass = form === "input" ? "form-wrapper input" : "form-wrapper";
 
+  console.log(postText);
+
   useEffect(() => {
     if (form === "edit") {
       if (post) {

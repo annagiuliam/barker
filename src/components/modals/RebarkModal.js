@@ -8,9 +8,10 @@ const RebarkModal = (props) => {
 
   return (
     <div className="modal">
-      <section className="modal-main">
-        <CloseButton onClick={closeRebarkModal} />
-        <div className="post-edit-container">
+      <section className="input-modal-main">
+        <CloseButton onClick={closeRebarkModal} btnClass={"close-btn-bottom"} />
+        {/* <div className="post-edit-container"> */}
+        <div className="input-modal-content">
           <InputForm
             post={post}
             submitFunction={submitRebark}
