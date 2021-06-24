@@ -118,7 +118,7 @@ ul {
   margin-left: calc((100% - 600px) / 2);
   max-width: 566px;
   /* max-width: 80vw; */
-  max-height: 90vh;
+  max-height: 85vh;
   overflow-wrap: break-word;
   
 }
@@ -128,6 +128,7 @@ ul {
   flex-direction: column;
   /* padding: 15px; */
 }
+
 
 /* .original-wrapper {
   display: flex;

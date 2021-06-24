@@ -11,7 +11,8 @@ const PostMain = (props) => {
   const { post, view, deletePost, openEditModal, redirect, modal } = props;
   const { currentUser } = useContext(BarkerContext);
 
-  const postClass = view ? `${view}-main` : "post-main";
+  const postClass = view ? `${view}-main ${modal}` : `post-main ${modal}`;
+
   // const history = useHistory();
   // const redirect = (e) => {
   //   e.stopPropagation();
@@ -79,8 +80,10 @@ const PostMain = (props) => {
         </div>
         <div className="post-content">
           <div className="post-text">{hashedText}</div>
-          {post.imageUrl && (
-            <img src={post.imageUrl} alt="upload" className="post-img"></img>
+          {post.imageUrl && modal !== "comment" && (
+            <div className="image-container">
+              <img src={post.imageUrl} alt="upload" className="post-img"></img>
+            </div>
           )}
         </div>
       </div>

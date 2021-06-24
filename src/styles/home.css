@@ -6,8 +6,8 @@
 }
 
 .form-wrapper {
-  width: 100%;
-  max-width: 566px;
+  /* width: 100%;
+  max-width: 566px; */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -16,6 +16,9 @@
   padding-right: 15px;
   padding-bottom: 15px;
   
+  width: 566px;
+  /* padding: 15px; */
+  
 }
   
 .form-wrapper.input {
@@ -23,6 +26,11 @@
   padding: 15px;   
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+.form-wrapper.edit {
+  width: 566px;
+  padding-top: 15px;
 }
 
 .form-wrapper.rebark {
@@ -63,14 +71,24 @@ input[type="file"] {
 }
 
 .image-container {
-  position: relative;
+  max-width: 400px;
+  max-height: 200px;
+  /* position: relative; */
   margin-top: 15px;
+  /* display:flex;
+  align-content: stretch;
+  align-items: stretch; */
+}
+
+.image-container.modal {
+  position: relative;
 }
 
 .post-img {
-  max-width: 500px;
-  max-height: 280px;
+  max-width: 400px;
+  max-height: 200px;
   object-fit: cover;
+  flex: 1;
   border-radius: 18px;
   margin-top: 10px;
 }

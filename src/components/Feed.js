@@ -29,7 +29,7 @@ const Feed = (props) => {
     <div className="posts-container">
       {filteredContent &&
         filteredContent.map((post) => (
-          <Post post={post} contents={contents} key={post.id} />
+          <Post post={post} contents={contents} view={"post"} key={post.id} />
         ))}
     </div>
   );

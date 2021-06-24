@@ -8,9 +8,9 @@ const EditModal = (props) => {
 
   return (
     <div className="modal">
-      <section className="modal-main">
-        <CloseButton onClick={closeEditModal} />
-        <div className="post-edit-container">
+      <section className="input-modal-main">
+        <CloseButton onClick={closeEditModal} btnClass={"close-btn-bottom"} />
+        <div className="input-modal-content">
           <InputForm
             post={post}
             submitFunction={submitEdit}

@@ -10,7 +10,7 @@ import PostMain from "../post/PostMain";
 import { BiImageAdd } from "react-icons/bi";
 
 const InputForm = (props) => {
-  const { post, postType, form, submitFunction, hashedText } = props;
+  const { post, postType, form, submitFunction } = props;
 
   const { currentUser, handleError, submitPost } = useContext(BarkerContext);
   const [postText, setPostText] = useState("");
@@ -24,8 +24,6 @@ const InputForm = (props) => {
   const submit = submitFunction ? submitFunction : submitPost;
   // const wrapperClass = form === "input" ? "form-wrapper input" : "form-wrapper";
   const wrapperClass = `form-wrapper ${form}`;
-
-  console.log(postText);
 
   useEffect(() => {
     if (form === "edit") {
@@ -43,6 +41,13 @@ const InputForm = (props) => {
       }
     }
   }, [imageUrl, post, form]);
+
+  useEffect(() => {
+    console.log(url);
+    if (post && post.imageUrl) {
+      console.log(post.imageUrl);
+    }
+  });
 
   function updatePost(e) {
     setPostText(e.target.value);
@@ -79,7 +84,7 @@ const InputForm = (props) => {
             className="post-input-form"
             onSubmit={(e) => {
               e.stopPropagation();
-              submit(e, postText, postType, imageUrl);
+              submit(e, postText, postType, url);
               setPostText("");
               setUrl(null);
             }}
@@ -93,7 +98,7 @@ const InputForm = (props) => {
             ></textarea>
 
             {url && (
-              <div className="image-container">
+              <div className="image-container modal">
                 <img src={url} alt="uploaded" className="post-img" />
                 <CloseButton
                   btnClass={"discard-btn-container"}
@@ -102,7 +107,9 @@ const InputForm = (props) => {
               </div>
             )}
 
-            {form === "rebark" && <PostMain post={post} view="rebarked" />}
+            {form === "rebark" && (
+              <PostMain post={post} view="rebarked" modal={"rebark"} />
+            )}
             <div className="form-footer">
               <div className="image-input" onClick={(e) => e.stopPropagation()}>
                 <label htmlFor={fileInputId} className="custom-file-upload">
