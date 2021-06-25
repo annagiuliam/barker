@@ -70,18 +70,25 @@ input[type="file"] {
   background-color: var(--hover-background);
 }
 
-.image-container {
+/* .image-container {
   max-width: 400px;
   max-height: 200px;
-  /* position: relative; */
+  position: relative;
   margin-top: 15px;
-  /* display:flex;
+  display:flex;
   align-content: stretch;
-  align-items: stretch; */
+  align-items: stretch;
+} */
+
+.form-image-container {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  margin-bottom: 15px;
 }
 
-.image-container.edit-modal {
-  position: relative;
+.input-form-img {
+  object-fit: fill;
 }
 
 
@@ -90,7 +97,7 @@ input[type="file"] {
   position: absolute;
   height: 45px;
   width: 45px;
-  top: 30px;
+  top: 20px;
   left: 15px;
   background: rgb(249 249 249 / 48%);
   border-radius: 50px;

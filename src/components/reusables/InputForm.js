@@ -98,7 +98,7 @@ const InputForm = (props) => {
             ></textarea>
 
             {url && (
-              <div className="image-container edit-modal">
+              <div className="form-image-container">
                 <img src={url} alt="uploaded" className="input-form-img" />
                 <CloseButton
                   btnClass={"discard-btn-container"}
