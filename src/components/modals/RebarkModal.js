@@ -10,16 +10,13 @@ const RebarkModal = (props) => {
     <div className="modal">
       <section className="input-modal-main">
         <CloseButton onClick={closeRebarkModal} btnClass={"close-btn-bottom"} />
-        {/* <div className="post-edit-container"> */}
-        {/* <div className="input-modal-content"> */}
+
         <InputForm
           post={post}
           submitFunction={submitRebark}
           postType={"rebark"}
           form={"rebark"}
-          // hashedText={hashedText}
         />
-        {/* </div> */}
       </section>
     </div>
   );
