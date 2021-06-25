@@ -129,6 +129,15 @@ ul {
   /* padding: 15px; */
 }
 
+.input-form-img {
+  max-width: 400px;
+  max-height: 200px;
+  object-fit: cover;
+  /* flex: 1; */
+  border-radius: 18px;
+  /* margin-top: 10px; */
+}
+
 
 /* .original-wrapper {
   display: flex;

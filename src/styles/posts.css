@@ -65,6 +65,21 @@ padding-bottom: 0px;
 }  
 
 
+.post-img {
+  object-fit: fill;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 18px;
+  
+}
+
+.image-container {
+  margin-top: 15px;
+  width: 450px;
+  height: 250px;
+}
+
+
 
 
 .post-footer {  
@@ -102,10 +117,10 @@ padding-bottom: 0px;
   background-color: #e6e6e6;
 }
 
-.rebark-form-container {
+/* .rebark-form-container {
   padding-top: 10px;
   width: 80%
-}
+} */
 
 .rebark-form {
   display: flex;
@@ -117,6 +132,8 @@ padding-bottom: 0px;
   flex-direction: row;
   justify-content: space-between;
 }
+
+
 
 
 /* .comment-container {
