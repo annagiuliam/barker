@@ -77,7 +77,7 @@ const InputForm = (props) => {
         </div>
       </div>
 
-      <div className="right-side">
+      <div className="form-right-side">
         {form === "comment" && <div className="top-space"></div>}
         <div className="form-container">
           <form

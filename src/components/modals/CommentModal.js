@@ -14,10 +14,10 @@ const CommentModal = (props) => {
           onClick={closeCommentModal}
           btnClass={"close-btn-bottom"}
         />
-        <div className="input-modal-content">
-          {/* original post user is replying to */}
-          <PostMain post={post} modal={"comment"} />
-          {/* <div className="original-wrapper">
+        {/* <div className="input-modal-content"> */}
+        {/* original post user is replying to */}
+        <PostMain post={post} modal={"comment"} />
+        {/* <div className="original-wrapper">
             <div className="original-left">
               <div className="modal-avatar-wrapper">
                 <img alt="avatar" src={post.url} className="avatar-img"></img>
@@ -52,20 +52,20 @@ const CommentModal = (props) => {
             </div>
           </div> */}
 
-          <div className="comment-input-container">
-            <InputForm
-              post={post}
-              submitFunction={submitComment}
-              postType={"comment"}
-              form={"comment"}
-            />
-          </div>
-
-          <div className="modal-post-input-wrapper">
-            <div className="modal-input-left"></div>
-            <div className="modal-input-right"></div>
-          </div>
+        <div className="comment-input-container">
+          <InputForm
+            post={post}
+            submitFunction={submitComment}
+            postType={"comment"}
+            form={"comment"}
+          />
         </div>
+
+        <div className="modal-post-input-wrapper">
+          <div className="modal-input-left"></div>
+          <div className="modal-input-right"></div>
+        </div>
+        {/* </div> */}
       </section>
     </div>
   );
