@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import RebarkedPost from "./RebarkedPost";
 

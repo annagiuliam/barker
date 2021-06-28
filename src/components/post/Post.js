@@ -202,7 +202,7 @@ const Post = (props) => {
         redirect={redirect}
         originalPost={originalPost}
       />
-      {/* {originalPost && <PostMain post={originalPost} view={"rebarked"} />} */}
+
       {(likesNumber || rebarkNum) && users && (
         <PostExtras
           users={users}

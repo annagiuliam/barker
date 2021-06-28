@@ -2,9 +2,6 @@ import React, { useContext } from "react";
 import { BarkerContext } from "../context/BarkerContext";
 import { Link } from "react-router-dom";
 
-// import firebaseApp from "../firebase/firebase";
-// import firebase from "firebase/app";
-
 const Header = () => {
   const { currentUser, logOut } = useContext(BarkerContext);
   return (

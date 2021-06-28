@@ -62,7 +62,6 @@ const ProfileComments = (props) => {
       {commentedPosts &&
         commentedPosts.map((post) => (
           <div className="post-w-comments-container" key={post.id}>
-            {/* <Post post={post} contents={contents} view={"comm-post"} /> */}
             <Post post={post} contents={contents} view={"profile-post"} />
 
             {post.commentData.map((data) => (

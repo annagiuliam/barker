@@ -24,12 +24,9 @@ button:focus {
 }
 
 .btn-container-right {
-  /* text-align: right; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  
-  
 }
 
 .close-btn-bottom {
@@ -60,14 +57,11 @@ button:focus {
   margin: 10px;
   border-radius: 25px;
   color: var(--icon-color);
-
 }
 
 .icon:hover, .footer-icon:hover {
   cursor: pointer;
-  color: var(--theme-color);
-  
-  
+  color: var(--theme-color); 
 }
 
 .icon-close {

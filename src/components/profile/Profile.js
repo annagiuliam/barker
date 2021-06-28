@@ -16,7 +16,6 @@ import ProfileComments from "./ProfileComments";
 const Profile = (props) => {
   const { contents, users, posts } = props;
   const { currentUser, follow, unfollow } = useContext(BarkerContext);
-  //const [bioText, setBioText] = useState("");
 
   const { uid } = useParams();
   const { url, path } = useRouteMatch();

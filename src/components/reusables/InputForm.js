@@ -22,7 +22,6 @@ const InputForm = (props) => {
   const types = ["image/png", "image/jpeg"];
   const fileInputId = `file-${form}`;
   const submit = submitFunction ? submitFunction : submitPost;
-  // const wrapperClass = form === "input" ? "form-wrapper input" : "form-wrapper";
   const wrapperClass = `form-wrapper ${form}`;
 
   useEffect(() => {

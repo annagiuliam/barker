@@ -13,9 +13,6 @@ const PostFooter = (props) => {
     clickLike,
   } = props;
 
-  // const likeActive = likedByUser ? "footer-icon active" : "footer-icon";
-  // const rebarkActive = rebarkedByUser ? "footer-icon active" : "footer-icon";
-
   const likeActive = likedByUser ? "active" : "";
   const rebarkActive = rebarkedByUser ? "active" : "";
 
