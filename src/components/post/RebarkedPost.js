@@ -35,25 +35,27 @@ const RebarkedPost = (props) => {
         redirect();
       }}
     >
-      <div className="left-side">
-        <div className="modal-avatar-wrapper">
-          <img alt="avatar" src={post.url} className="avatar-img"></img>
+      <div className="rebarked-top">
+        <div className="rebarked-avatar-wrapper">
+          <img
+            alt="avatar"
+            src={post.url}
+            className="rebarked-avatar-img"
+          ></img>
+        </div>
+        <div className="username-container">
+          <Link
+            to={`/profile/${post.uid}`}
+            className="link-username"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <span className="username">{post.username}</span>
+          </Link>
         </div>
       </div>
-      <div className="right-side">
-        <div className="post-right-top">
-          <div className="username-container">
-            <Link
-              to={`/profile/${post.uid}`}
-              className="link-username"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              <span className="username">{post.username}</span>
-            </Link>
-          </div>
-        </div>
+      <div className="rebarked-bottom">
         <div className="post-content">
           <div className="post-text">{hashedText}</div>
           {post.imageUrl && (

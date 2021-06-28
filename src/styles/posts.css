@@ -101,7 +101,22 @@
   border: 0.5px solid darkgray;
   border-radius: 18px;
   margin-top: 10px;
+  flex-direction: column;
+  width: 80%;
 }
+
+.rebarked-top {
+  display: flex;
+  align-items: center;
+}
+
+.rebarked-avatar-img {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
 .rebarked-main:hover {
   background-color: #e6e6e6;
 }
