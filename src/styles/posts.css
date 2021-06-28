@@ -30,6 +30,7 @@
   font-weight: 400;
   line-height: 20px;
   overflow-wrap: break-word;
+  margin-bottom: 10px;
 }
 
 
@@ -108,7 +109,7 @@
 .rebarked-main {
   border: 0.5px solid darkgray;
   border-radius: 18px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 .rebarked-main:hover {
   background-color: #e6e6e6;

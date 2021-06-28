@@ -1,10 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const reactStringReplace = require("react-string-replace");
 
 const RebarkedPost = (props) => {
-  const { post, redirect } = props;
+  const { post } = props;
+
+  const history = useHistory();
+  const redirect = (e) => {
+    history.push({
+      pathname: `/post/${post.id}`,
+    });
+  };
 
   const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
     <Link
@@ -20,7 +27,14 @@ const RebarkedPost = (props) => {
   ));
 
   return (
-    <div className="rebarked-main" id={post.id} onClick={redirect}>
+    <div
+      className="rebarked-main"
+      id={post.id}
+      onClick={(e) => {
+        e.stopPropagation();
+        redirect();
+      }}
+    >
       <div className="left-side">
         <div className="modal-avatar-wrapper">
           <img alt="avatar" src={post.url} className="avatar-img"></img>
