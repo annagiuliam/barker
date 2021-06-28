@@ -200,8 +200,9 @@ const Post = (props) => {
         deletePost={deletePost}
         openEditModal={openEditModal}
         redirect={redirect}
+        originalPost={originalPost}
       />
-      {originalPost && <PostMain post={originalPost} view={"rebarked"} />}
+      {/* {originalPost && <PostMain post={originalPost} view={"rebarked"} />} */}
       {(likesNumber || rebarkNum) && users && (
         <PostExtras
           users={users}

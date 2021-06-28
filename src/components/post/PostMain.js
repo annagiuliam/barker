@@ -2,16 +2,29 @@ import React, { useContext } from "react";
 import { BarkerContext } from "../../context/BarkerContext";
 import { Link, useHistory } from "react-router-dom";
 
+import RebarkedPost from "./RebarkedPost";
+
 import { BsTrash } from "react-icons/bs";
 import { AiOutlineEdit } from "react-icons/ai";
 
 const reactStringReplace = require("react-string-replace");
 
 const PostMain = (props) => {
-  const { post, view, deletePost, openEditModal, redirect, modal } = props;
+  const {
+    post,
+    view,
+    deletePost,
+    openEditModal,
+    redirect,
+    modal,
+    originalPost,
+  } = props;
   const { currentUser } = useContext(BarkerContext);
 
-  const postClass = view ? `${view}-main ${modal}` : `post-main ${modal}`;
+  const modalClass = modal ? modal : "";
+  const postClass = view
+    ? `${view}-main ${modalClass}`
+    : `post-main ${modalClass}`;
 
   // const history = useHistory();
   // const redirect = (e) => {
@@ -84,6 +97,10 @@ const PostMain = (props) => {
             <div className="image-container">
               <img src={post.imageUrl} alt="upload" className="post-img"></img>
             </div>
+          )}
+
+          {originalPost && (
+            <RebarkedPost post={originalPost} redirect={redirect} />
           )}
         </div>
       </div>
