@@ -14,6 +14,8 @@ const PostPage = (props) => {
   const [comments, setComments] = useState(null);
   const post = contents.find((post) => post.id === id);
 
+  console.log(comments);
+
   useEffect(() => {
     //get the all comments to the post
     // started another onSnapshot bc the one of context collects comments in descending order
@@ -29,7 +31,9 @@ const PostPage = (props) => {
             return { id: doc.id, ...doc.data() };
           });
 
-          setComments(comments);
+          if (comments.length > 0) {
+            setComments(comments);
+          }
         },
         (error) => {
           handleError(error);
@@ -56,7 +60,7 @@ const PostPage = (props) => {
             view={"comm-post"}
             users={users}
           />
-          <div className="separation-bloc"></div>
+          {comments && <div className="separation-bloc"></div>}
           {comments &&
             comments.map((comment) => (
               <Post

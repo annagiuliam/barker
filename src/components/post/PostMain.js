@@ -45,7 +45,9 @@ const PostMain = (props) => {
         <div className="modal-avatar-wrapper">
           <img alt="avatar" src={post.url} className="avatar-img"></img>
         </div>
-        {modal === "comment" && <div className="connection-line"></div>}
+        {(modal === "comment" || view === "comm-post-profile") && (
+          <div className="connection-line"></div>
+        )}
       </div>
       <div className="right-side">
         <div className="post-right-top">
