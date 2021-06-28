@@ -26,14 +26,6 @@ const PostMain = (props) => {
     ? `${view}-main ${modalClass}`
     : `post-main ${modalClass}`;
 
-  // const history = useHistory();
-  // const redirect = (e) => {
-  //   e.stopPropagation();
-  //   history.push({
-  //     pathname: `/post/${post.id}`,
-  //   });
-  // };
-
   const hashedText = reactStringReplace(post.text, /(#\w+)/g, (match, i) => (
     <Link
       to={`/hashtag/${match.slice(1)}`}

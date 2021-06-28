@@ -5,7 +5,7 @@ import useStorage from "../../hooks/useStorage";
 
 import ProgressBar from "./ProgressBar";
 import CloseButton from "./CloseButton";
-import PostMain from "../post/PostMain";
+import RebarkedPost from "../post/RebarkedPost";
 
 import { BiImageAdd } from "react-icons/bi";
 
@@ -107,9 +107,7 @@ const InputForm = (props) => {
               </div>
             )}
 
-            {form === "rebark" && (
-              <PostMain post={post} view="rebarked" modal={"rebark"} />
-            )}
+            {form === "rebark" && <RebarkedPost post={post} />}
             <div className="form-footer">
               <div className="image-input" onClick={(e) => e.stopPropagation()}>
                 <label htmlFor={fileInputId} className="custom-file-upload">

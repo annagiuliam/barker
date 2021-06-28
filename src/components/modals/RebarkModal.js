@@ -4,7 +4,7 @@ import CloseButton from "../reusables/CloseButton";
 import InputForm from "../reusables/InputForm";
 
 const RebarkModal = (props) => {
-  const { post, closeRebarkModal, submitRebark, hashedText } = props;
+  const { post, closeRebarkModal, submitRebark } = props;
 
   return (
     <div className="modal">
