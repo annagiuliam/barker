@@ -56,6 +56,7 @@ const PostPage = (props) => {
             view={"comm-post"}
             users={users}
           />
+          <div className="separation-bloc"></div>
           {comments &&
             comments.map((comment) => (
               <Post

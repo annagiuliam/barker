@@ -59,7 +59,10 @@ button:focus {
 .icon {
   margin: 10px;
   border-radius: 25px;
+  color: var(--icon-color);
+
 }
+
 .icon:hover, .footer-icon:hover {
   cursor: pointer;
   color: var(--theme-color);

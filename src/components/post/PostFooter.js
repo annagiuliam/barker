@@ -13,8 +13,11 @@ const PostFooter = (props) => {
     clickLike,
   } = props;
 
-  const likeActive = likedByUser ? "footer-icon active" : "footer-icon";
-  const rebarkActive = rebarkedByUser ? "footer-icon active" : "footer-icon";
+  // const likeActive = likedByUser ? "footer-icon active" : "footer-icon";
+  // const rebarkActive = rebarkedByUser ? "footer-icon active" : "footer-icon";
+
+  const likeActive = likedByUser ? "active" : "";
+  const rebarkActive = rebarkedByUser ? "active" : "";
 
   return (
     <div className="post-footer">
@@ -31,7 +34,7 @@ const PostFooter = (props) => {
       </div>
       <div className="post-icon-div">
         <FaPaw
-          className={likeActive}
+          className={`footer-icon ${likeActive}`}
           title="Like"
           onClick={(e) => {
             e.stopPropagation();
@@ -42,7 +45,7 @@ const PostFooter = (props) => {
       </div>
       <div className="post-icon-div">
         <FaRetweet
-          className={rebarkActive}
+          className={`footer-icon ${rebarkActive}`}
           title="Rebark"
           onClick={(e) => {
             e.stopPropagation();

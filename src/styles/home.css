@@ -43,7 +43,7 @@
 }
   
 .form-wrapper.input {
-  border: 0.5px solid darkgray; 
+  border: var(--barker-border); 
   padding: 15px;   
   margin-top: 20px;
   margin-bottom: 20px;

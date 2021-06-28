@@ -1,7 +1,9 @@
 :root{
   --theme-color: #fe6a03;
   --hover-background: #fde3d0;
-  --barker-border: 0.5px solid darkgray;
+  --barker-border: 0.5px solid lightgrey;
+  --barker-light-gray : rgb(239, 243, 244);
+  --icon-color:  rgb(83, 100, 113);
 }
 
 *,
