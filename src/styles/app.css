@@ -152,9 +152,9 @@ ul {
   padding-bottom: 0px;
   }
   
-  .post-main.comment .right-side {
-    display: block;
-  }
+.post-main.comment .right-side {
+  display: block;
+}
 
 .connection-line {
   width: 2px;
@@ -172,6 +172,22 @@ ul {
 .comment-input-container {
   display: flex;
   flex-direction: column;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.error-message {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.error-container button {
+  margin: 0 auto;
 }
 
 

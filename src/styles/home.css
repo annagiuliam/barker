@@ -95,10 +95,6 @@ input[type="file"] {
   margin-top: 15px;
 }
 
-.input-form-img {
-  object-fit: fill;
-}
-
 .discard-btn-container {
   position: absolute;
   height: 45px;
@@ -120,7 +116,25 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 50%
+  width: 50%;
+  margin-top: 10px;
+  padding: 30px;
+  border: var(--barker-border);
+  border-radius: 18px;
+}
+
+.sign-in-form input {
+  display: inline-block;
+  height: 34px;
+  min-width: 160px;
+  padding-left: 8px;
+  padding-right: 6px;
+  border: var(--barker-border);
+  color: #000000;
+  outline: none;
+  font-size: 1.2em;
+  border-radius: 3px;
+  line-height: 1.3em;
 }
 
 .sign-in-btn {

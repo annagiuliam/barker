@@ -41,13 +41,6 @@ const InputForm = (props) => {
     }
   }, [imageUrl, post, form]);
 
-  useEffect(() => {
-    console.log(url);
-    if (post && post.imageUrl) {
-      console.log(post.imageUrl);
-    }
-  });
-
   function updatePost(e) {
     setPostText(e.target.value);
   }
