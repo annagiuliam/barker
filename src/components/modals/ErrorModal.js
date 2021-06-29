@@ -9,8 +9,10 @@ const ErrorModal = () => {
     <div className="modal">
       <CloseButton onClick={closeError} />
       <section className="modal-main">
-        <div className="error-message">{error}</div>
-        <button onClick={closeError}>OK</button>
+        <div className="error-container">
+          <div className="error-message">{error}</div>
+          <button onClick={closeError}>OK</button>
+        </div>
       </section>
     </div>
   );
