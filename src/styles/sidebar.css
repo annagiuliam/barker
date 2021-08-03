@@ -3,9 +3,9 @@
   margin: 0;
   padding-top: 30px;
   width: 300px;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
+  /* position: fixed; */
+  /* height: 100%; */
+  /* overflow: auto; */
   border-right: 0.5px solid lightgray;
   display: flex;
   flex-direction: column;

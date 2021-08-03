@@ -2,8 +2,10 @@
 .center-container {
   padding-top: 30px;
   padding-bottom: 20px;
-  margin-left: 350px;
+  margin-left: 2rem;
+  padding-right: 2rem;
   width: 50%;
+  width: 600px;
 }
 
 .form-wrapper {
@@ -157,6 +159,7 @@ input[type="file"] {
 
 .user-tile {
 width: 60%;
+min-width: 400px;
 display: flex;
 flex-direction: row;
 justify-content: space-between;

@@ -9,6 +9,7 @@ import "./styles/sidebar.css";
 import "./styles/home.css";
 import "./styles/profile.css";
 import "./styles/buttons.css";
+import "./styles/medias.css";
 
 import Home from "./components/Home";
 import LoginPage from "./components/LoginPage";

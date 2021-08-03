@@ -19,7 +19,7 @@
   text-align: center;
 }
 body, html , #root {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   margin: 0 ;
   font-family: Helvetica, sans-serif
@@ -226,7 +226,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 100vh;
+  height: 100%;
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
