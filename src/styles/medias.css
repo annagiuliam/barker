@@ -1,0 +1,33 @@
+@media screen and (max-width: 880px) {
+/* SIDEBAR  */
+    .menu-container {
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 0;
+    }
+
+    /* .menu-container a {
+        display : block;
+        height: 20px;
+    } */
+
+    .sidebar-option {
+        width: 3rem;
+        height: 3rem;
+        padding: 0.5rem;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    .sideb-option-name {
+       display: none;
+    }
+
+    .sidebar-icon {
+        height: 2rem;
+        width: 2rem;
+        margin: 0;
+        
+    }
+}

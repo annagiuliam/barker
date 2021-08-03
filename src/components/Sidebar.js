@@ -18,15 +18,15 @@ const Sidebar = (props) => {
       <div className="menu-container">
         <NavLink activeClassName={"active"} exact={true} to="/home">
           <div className="sidebar-option">
-            <FaHome />
-            <h3>Home</h3>
+            <FaHome className="sidebar-icon" />
+            <h3 className="sideb-option-name">Home</h3>
           </div>
         </NavLink>
 
         <NavLink to={`${url}barkers`} activeClassName={"active"}>
           <div className="sidebar-option">
-            <BsPeopleFill />
-            <h3>Who to follow</h3>
+            <BsPeopleFill className="sidebar-icon" />
+            <h3 className="sideb-option-name">Who to follow</h3>
           </div>
         </NavLink>
 
@@ -35,8 +35,8 @@ const Sidebar = (props) => {
           activeClassName={"active"}
         >
           <div className="sidebar-option">
-            <BsPersonFill />
-            <h3>Your Profile</h3>
+            <BsPersonFill className="sidebar-icon" />
+            <h3 className="sideb-option-name">Your Profile</h3>
           </div>
         </NavLink>
       </div>
