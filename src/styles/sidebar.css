@@ -2,11 +2,14 @@
 .sidebar {
   margin: 0;
   padding-top: 30px;
-  width: 300px;
+  width: 20%;
+  max-width: 300px;
+  min-width: 235px;
   /* position: fixed; */
   /* height: 100%; */
   /* overflow: auto; */
   border-right: 0.5px solid lightgray;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -30,17 +33,18 @@
 }
 
 .sidebar a {
-  color: black
+  color: black;
   
 }
 
-a.active {
- color: var(--theme-color);
+.sidebar a.active {
+  color: var(--theme-color);
 }
-
+ 
 a svg {
   margin-right: 10px;
-  width: 10%; height: auto;
+  width: 10%; 
+  height: auto;
 }
 
 .sidebar-option {

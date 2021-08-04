@@ -9,6 +9,7 @@ import Profile from "./profile/Profile";
 import PostPage from "../components/PostPage";
 import BarkersPage from "../components/BarkersPage";
 import FollowPage from "./profile/FollowPage";
+import FooterNav from "./FooterNav";
 
 import HashtagPage from "./HashtagPage";
 
@@ -116,6 +117,7 @@ const Home = () => {
           />
         </Switch>
       </div>
+      <FooterNav />
     </div>
   );
 };

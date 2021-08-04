@@ -27,7 +27,7 @@ body, html , #root {
 
 ul {
    list-style: none;
- }
+}
 
 
 .link-username:link {
@@ -196,8 +196,8 @@ ul {
   position: fixed;
   top: 0;
   width: 100%;
-  border-bottom: 0.5px solid lightgrey;
-  margin-right: 15%;
+  border-bottom: var(--barker-border);
+  /* padding-right: 15%; */
   text-align: right;
   background-color: white;
 }
@@ -234,7 +234,52 @@ ul {
   
 }
 
+/* Footer Nav  */
 
+.footer-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: var(--barker-border);
+  padding: 0.5rem 0;
+  /* margin-right: 15%; */
+  text-align: center;
+  background-color: white;
+  display: none;
+  /* height: 3rem; */
+  
+}
+
+.footer-nav a {
+  color: #000000ab;
+}
+
+.footer-nav a.active {
+  color: var(--theme-color);
+}
+
+.nav-option {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  /* margin-bottom: 1rem; */
+  display: table-cell;
+  vertical-align: middle;
+  /* margin: 1rem 0; */
+}
+
+.nav-option:hover {
+  background-color: var(--hover-background);
+  color: var(--theme-color)   
+}
+
+.nav-icon {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0;
+  
+}
 
 
 
