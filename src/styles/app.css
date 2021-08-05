@@ -126,10 +126,10 @@ ul {
   position: absolute;  
   border-radius: 15px;
   background: white;
-  top: 10%;
+  top: 3vh;
   margin-left: calc((100% - 600px) / 2);
   max-width: 566px;
-  max-height: 85vh;
+  max-height: 95vh;
   overflow-wrap: break-word;
   
 }
@@ -140,11 +140,8 @@ ul {
   max-height: 90%;
 }
 
-.input-form-img {
-  max-width: 400px;
-  max-height: 200px;
-  object-fit: cover;
-  border-radius: 18px;
+.post-input-form .rebarked-main {
+  max-width: 60%;
 }
 
 /* for comment modal */
@@ -197,7 +194,6 @@ ul {
   top: 0;
   width: 100%;
   border-bottom: var(--barker-border);
-  /* padding-right: 15%; */
   text-align: right;
   background-color: white;
 }
@@ -242,11 +238,9 @@ ul {
   width: 100%;
   border-top: var(--barker-border);
   padding: 0.5rem 0;
-  /* margin-right: 15%; */
   text-align: center;
   background-color: white;
   display: none;
-  /* height: 3rem; */
   
 }
 
@@ -263,10 +257,8 @@ ul {
   height: 2.5rem;
   padding: 0.5rem;
   border-radius: 50%;
-  /* margin-bottom: 1rem; */
   display: table-cell;
   vertical-align: middle;
-  /* margin: 1rem 0; */
 }
 
 .nav-option:hover {

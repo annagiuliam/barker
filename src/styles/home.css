@@ -10,7 +10,6 @@
   margin-right: 0.5rem;
   width: 80%;
   max-width: 600px;
-  /* min-width: 600px; */
 }
 
 .form-wrapper {
@@ -96,11 +95,18 @@ input[type="file"] {
 
 .form-image-container {
   position: relative;
-  width: 300px;
-  height: 200px;
+  width: 60%;
   margin-bottom: 15px;
   margin-top: 15px;
 }
+
+.input-form-img {
+  max-width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: 18px;  
+}
+
 
 .discard-btn-container {
   position: absolute;
@@ -111,6 +117,8 @@ input[type="file"] {
   background: rgb(249 249 249 / 48%);
   border-radius: 50px;
 }
+
+
 
 .sign-in-form-container {
   display: flex;
