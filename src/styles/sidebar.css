@@ -5,8 +5,8 @@
   width: 20%;
   max-width: 300px;
   min-width: 235px;
-  /* position: fixed; */
-  /* height: 100%; */
+  position: fixed;
+  height: 100%;
   /* overflow: auto; */
   border-right: 0.5px solid lightgray;
   flex-shrink: 1;
