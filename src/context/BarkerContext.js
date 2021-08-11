@@ -165,8 +165,10 @@ export const ContextProvider = ({ children }) => {
       var errorCode = error.code;
       var errorMessage = error.message;
       displayedError = `Error code: ${errorCode}. ${errorMessage}`;
-    } else displayedError = error;
-    setError(displayedError);
+    } else {
+      displayedError = error;
+      setError(displayedError);
+    }
   }
 
   function follow(user) {

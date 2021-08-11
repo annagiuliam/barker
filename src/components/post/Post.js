@@ -172,20 +172,23 @@ const Post = (props) => {
       let original;
       if (post.type === "rebark" || post.type === "comment") {
         original = contents.find((ele) => ele.id === post.originalPostId);
-        const originalRef = await db.collection("contents").doc(original.id);
-        if (post.type === "rebark") {
-          await originalRef.update({
-            rebarkedBy: firebase.firestore.FieldValue.arrayRemove(
-              currentUser.uid
-            ),
-          });
-          setRebarkedByUser(false);
-        } else {
-          await originalRef.update({
-            comments: firebase.firestore.FieldValue.increment(-1),
-          });
+        if (original) {
+          const originalRef = await db.collection("contents").doc(original.id);
+          if (post.type === "rebark") {
+            await originalRef.update({
+              rebarkedBy: firebase.firestore.FieldValue.arrayRemove(
+                currentUser.uid
+              ),
+            });
+            setRebarkedByUser(false);
+          } else {
+            await originalRef.update({
+              comments: firebase.firestore.FieldValue.increment(-1),
+            });
+          }
         }
       }
+
       postRef.delete();
     } catch (error) {
       handleError(error);
