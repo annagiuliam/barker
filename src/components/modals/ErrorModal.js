@@ -7,8 +7,8 @@ const ErrorModal = () => {
 
   return (
     <div className="modal">
-      <CloseButton onClick={closeError} />
       <section className="modal-main">
+        <CloseButton onClick={closeError} />
         <div className="error-container">
           <div className="error-message">{error}</div>
           <button onClick={closeError}>OK</button>
