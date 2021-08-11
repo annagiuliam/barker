@@ -8,7 +8,8 @@ const InteractionsModal = (props) => {
 
   return (
     <div className="extras-modal">
-      <div className="extras-modal-main">
+      {/* <div className="extras-modal-main"> */}
+      <div className="modal-main">
         <CloseButton onClick={props.onClick} />
         <div className="extras-tiles-container">
           {interactions.map((rebarker) => (

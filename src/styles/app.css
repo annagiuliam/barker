@@ -119,11 +119,11 @@ ul {
   background: white;
   width: 50%;
   height: auto;
-  padding: 50px;
+  /* padding: 50px; */
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .input-modal-main {
