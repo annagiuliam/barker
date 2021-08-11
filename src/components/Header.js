@@ -9,11 +9,13 @@ const Header = () => {
       <div className="header-content">
         <div className="header-user">
           <div>
-            <img
-              className="avatar-img-small"
-              src={currentUser.url}
-              alt="user avatar"
-            ></img>
+            <Link to={`/profile/${currentUser.uid}`}>
+              <img
+                className="avatar-img-small"
+                src={currentUser.url}
+                alt="user avatar"
+              />
+            </Link>
           </div>
           <div>
             <Link to={`/profile/${currentUser.uid}`} className="link-username">
