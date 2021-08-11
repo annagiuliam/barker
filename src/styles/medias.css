@@ -89,7 +89,7 @@
 
     .input-modal-main .form-wrapper {
         max-width: 566px;
-        width: 100%;
+        width: 95%;
     }
 }
 
@@ -126,9 +126,9 @@
 
 
 @media screen and (min-width: 600px) {
-  /* .input-modal-main {
-    margin-left: calc((100% - 600px) / 2)
-  }   */
+  .input-modal-main {   
+    width: 566px;
+  }  
 }
 
 /* @media screen and (min-width: 881px) {

@@ -4,7 +4,9 @@ import { Link, useHistory } from "react-router-dom";
 const reactStringReplace = require("react-string-replace");
 
 const RebarkedPost = (props) => {
-  const { post } = props;
+  const { post, url } = props;
+
+  const rebarkedImgClass = url ? "image-container small" : "image-container";
 
   const history = useHistory();
   const redirect = (e) => {
@@ -59,7 +61,7 @@ const RebarkedPost = (props) => {
         <div className="post-content">
           <div className="post-text">{hashedText}</div>
           {post.imageUrl && (
-            <div className="image-container">
+            <div className={rebarkedImgClass}>
               <img src={post.imageUrl} alt="upload" className="post-img"></img>
             </div>
           )}

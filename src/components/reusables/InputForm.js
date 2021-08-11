@@ -99,7 +99,7 @@ const InputForm = (props) => {
               </div>
             )}
 
-            {form === "rebark" && <RebarkedPost post={post} />}
+            {form === "rebark" && <RebarkedPost post={post} url={url} />}
             <div className="form-footer">
               <div className="image-input" onClick={(e) => e.stopPropagation()}>
                 <label htmlFor={fileInputId} className="custom-file-upload">

@@ -107,6 +107,10 @@
   width: 80%;
 }
 
+.rebarked-main .image-container.small {
+  width: 50%;
+}
+
 .rebarked-top {
   display: flex;
   align-items: center;
