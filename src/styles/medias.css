@@ -49,7 +49,7 @@
     }
 
     .header-user {
-        margin-right: 0;
+        margin-right: 0.5rem;
     }
 
     .center-container {
@@ -113,9 +113,9 @@
         display: none;
     }
 
-    /* .input-modal-main {
-        top: 11vh;
-    } */
+    .header-user .link-username {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 240px) {

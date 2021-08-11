@@ -22,7 +22,9 @@ const Header = () => {
           </div>
         </div>
 
-        <button onClick={logOut}>Log Out</button>
+        <button className="log-out-btn" onClick={logOut}>
+          Log Out
+        </button>
       </div>
     </header>
   );
