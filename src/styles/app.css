@@ -126,7 +126,9 @@ ul {
   position: absolute;  
   border-radius: 15px;
   background: white;
-  top: 3vh;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
   /* margin-left: calc((100% - 600px) / 2); */
   /* margin-left: auto;
   margin-right: auto; */
@@ -145,7 +147,7 @@ ul {
 }
 
 .post-input-form .rebarked-main {
-  max-width: 60%;
+  max-width: 80%;
 }
 
 /* for comment modal */
@@ -228,7 +230,7 @@ ul {
   flex-direction: row;
   justify-content: flex-start; */
   height: 100%;
-  max-width: 1300px;
+  max-width: 1600px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 64px;

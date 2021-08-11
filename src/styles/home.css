@@ -7,7 +7,9 @@
   padding-top: 30px;
   padding-bottom: 20px;
   /* margin-left: 0.5rem; */
-  margin-left: calc(225px + 5%);
+  margin-left: clamp(235px, 20%, 300px);
+  padding-left: 1.5rem;
+  /* margin-left: max(20%, 235px); */
   margin-right: 0.5rem;
   width: 80%;
   max-width: 600px;
@@ -21,7 +23,7 @@
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 15px;
-  width: 566px;  
+  max-width: 566px;  
 }
 
 .post-input-form {
@@ -51,13 +53,14 @@
 }
 
 .form-wrapper.edit {
-  width: 566px;
+  max-width: 566px;
   padding-top: 15px;
 }
 
 .form-wrapper.rebark {
   padding-top: 15px;
   max-height: 90%;
+  max-width: 566px;
 }
 
 
@@ -160,6 +163,17 @@ input[type="file"] {
 .input-btn-div {
   text-align: end;
 }
+
+/* .filler {
+  background: chartreuse;
+  padding-top: 30px;
+  height: 100%;
+  width: 20%;
+  max-width: 300px;
+  min-width: 235px;
+  flex-shrink: 1;
+
+} */
 
 
 /* Post Page */

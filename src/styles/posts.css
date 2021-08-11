@@ -1,5 +1,6 @@
 .post-container, .post-w-comments-container {  
-  width: 566px;
+  width: 100%;
+  max-width: 566px;
   border: var(--barker-border);
   margin-bottom: 15px;
   display: flex;
