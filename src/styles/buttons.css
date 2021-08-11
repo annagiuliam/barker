@@ -13,6 +13,10 @@ button {
   max-height: 35px;
   cursor: pointer;
 }
+
+.follow-action-btn {
+  width: 6rem;
+}
   
 button:hover{
   background-color: white;

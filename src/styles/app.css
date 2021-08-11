@@ -54,6 +54,10 @@ ul {
   font-weight:bold
 }
 
+.link-username span {
+  overflow-wrap: anywhere;
+}
+
 .avatar-img {
   height: 48px;
   width: 48px;
