@@ -15,8 +15,8 @@
 }
 
 .menu-container {
-  margin-top: 25px;
-  margin-left: 20%;
+  margin: 2rem auto;
+  padding: 1.5rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -48,13 +48,19 @@ a svg {
   flex-direction: row;
   justify-content: flex-start;
   border-radius: 30px;
-  width: 70%;
+  max-width: 210px;
   padding-left: 15px;
+  font-size: 1rem;
 }
 
 .sidebar-option:hover {
   background-color: var(--hover-background);
   color: var(--theme-color)   
+}
+
+.sideb-option-name {
+  padding-right: 1rem; 
+  font-size: 1rem; 
 }
 
 #dog-icon {
