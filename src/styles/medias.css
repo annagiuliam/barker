@@ -123,6 +123,10 @@
         justify-content: center;
     }
 
+    button {
+        overflow-wrap: break-word;
+    }
+
 }
 
 @media screen and (min-width: 600px) {
