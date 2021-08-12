@@ -120,7 +120,6 @@ ul {
   width: 50%;
   height: auto;
   max-height: 95%;
-  /* padding: 50px; */
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
@@ -134,15 +133,9 @@ ul {
   top: 80px;
   left: 50%;
   transform: translateX(-50%);
-  /* margin-left: calc((100% - 600px) / 2); */
-  /* margin-left: auto;
-  margin-right: auto; */
-  /* left: 50%;
-  margin-left: -50%; */
   max-width: 566px;
   max-height: 95vh;
   overflow-wrap: break-word;
-  
 }
 
 .input-modal-main .form-image-container {
@@ -248,9 +241,6 @@ ul {
 
 .app-container {
   width: 100%;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: flex-start; */
   height: 100%;
   max-width: 1600px;
   margin-left: auto;

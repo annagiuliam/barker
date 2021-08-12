@@ -8,13 +8,11 @@ const BarkersPage = (props) => {
 
   return (
     <div className="center-container">
-      {/* <div className="tiles-container"> */}
       {users
         .filter((user) => user.uid !== currentUser.uid)
         .map((ele) => (
           <UserTile user={ele} users={users} key={ele.uid} />
         ))}
-      {/* </div> */}
     </div>
   );
 };

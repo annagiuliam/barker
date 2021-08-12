@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import CloseButton from "../reusables/CloseButton";
 import InputForm from "../reusables/InputForm";

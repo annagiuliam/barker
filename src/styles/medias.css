@@ -73,10 +73,6 @@
         align-items: center;
     }
 
-    /* .post-container, .post-w-comments-container, .form-wrapper {
-        width: 100%;
-    } */
-
     .user-tile {
         width: 100%;
         max-width: 400px;
@@ -97,7 +93,6 @@
 @media screen and (max-width: 600px) {
     .input-modal-main, .modal-main {
         width: 90%;
-        /* padding: 0; */
     }
 
     .input-modal-main .rebarked-main {
@@ -108,11 +103,6 @@
         margin-left: 2vw;
         margin-right: 2vw;
     }
-
-    /* .input-modal-main .form-wrapper {
-        max-width: 566px;
-        width: 100%;
-    } */
 }
 
 @media screen and (max-width: 320px) {
@@ -134,16 +124,6 @@
     }
 
 }
-
-/* @media screen and (max-width: 240px) {
-    .user-tile {
-        flex-direction: column;
-        justify-content: center;
-    }
-} */
-
-
-
 
 @media screen and (min-width: 600px) {
   .input-modal-main, .modal-main {   

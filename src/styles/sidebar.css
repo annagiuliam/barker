@@ -7,9 +7,7 @@
   min-width: 235px;
   position: fixed;
   height: 100%;
-  /* overflow: auto; */
   border-right: 0.5px solid lightgray;
-  /* flex-shrink: 1; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -20,7 +18,6 @@
   margin-top: 25px;
   margin-left: 20%;
   width: 100%;
-  /* padding: 0px */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,7 +31,6 @@
 
 .sidebar a {
   color: black;
-  
 }
 
 .sidebar a.active {
@@ -60,7 +56,6 @@ a svg {
   background-color: var(--hover-background);
   color: var(--theme-color)   
 }
-
 
 #dog-icon {
   font-size: 60px;

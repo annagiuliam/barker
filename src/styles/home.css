@@ -6,10 +6,8 @@
 .center-container {
   padding-top: 30px;
   padding-bottom: 20px;
-  /* margin-left: 0.5rem; */
   margin-left: clamp(235px, 20%, 300px);
   padding-left: 1.5rem;
-  /* margin-left: max(20%, 235px); */
   margin-right: 0.5rem;
   width: 80%;
   max-width: 600px;
@@ -165,16 +163,6 @@ input[type="file"] {
   text-align: end;
 }
 
-/* .filler {
-  background: chartreuse;
-  padding-top: 30px;
-  height: 100%;
-  width: 20%;
-  max-width: 300px;
-  min-width: 235px;
-  flex-shrink: 1;
-
-} */
 
 
 /* Post Page */

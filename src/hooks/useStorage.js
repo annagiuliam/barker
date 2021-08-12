@@ -3,7 +3,7 @@ import { BarkerContext } from "../context/BarkerContext";
 import { storage } from "../firebase/firebase";
 
 const useStorage = (file) => {
-  const { currentUser, handleError } = useContext(BarkerContext);
+  const { currentUser } = useContext(BarkerContext);
   const [progress, setProgress] = useState(0);
   const [error, setError] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
