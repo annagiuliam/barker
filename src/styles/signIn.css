@@ -15,8 +15,9 @@
   
 .welcome-box {
   background-color: #ececec;
-  padding: 15px;
-  height: 30vh;
+  padding: 1rem;
+  width: 95%;
+  max-width: 277px;
   border-radius: 25px;
   margin-right: 20%;
   display: flex;

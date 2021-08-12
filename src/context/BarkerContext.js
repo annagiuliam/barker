@@ -9,19 +9,10 @@ export const ContextProvider = ({ children }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [anonName, setAnonName] = useState("");
-
   const [adminUid] = useState("olyO4oe4gsYRyr1mXXayPJkkvmY2");
-  // DA RIPRISTINARE!!!!
-  // const [error, setError] = useState(null);
-  // const [showError, setShowError] = useState(false);
 
-  // PROVA
-  const [error, setError] = useState(
-    "HAIUHIAURGH AIUGHIAUGH AIUGAIUGH IUEURGIUHG AIURHGIAURGH AIURHGIAUGH AIURGIAUGH AIUERGHIUERGH AEIURGHAIEUGH IUEIUHIGUAHIEUG IUGIDUHGAIDUGHAIUDGHIAUGHIAUDGHIUDGHIUHGIUHGAIUHGIUHGIUA AIUGHIAUGHIUGHIUR AIUGHAIUGHAIUGHIAURHGIAURGHIEURHGIAEURGHIURGHIURGHIURGHAIEURHGIEURHGIAUERGHIAURHGIURGHIRUGHIAURHGAIURHGIURHGISURGHIRUGHIRUHG AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-  );
-  const [showError, setShowError] = useState(true);
-  // FINE PROVA
-
+  const [error, setError] = useState(null);
+  const [showError, setShowError] = useState(false);
   const [signInModal, setSignInModal] = useState(false);
 
   useEffect(() => {

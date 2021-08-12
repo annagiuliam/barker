@@ -1,5 +1,10 @@
 @media screen and (max-width: 880px) {
 
+    .welcome-box {
+        margin: 0 auto;
+        
+      }
+
     .center-container {
         margin-left: clamp(50px, 20%, 300px);
         padding-left: 0.5rem;
