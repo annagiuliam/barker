@@ -145,6 +145,18 @@ ul {
   
 }
 
+.input-modal-main .form-image-container {
+  width: 40%;
+}
+
+.input-modal-main .discard-btn-container {  
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.input-modal-main .discard-btn-container .icon {
+  margin: 5% auto;
+}
+
 .input-modal-content {
   display: flex;
   flex-direction: column;

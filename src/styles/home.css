@@ -100,8 +100,8 @@ input[type="file"] {
 .form-image-container {
   position: relative;
   width: 60%;
-  margin-bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 5%;
+  margin-top: 5%;
 }
 
 .input-form-img {
@@ -116,8 +116,8 @@ input[type="file"] {
   position: absolute;
   height: 45px;
   width: 45px;
-  top: 20px;
-  left: 15px;
+  top: 5%;
+  left: 5%;
   background: rgb(249 249 249 / 48%);
   border-radius: 50px;
 }
