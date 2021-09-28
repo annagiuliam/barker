@@ -1,3 +1,4 @@
+# Barker #
 
 This project is deployed at  https://annagiuliam.github.io/barker/
 
@@ -10,7 +11,7 @@ Barker is a Twitter inspired app. Main functionalities:
 * Posts can contain hashtags. By clicking on the hashtag you can display all related posts.
 
 
-This app is build with:
+This app is built with:
 * Javascript
 * React
 * React Router (Links, Navigation)
@@ -19,3 +20,7 @@ This app is build with:
 This project was very challenging and helped me solidify my knowledge of React.
 I also deepened my React Router know-how and refreshed my skills with async code.
 The hardest challenge was probably learning how to properly use Firebase. Luckily Firebase has a very explanatory documentation that helped me tackle the learning curve.
+
+## Preview ##
+
+![barker preview](./src/images/barker-gif.gif)
