@@ -9,6 +9,8 @@ Barker is a Twitter inspired app. Main functionalities:
 * Each post can be clicked to see details about comments, shares and likes.
 * Posts can contain hashtags. By clicking on the hashtag you can display all related posts.
 
+See live app on https://annagiuliam.github.io/barker/
+
 
 This app is built with:
 * Javascript
